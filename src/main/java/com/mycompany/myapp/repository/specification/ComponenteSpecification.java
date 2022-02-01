@@ -30,12 +30,12 @@ public interface ComponenteSpecification extends JpaSpecificationExecutor<Compon
 				query.distinct(true);
 				List<Predicate> ors = new ArrayList<Predicate>();
 
-                Expression<String> nombre = root.get("fechaEntrega").as(String.class);
-                Expression<String> numeroSerie = root.get("fechaComponente").as(String.class);
-				Expression<String> marca = root.get("direccionEntrega").as(String.class);
-                Expression<String> modelo = root.get("descuento").as(String.class);
-                Expression<String> peso = root.get("tipoPago").as(String.class);
-                Expression<String> descripcion = root.get("precioTotal").as(String.class);
+                Expression<String> nombre = root.get("nombre").as(String.class);
+                Expression<String> numeroSerie = root.get("numeroSerie").as(String.class);
+				Expression<String> marca = root.get("marca").as(String.class);
+                Expression<String> modelo = root.get("modelo").as(String.class);
+                Expression<String> peso = root.get("peso").as(String.class);
+                Expression<String> descripcion = root.get("descripcion").as(String.class);
 
 
 				//Join<Componente, Venta> venta = root.join("venta", JoinType.LEFT);
