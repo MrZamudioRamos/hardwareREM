@@ -17,8 +17,8 @@ export class EmpresaUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    nombreSocial: new FormControl(null, [Validators.required, Validators.min(3), Validators.max(50)]),
-    cif: new FormControl(null, [Validators.required, Validators.min(9), Validators.max(9)]),
+    nombreSocial: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
+    cif: new FormControl(null, [Validators.required, Validators.minLength(9), Validators.maxLength(9)]),
     telefono: new FormControl(null, [Validators.minLength(9), Validators.maxLength(15), Validators.required]),
     mail: new FormControl(null, [Validators.required, Validators.email]),
     pais: new FormControl(null, [Validators.required, Validators.min(3), Validators.max(150)]),

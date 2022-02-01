@@ -26,7 +26,7 @@ public class Empresa implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(max = 50, min = 3)
+    @Size(max = 100, min = 3)
     @Column(name = "nombre_social", nullable = false)
     private String nombreSocial;
 
