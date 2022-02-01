@@ -165,6 +165,16 @@ public class FacturaResource {
         return ResponseUtil.wrapOrNotFound(facturaDTO);
     }
 
+    @GetMapping("/facturas/searchingParam")
+    public ResponseEntity<List<FacturaDTO>> findAllBySimpleSearch(Pageable pageable, @RequestParam(required = false, defaultValue ="")String filtro)
+        throws InterruptedException, URISyntaxException {
+        log.debug("REST request to search a parameter");
+        filtro = !filtro.equals("undefined") ? filtro : "%";
+        Page<FacturaDTO> page = facturaService.findAllBySearchingParam(filtro,pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
     /**
      * {@code DELETE  /facturas/:id} : delete the "id" factura.
      *

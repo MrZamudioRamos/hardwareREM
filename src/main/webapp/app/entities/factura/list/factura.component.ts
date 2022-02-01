@@ -23,6 +23,7 @@ export class FacturaComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  searchString = "";
 
   constructor(
     protected facturaService: FacturaService,
@@ -60,6 +61,31 @@ export class FacturaComponent implements OnInit {
   trackId(index: number, item: IFactura): number {
     return item.id!;
   }
+
+  // buscarPorAtributo(page?: number, dontNavigate?: boolean): void {
+  //   this.isLoading = true;
+  //   const pageToLoad: number = page ?? this.page ?? 1;
+  //   if (this.searchString ==="") {
+  //     this.loadPage();
+  //   } else {
+  //   this.facturaService
+  //     .simpleSearch(this.searchString,{
+  //       page: pageToLoad - 1,
+  //       size: this.itemsPerPage,
+  //       sort: this.sort(),
+  //     })
+  //     .subscribe({
+  //       next: (res: HttpResponse<IFactura[]>) => {
+  //         this.isLoading = false;
+  //         this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+  //       },
+  //       error: () => {
+  //         this.isLoading = false;
+  //         this.onError();
+  //       },
+  //     });
+  //   }
+  // }
 
   delete(factura: IFactura): void {
     const modalRef = this.modalService.open(FacturaDeleteDialogComponent, { size: 'lg', backdrop: 'static' });

@@ -2,6 +2,7 @@ package com.mycompany.myapp.service.impl;
 
 import com.mycompany.myapp.domain.Factura;
 import com.mycompany.myapp.repository.FacturaRepository;
+import com.mycompany.myapp.repository.specification.FacturaSpecification;
 import com.mycompany.myapp.service.FacturaService;
 import com.mycompany.myapp.service.dto.FacturaDTO;
 import com.mycompany.myapp.service.mapper.FacturaMapper;
@@ -72,5 +73,10 @@ public class FacturaServiceImpl implements FacturaService {
     public void delete(Long id) {
         log.debug("Request to delete Factura : {}", id);
         facturaRepository.deleteById(id);
+    }
+
+    public Page<FacturaDTO> findAllBySearchingParam(String filtro, Pageable pageable) {
+        log.debug("Filtro");
+        return facturaRepository.findAll(FacturaSpecification.searchingParam(filtro), pageable).map(facturaMapper::toDto);
     }
 }
