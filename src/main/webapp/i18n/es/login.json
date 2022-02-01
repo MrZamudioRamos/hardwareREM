@@ -1,6 +1,6 @@
 {
   "login": {
-    "title": "Iniciar la sesión",
+    "title": "Iniciar sesión",
     "form": {
       "password": "Contraseña",
       "password.placeholder": "Su contraseña",
