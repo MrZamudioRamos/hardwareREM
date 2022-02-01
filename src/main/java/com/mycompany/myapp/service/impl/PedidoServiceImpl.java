@@ -2,6 +2,7 @@ package com.mycompany.myapp.service.impl;
 
 import com.mycompany.myapp.domain.Pedido;
 import com.mycompany.myapp.repository.PedidoRepository;
+import com.mycompany.myapp.repository.specification.PedidoSpecification;
 import com.mycompany.myapp.service.PedidoService;
 import com.mycompany.myapp.service.dto.PedidoDTO;
 import com.mycompany.myapp.service.mapper.PedidoMapper;
@@ -72,5 +73,11 @@ public class PedidoServiceImpl implements PedidoService {
     public void delete(Long id) {
         log.debug("Request to delete Pedido : {}", id);
         pedidoRepository.deleteById(id);
+    }
+
+
+    public Page<PedidoDTO> findAllBySearchingParam(String filtro, Pageable pageable) {
+        log.debug("Filtro");
+        return pedidoRepository.findAll(PedidoSpecification.searchingParam(filtro), pageable).map(pedidoMapper::toDto);
     }
 }
