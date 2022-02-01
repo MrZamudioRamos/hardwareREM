@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -17,16 +17,16 @@ export class EmpresaUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    nombreSocial: [null, [Validators.required]],
-    cif: [null, [Validators.required]],
-    telefono: [null, [Validators.required]],
-    mail: [null, [Validators.required]],
-    pais: [null, [Validators.required]],
-    provincia: [null, [Validators.required]],
-    sucursal: [null, [Validators.required]],
-    codigoPostal: [null, [Validators.required]],
-    calle: [null, [Validators.required]],
-    categoria: [null, [Validators.required]],
+    nombreSocial: new FormControl(null, [Validators.required, Validators.min(3), Validators.max(50)]),
+    cif: new FormControl(null, [Validators.required, Validators.min(9), Validators.max(9)]),
+    telefono: new FormControl(null, [Validators.minLength(9), Validators.maxLength(15), Validators.required]),
+    mail: new FormControl(null, [Validators.required, Validators.email]),
+    pais: new FormControl(null, [Validators.required, Validators.min(3), Validators.max(150)]),
+    provincia: new FormControl(null, [Validators.required, Validators.min(3), Validators.max(150)]),
+    sucursal: new FormControl(null, [Validators.required, Validators.min(3), Validators.max(50)]),
+    codigoPostal: new FormControl(null, [Validators.required, Validators.min(5), Validators.max(10)]),
+    calle: new FormControl(null, [Validators.required, Validators.min(3), Validators.max(150)]),
+    categoria: new FormControl(null, [Validators.required, Validators.min(3), Validators.max(100)]),
     fechaCreacion: [null, [Validators.required]],
   });
 
