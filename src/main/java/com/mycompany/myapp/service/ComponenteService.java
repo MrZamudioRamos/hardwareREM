@@ -47,4 +47,7 @@ public interface ComponenteService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+
+    Page<ComponenteDTO> findAllBySearchingParam(String filtro, Pageable pageable);
 }

@@ -165,6 +165,16 @@ public class ComponenteResource {
         return ResponseUtil.wrapOrNotFound(componenteDTO);
     }
 
+    @GetMapping("/componentes/searchingParam")
+    public ResponseEntity<List<ComponenteDTO>> findAllBySimpleSearch(Pageable pageable, @RequestParam(required = false, defaultValue ="")String filtro)
+        throws InterruptedException, URISyntaxException {
+        log.debug("REST request to search a parameter");
+        filtro = !filtro.equals("undefined") ? filtro : "%";
+        Page<ComponenteDTO> page = componenteService.findAllBySearchingParam(filtro,pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
     /**
      * {@code DELETE  /componentes/:id} : delete the "id" componente.
      *
