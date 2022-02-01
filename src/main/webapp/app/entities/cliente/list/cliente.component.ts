@@ -23,6 +23,7 @@ export class ClienteComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  searchString = "";
 
   constructor(
     protected clienteService: ClienteService,
@@ -60,6 +61,32 @@ export class ClienteComponent implements OnInit {
   trackId(index: number, item: ICliente): number {
     return item.id!;
   }
+
+  buscarPorAtributo(page?: number, dontNavigate?: boolean): void {
+      this.isLoading = true;
+      const pageToLoad: number = page ?? this.page ?? 1;
+      if (this.searchString ==="") {
+        this.loadPage();
+      } else {
+      this.clienteService
+        .simpleSearch(this.searchString,{
+          page: pageToLoad - 1,
+          size: this.itemsPerPage,
+          sort: this.sort(),
+        })
+        .subscribe({
+          next: (res: HttpResponse<ICliente[]>) => {
+            this.isLoading = false;
+            this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+          },
+          error: () => {
+            this.isLoading = false;
+            this.onError();
+          },
+        });
+      }
+    }
+
 
   delete(cliente: ICliente): void {
     const modalRef = this.modalService.open(ClienteDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
