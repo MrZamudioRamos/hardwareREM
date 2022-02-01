@@ -1,0 +1,118 @@
+<div>
+  <h2 id="page-heading" data-cy="FacturaHeading">
+    <span jhiTranslate="hardwareRemApp.factura.home.title">Facturas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="hardwareRemApp.factura.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-factura"
+        [routerLink]="['/factura/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hardwareRemApp.factura.home.createLabel"> Create a new Factura </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="facturas?.length === 0">
+    <span jhiTranslate="hardwareRemApp.factura.home.notFound">No facturas found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="facturas && facturas.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="fechaFacturacion">
+            <span jhiTranslate="hardwareRemApp.factura.fechaFacturacion">Fecha Facturacion</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="fechaVencimiento">
+            <span jhiTranslate="hardwareRemApp.factura.fechaVencimiento">Fecha Vencimiento</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="cliente.id">
+            <span jhiTranslate="hardwareRemApp.factura.cliente">Cliente</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="empresa.id">
+            <span jhiTranslate="hardwareRemApp.factura.empresa">Empresa</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let factura of facturas; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/factura', factura.id, 'view']">{{ factura.id }}</a>
+          </td>
+          <td>{{ factura.fechaFacturacion | formatMediumDate }}</td>
+          <td>{{ factura.fechaVencimiento | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="factura.cliente">
+              <a [routerLink]="['/cliente', factura.cliente?.id, 'view']">{{ factura.cliente?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="factura.empresa">
+              <a [routerLink]="['/empresa', factura.empresa?.id, 'view']">{{ factura.empresa?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/factura', factura.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/factura', factura.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(factura)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="facturas && facturas.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

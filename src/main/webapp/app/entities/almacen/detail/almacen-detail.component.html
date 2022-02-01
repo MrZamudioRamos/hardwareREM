@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="almacen">
+      <h2 data-cy="almacenDetailsHeading"><span jhiTranslate="hardwareRemApp.almacen.detail.title">Almacen</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ almacen.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.almacen.telefono">Telefono</span></dt>
+        <dd>
+          <span>{{ almacen.telefono }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.almacen.pais">Pais</span></dt>
+        <dd>
+          <span>{{ almacen.pais }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.almacen.provincia">Provincia</span></dt>
+        <dd>
+          <span>{{ almacen.provincia }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.almacen.sucursal">Sucursal</span></dt>
+        <dd>
+          <span>{{ almacen.sucursal }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.almacen.codigoPostal">Codigo Postal</span></dt>
+        <dd>
+          <span>{{ almacen.codigoPostal }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.almacen.calle">Calle</span></dt>
+        <dd>
+          <span>{{ almacen.calle }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.almacen.albaran">Albaran</span></dt>
+        <dd>
+          <span>{{ almacen.albaran }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.almacen.stockProductos">Stock Productos</span></dt>
+        <dd>
+          <span>{{ almacen.stockProductos }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.almacen.empresa">Empresa</span></dt>
+        <dd>
+          <div *ngIf="almacen.empresa">
+            <a [routerLink]="['/empresa', almacen.empresa?.id, 'view']">{{ almacen.empresa?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/almacen', almacen.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

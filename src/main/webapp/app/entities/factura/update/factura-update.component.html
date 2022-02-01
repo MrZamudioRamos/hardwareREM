@@ -1,0 +1,134 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-factura-heading" data-cy="FacturaCreateUpdateHeading" jhiTranslate="hardwareRemApp.factura.home.createOrEditLabel">
+        Create or edit a Factura
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.factura.fechaFacturacion" for="field_fechaFacturacion"
+            >Fecha Facturacion</label
+          >
+          <div class="input-group">
+            <input
+              id="field_fechaFacturacion"
+              data-cy="fechaFacturacion"
+              type="text"
+              class="form-control"
+              name="fechaFacturacion"
+              ngbDatepicker
+              #fechaFacturacionDp="ngbDatepicker"
+              formControlName="fechaFacturacion"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="fechaFacturacionDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+          <div
+            *ngIf="
+              editForm.get('fechaFacturacion')!.invalid &&
+              (editForm.get('fechaFacturacion')!.dirty || editForm.get('fechaFacturacion')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('fechaFacturacion')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.factura.fechaVencimiento" for="field_fechaVencimiento"
+            >Fecha Vencimiento</label
+          >
+          <div class="input-group">
+            <input
+              id="field_fechaVencimiento"
+              data-cy="fechaVencimiento"
+              type="text"
+              class="form-control"
+              name="fechaVencimiento"
+              ngbDatepicker
+              #fechaVencimientoDp="ngbDatepicker"
+              formControlName="fechaVencimiento"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="fechaVencimientoDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+          <div
+            *ngIf="
+              editForm.get('fechaVencimiento')!.invalid &&
+              (editForm.get('fechaVencimiento')!.dirty || editForm.get('fechaVencimiento')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('fechaVencimiento')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.factura.cliente" for="field_cliente">Cliente</label>
+          <select class="form-control" id="field_cliente" data-cy="cliente" name="cliente" formControlName="cliente">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="clienteOption.id === editForm.get('cliente')!.value?.id ? editForm.get('cliente')!.value : clienteOption"
+              *ngFor="let clienteOption of clientesSharedCollection; trackBy: trackClienteById"
+            >
+              {{ clienteOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.factura.empresa" for="field_empresa">Empresa</label>
+          <select class="form-control" id="field_empresa" data-cy="empresa" name="empresa" formControlName="empresa">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="empresaOption.id === editForm.get('empresa')!.value?.id ? editForm.get('empresa')!.value : empresaOption"
+              *ngFor="let empresaOption of empresasSharedCollection; trackBy: trackEmpresaById"
+            >
+              {{ empresaOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

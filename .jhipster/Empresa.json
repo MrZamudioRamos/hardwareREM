@@ -1,0 +1,108 @@
+{
+  "name": "Empresa",
+  "fields": [
+    {
+      "fieldName": "nombreSocial",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "cif",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "telefono",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "mail",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "pais",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "provincia",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sucursal",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codigoPostal",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "calle",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "categoria",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fechaCreacion",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "factura",
+      "otherEntityRelationshipName": "empresa",
+      "relationshipName": "factura"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "cliente",
+      "otherEntityRelationshipName": "empresa",
+      "relationshipName": "cliente"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "producto",
+      "otherEntityRelationshipName": "empresa",
+      "relationshipName": "producto"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "pedido",
+      "otherEntityRelationshipName": "empresa",
+      "relationshipName": "pedido"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "almacen",
+      "otherEntityRelationshipName": "empresa",
+      "relationshipName": "almacen"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "empleado",
+      "otherEntityRelationshipName": "empresa",
+      "relationshipName": "empleado"
+    }
+  ],
+  "entityTableName": "empresa",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220201093941"
+}

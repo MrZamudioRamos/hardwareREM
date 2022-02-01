@@ -1,0 +1,36 @@
+{
+  "hardwareRemApp": {
+    "cliente": {
+      "home": {
+        "title": "Clientes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Cliente",
+        "createOrEditLabel": "Create or edit a Cliente",
+        "notFound": "No Clientes found"
+      },
+      "created": "A new Cliente is created with identifier {{ param }}",
+      "updated": "A Cliente is updated with identifier {{ param }}",
+      "deleted": "A Cliente is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cliente {{ id }}?"
+      },
+      "detail": {
+        "title": "Cliente"
+      },
+      "id": "ID",
+      "dni": "Dni",
+      "nombre": "Nombre",
+      "apellidos": "Apellidos",
+      "telefono": "Telefono",
+      "mail": "Mail",
+      "pais": "Pais",
+      "provincia": "Provincia",
+      "codigoPostal": "Codigo Postal",
+      "calle": "Calle",
+      "fidelizado": "Fidelizado",
+      "activo": "Activo",
+      "factura": "Factura",
+      "empresa": "Empresa"
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "name": "Pedido",
+  "fields": [
+    {
+      "fieldName": "direccionEntrega",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fechaPedido",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fechaEntrega",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descuento",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "tipoPago",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "precioTotal",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "observaciones",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "entregado",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "enviado",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "factura",
+      "otherEntityRelationshipName": "pedido",
+      "relationshipName": "factura",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "producto",
+      "otherEntityRelationshipName": "pedido",
+      "relationshipName": "producto"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "empleado",
+      "otherEntityRelationshipName": "pedido",
+      "relationshipName": "empleado"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "empresa",
+      "otherEntityRelationshipName": "pedido",
+      "relationshipName": "empresa"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "almacen",
+      "otherEntityRelationshipName": "pedido",
+      "relationshipName": "almacen"
+    }
+  ],
+  "entityTableName": "pedido",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220201093945"
+}

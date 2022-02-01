@@ -1,0 +1,90 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="empleado">
+      <h2 data-cy="empleadoDetailsHeading"><span jhiTranslate="hardwareRemApp.empleado.detail.title">Empleado</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ empleado.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empleado.dni">Dni</span></dt>
+        <dd>
+          <span>{{ empleado.dni }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empleado.nombre">Nombre</span></dt>
+        <dd>
+          <span>{{ empleado.nombre }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empleado.apellidos">Apellidos</span></dt>
+        <dd>
+          <span>{{ empleado.apellidos }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empleado.telefono">Telefono</span></dt>
+        <dd>
+          <span>{{ empleado.telefono }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empleado.mail">Mail</span></dt>
+        <dd>
+          <span>{{ empleado.mail }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empleado.pais">Pais</span></dt>
+        <dd>
+          <span>{{ empleado.pais }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empleado.provincia">Provincia</span></dt>
+        <dd>
+          <span>{{ empleado.provincia }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empleado.codigoPostal">Codigo Postal</span></dt>
+        <dd>
+          <span>{{ empleado.codigoPostal }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empleado.calle">Calle</span></dt>
+        <dd>
+          <span>{{ empleado.calle }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empleado.numeroPedidos">Numero Pedidos</span></dt>
+        <dd>
+          <span>{{ empleado.numeroPedidos }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empleado.tipoContrato">Tipo Contrato</span></dt>
+        <dd>
+          <span>{{ empleado.tipoContrato }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empleado.comision">Comision</span></dt>
+        <dd>
+          <span>{{ empleado.comision }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empleado.activo">Activo</span></dt>
+        <dd>
+          <span>{{ empleado.activo }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empleado.contrasena">Contrasena</span></dt>
+        <dd>
+          <span>{{ empleado.contrasena }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empleado.empresa">Empresa</span></dt>
+        <dd>
+          <div *ngIf="empleado.empresa">
+            <a [routerLink]="['/empresa', empleado.empresa?.id, 'view']">{{ empleado.empresa?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/empleado', empleado.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

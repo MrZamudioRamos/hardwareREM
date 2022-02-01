@@ -1,0 +1,88 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="pedido">
+      <h2 data-cy="pedidoDetailsHeading"><span jhiTranslate="hardwareRemApp.pedido.detail.title">Pedido</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ pedido.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.pedido.direccionEntrega">Direccion Entrega</span></dt>
+        <dd>
+          <span>{{ pedido.direccionEntrega }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.pedido.fechaPedido">Fecha Pedido</span></dt>
+        <dd>
+          <span>{{ pedido.fechaPedido | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.pedido.fechaEntrega">Fecha Entrega</span></dt>
+        <dd>
+          <span>{{ pedido.fechaEntrega | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.pedido.descuento">Descuento</span></dt>
+        <dd>
+          <span>{{ pedido.descuento }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.pedido.tipoPago">Tipo Pago</span></dt>
+        <dd>
+          <span>{{ pedido.tipoPago }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.pedido.precioTotal">Precio Total</span></dt>
+        <dd>
+          <span>{{ pedido.precioTotal }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.pedido.observaciones">Observaciones</span></dt>
+        <dd>
+          <span>{{ pedido.observaciones }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.pedido.entregado">Entregado</span></dt>
+        <dd>
+          <span>{{ pedido.entregado }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.pedido.enviado">Enviado</span></dt>
+        <dd>
+          <span>{{ pedido.enviado }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.pedido.factura">Factura</span></dt>
+        <dd>
+          <div *ngIf="pedido.factura">
+            <a [routerLink]="['/factura', pedido.factura?.id, 'view']">{{ pedido.factura?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.pedido.empleado">Empleado</span></dt>
+        <dd>
+          <div *ngIf="pedido.empleado">
+            <a [routerLink]="['/empleado', pedido.empleado?.id, 'view']">{{ pedido.empleado?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.pedido.empresa">Empresa</span></dt>
+        <dd>
+          <div *ngIf="pedido.empresa">
+            <a [routerLink]="['/empresa', pedido.empresa?.id, 'view']">{{ pedido.empresa?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.pedido.almacen">Almacen</span></dt>
+        <dd>
+          <div *ngIf="pedido.almacen">
+            <a [routerLink]="['/almacen', pedido.almacen?.id, 'view']">{{ pedido.almacen?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/pedido', pedido.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

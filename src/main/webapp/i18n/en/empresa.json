@@ -1,0 +1,40 @@
+{
+  "hardwareRemApp": {
+    "empresa": {
+      "home": {
+        "title": "Empresas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Empresa",
+        "createOrEditLabel": "Create or edit a Empresa",
+        "notFound": "No Empresas found"
+      },
+      "created": "A new Empresa is created with identifier {{ param }}",
+      "updated": "A Empresa is updated with identifier {{ param }}",
+      "deleted": "A Empresa is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Empresa"
+      },
+      "id": "ID",
+      "nombreSocial": "Nombre Social",
+      "cif": "Cif",
+      "telefono": "Telefono",
+      "mail": "Mail",
+      "pais": "Pais",
+      "provincia": "Provincia",
+      "sucursal": "Sucursal",
+      "codigoPostal": "Codigo Postal",
+      "calle": "Calle",
+      "categoria": "Categoria",
+      "fechaCreacion": "Fecha Creacion",
+      "factura": "Factura",
+      "cliente": "Cliente",
+      "producto": "Producto",
+      "pedido": "Pedido",
+      "almacen": "Almacen",
+      "empleado": "Empleado"
+    }
+  }
+}

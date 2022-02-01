@@ -1,0 +1,39 @@
+{
+  "name": "Factura",
+  "fields": [
+    {
+      "fieldName": "fechaFacturacion",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fechaVencimiento",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "cliente",
+      "otherEntityRelationshipName": "factura",
+      "relationshipName": "cliente"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "empresa",
+      "otherEntityRelationshipName": "factura",
+      "relationshipName": "empresa"
+    }
+  ],
+  "entityTableName": "factura",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220201093948"
+}

@@ -1,0 +1,39 @@
+{
+  "hardwareRemApp": {
+    "empleado": {
+      "home": {
+        "title": "Empleados",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Empleado",
+        "createOrEditLabel": "Crear o editar Empleado",
+        "notFound": "Ningún Empleados encontrado"
+      },
+      "created": "Un nuevo Empleado ha sido creado con el identificador {{ param }}",
+      "updated": "Un Empleado ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Empleado ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Empleado {{ id }}?"
+      },
+      "detail": {
+        "title": "Empleado"
+      },
+      "id": "ID",
+      "dni": "Dni",
+      "nombre": "Nombre",
+      "apellidos": "Apellidos",
+      "telefono": "Telefono",
+      "mail": "Mail",
+      "pais": "Pais",
+      "provincia": "Provincia",
+      "codigoPostal": "Codigo Postal",
+      "calle": "Calle",
+      "numeroPedidos": "Numero Pedidos",
+      "tipoContrato": "Tipo Contrato",
+      "comision": "Comision",
+      "activo": "Activo",
+      "contrasena": "Contrasena",
+      "pedido": "Pedido",
+      "empresa": "Empresa"
+    }
+  }
+}

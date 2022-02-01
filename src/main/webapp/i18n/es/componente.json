@@ -1,0 +1,30 @@
+{
+  "hardwareRemApp": {
+    "componente": {
+      "home": {
+        "title": "Componentes",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Componente",
+        "createOrEditLabel": "Crear o editar Componente",
+        "notFound": "Ningún Componentes encontrado"
+      },
+      "created": "Un nuevo Componente ha sido creado con el identificador {{ param }}",
+      "updated": "Un Componente ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Componente ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Componente {{ id }}?"
+      },
+      "detail": {
+        "title": "Componente"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "numeroSerie": "Numero Serie",
+      "marca": "Marca",
+      "modelo": "Modelo",
+      "descripcion": "Descripcion",
+      "peso": "Peso",
+      "producto": "Producto"
+    }
+  }
+}

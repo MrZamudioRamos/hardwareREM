@@ -1,0 +1,37 @@
+{
+  "hardwareRemApp": {
+    "pedido": {
+      "home": {
+        "title": "Pedidos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Pedido",
+        "createOrEditLabel": "Crear o editar Pedido",
+        "notFound": "Ningún Pedidos encontrado"
+      },
+      "created": "Un nuevo Pedido ha sido creado con el identificador {{ param }}",
+      "updated": "Un Pedido ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Pedido ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Pedido {{ id }}?"
+      },
+      "detail": {
+        "title": "Pedido"
+      },
+      "id": "ID",
+      "direccionEntrega": "Direccion Entrega",
+      "fechaPedido": "Fecha Pedido",
+      "fechaEntrega": "Fecha Entrega",
+      "descuento": "Descuento",
+      "tipoPago": "Tipo Pago",
+      "precioTotal": "Precio Total",
+      "observaciones": "Observaciones",
+      "entregado": "Entregado",
+      "enviado": "Enviado",
+      "factura": "Factura",
+      "producto": "Producto",
+      "empleado": "Empleado",
+      "empresa": "Empresa",
+      "almacen": "Almacen"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "hardwareRemApp": {
+    "iva": {
+      "home": {
+        "title": "Ivas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Iva",
+        "createOrEditLabel": "Crear o editar Iva",
+        "notFound": "Ningún Ivas encontrado"
+      },
+      "created": "Un nuevo Iva ha sido creado con el identificador {{ param }}",
+      "updated": "Un Iva ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Iva ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Iva {{ id }}?"
+      },
+      "detail": {
+        "title": "Iva"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "tipo": "Tipo",
+      "valor": "Valor"
+    }
+  }
+}

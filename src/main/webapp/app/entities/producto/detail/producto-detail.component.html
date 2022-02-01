@@ -1,0 +1,96 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="producto">
+      <h2 data-cy="productoDetailsHeading"><span jhiTranslate="hardwareRemApp.producto.detail.title">Producto</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ producto.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.producto.nombre">Nombre</span></dt>
+        <dd>
+          <span>{{ producto.nombre }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.producto.numeroSerie">Numero Serie</span></dt>
+        <dd>
+          <span>{{ producto.numeroSerie }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.producto.marca">Marca</span></dt>
+        <dd>
+          <span>{{ producto.marca }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.producto.modelo">Modelo</span></dt>
+        <dd>
+          <span>{{ producto.modelo }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.producto.descripcion">Descripcion</span></dt>
+        <dd>
+          <span>{{ producto.descripcion }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.producto.peso">Peso</span></dt>
+        <dd>
+          <span>{{ producto.peso }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.producto.fechaVenta">Fecha Venta</span></dt>
+        <dd>
+          <span>{{ producto.fechaVenta | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.producto.precioCompra">Precio Compra</span></dt>
+        <dd>
+          <span>{{ producto.precioCompra }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.producto.precioBruto">Precio Bruto</span></dt>
+        <dd>
+          <span>{{ producto.precioBruto }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.producto.precioIva">Precio Iva</span></dt>
+        <dd>
+          <span>{{ producto.precioIva }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.producto.vendido">Vendido</span></dt>
+        <dd>
+          <span>{{ producto.vendido }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.producto.iva">Iva</span></dt>
+        <dd>
+          <div *ngIf="producto.iva">
+            <a [routerLink]="['/iva', producto.iva?.id, 'view']">{{ producto.iva?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.producto.empresa">Empresa</span></dt>
+        <dd>
+          <div *ngIf="producto.empresa">
+            <a [routerLink]="['/empresa', producto.empresa?.id, 'view']">{{ producto.empresa?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.producto.pedido">Pedido</span></dt>
+        <dd>
+          <div *ngIf="producto.pedido">
+            <a [routerLink]="['/pedido', producto.pedido?.id, 'view']">{{ producto.pedido?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.producto.almacen">Almacen</span></dt>
+        <dd>
+          <div *ngIf="producto.almacen">
+            <a [routerLink]="['/almacen', producto.almacen?.id, 'view']">{{ producto.almacen?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/producto', producto.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

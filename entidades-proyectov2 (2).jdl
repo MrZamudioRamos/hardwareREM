@@ -1,0 +1,131 @@
+entity Empresa {
+	nombreSocial String required
+    cif String required unique
+    telefono String required
+    mail String required
+    pais String required
+    provincia String required
+    sucursal String required
+    codigoPostal String required
+    calle String required
+    categoria String required
+    fechaCreacion LocalDate required
+}
+
+entity Almacen {
+	telefono String required
+ 	pais String required
+    provincia String required
+    sucursal String required
+    codigoPostal String required
+    calle String required
+    albaran String required
+    stockProductos Integer 
+}
+
+entity Producto {
+	nombre String required
+    numeroSerie String required unique
+    marca String required
+    modelo String required
+    descripcion String required
+	peso Double required
+    fechaVenta LocalDate
+    precioCompra Double required
+    precioBruto Double required
+    precioIva Double required
+    vendido Boolean required
+} 
+
+entity Componente {
+	nombre String required
+    numeroSerie String required unique
+    marca String required
+    modelo String required
+    descripcion String required
+	peso Double required
+} 
+
+entity Pedido {
+	direccionEntrega String required
+	fechaPedido LocalDate required
+    fechaEntrega LocalDate required
+    descuento Double
+    tipoPago String required
+    precioTotal Double required
+    observaciones String
+    entregado Boolean required
+    enviado Boolean required
+}
+
+entity Cliente {
+	dni String required unique
+	nombre String required
+    apellidos String required
+    telefono String required
+    mail String required
+    pais String required
+    provincia String required
+    codigoPostal String required
+    calle String required
+	fidelizado Boolean required
+    activo Boolean required
+}
+
+entity Empleado {
+	dni String required unique
+	nombre String required
+    apellidos String required
+    telefono String required
+    mail String required
+    pais String required
+    provincia String required
+    codigoPostal String required
+    calle String required
+    numeroPedidos Integer
+    tipoContrato String required
+    comision Double
+    activo Boolean required
+    contrasena String required
+}
+
+entity Factura {
+	fechaFacturacion LocalDate required
+	fechaVencimiento LocalDate required
+}
+
+entity Iva {
+	nombre String
+    tipo String
+	valor Double
+}
+
+
+relationship OneToOne {
+    Pedido{factura} to Factura
+    Producto{iva} to Iva
+}
+
+relationship OneToMany {
+	Empleado{pedido} to Pedido
+    Cliente{factura} to Factura
+    Empresa{factura} to Factura
+    
+	Empresa{cliente} to Cliente
+	Empresa{producto} to Producto
+    Empresa{pedido} to Pedido
+    Empresa{almacen} to Almacen
+    Empresa{empleado} to Empleado
+    Pedido{producto} to Producto
+    Almacen{pedido} to Pedido
+    Almacen{producto} to Producto
+    Producto{componente} to Componente
+}
+
+paginate all with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl

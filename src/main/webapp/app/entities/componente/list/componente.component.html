@@ -1,0 +1,126 @@
+<div>
+  <h2 id="page-heading" data-cy="ComponenteHeading">
+    <span jhiTranslate="hardwareRemApp.componente.home.title">Componentes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="hardwareRemApp.componente.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-componente"
+        [routerLink]="['/componente/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hardwareRemApp.componente.home.createLabel"> Create a new Componente </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="componentes?.length === 0">
+    <span jhiTranslate="hardwareRemApp.componente.home.notFound">No componentes found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="componentes && componentes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nombre">
+            <span jhiTranslate="hardwareRemApp.componente.nombre">Nombre</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="numeroSerie">
+            <span jhiTranslate="hardwareRemApp.componente.numeroSerie">Numero Serie</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="marca">
+            <span jhiTranslate="hardwareRemApp.componente.marca">Marca</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="modelo">
+            <span jhiTranslate="hardwareRemApp.componente.modelo">Modelo</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="descripcion">
+            <span jhiTranslate="hardwareRemApp.componente.descripcion">Descripcion</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="peso">
+            <span jhiTranslate="hardwareRemApp.componente.peso">Peso</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="producto.id">
+            <span jhiTranslate="hardwareRemApp.componente.producto">Producto</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let componente of componentes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/componente', componente.id, 'view']">{{ componente.id }}</a>
+          </td>
+          <td>{{ componente.nombre }}</td>
+          <td>{{ componente.numeroSerie }}</td>
+          <td>{{ componente.marca }}</td>
+          <td>{{ componente.modelo }}</td>
+          <td>{{ componente.descripcion }}</td>
+          <td>{{ componente.peso }}</td>
+          <td>
+            <div *ngIf="componente.producto">
+              <a [routerLink]="['/producto', componente.producto?.id, 'view']">{{ componente.producto?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/componente', componente.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/componente', componente.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(componente)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="componentes && componentes.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

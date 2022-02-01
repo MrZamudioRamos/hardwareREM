@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="factura">
+      <h2 data-cy="facturaDetailsHeading"><span jhiTranslate="hardwareRemApp.factura.detail.title">Factura</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ factura.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.factura.fechaFacturacion">Fecha Facturacion</span></dt>
+        <dd>
+          <span>{{ factura.fechaFacturacion | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.factura.fechaVencimiento">Fecha Vencimiento</span></dt>
+        <dd>
+          <span>{{ factura.fechaVencimiento | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.factura.cliente">Cliente</span></dt>
+        <dd>
+          <div *ngIf="factura.cliente">
+            <a [routerLink]="['/cliente', factura.cliente?.id, 'view']">{{ factura.cliente?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.factura.empresa">Empresa</span></dt>
+        <dd>
+          <div *ngIf="factura.empresa">
+            <a [routerLink]="['/empresa', factura.empresa?.id, 'view']">{{ factura.empresa?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/factura', factura.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

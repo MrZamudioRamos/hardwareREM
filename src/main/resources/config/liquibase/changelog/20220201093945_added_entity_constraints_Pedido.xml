@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Pedido.
+    -->
+    <changeSet id="20220201093945-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="factura_id"
+                                 baseTableName="pedido"
+                                 constraintName="fk_pedido__factura_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="factura"/>
+
+        <addForeignKeyConstraint baseColumnNames="empleado_id"
+                                 baseTableName="pedido"
+                                 constraintName="fk_pedido__empleado_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="empleado"/>
+
+        <addForeignKeyConstraint baseColumnNames="empresa_id"
+                                 baseTableName="pedido"
+                                 constraintName="fk_pedido__empresa_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="empresa"/>
+
+        <addForeignKeyConstraint baseColumnNames="almacen_id"
+                                 baseTableName="pedido"
+                                 constraintName="fk_pedido__almacen_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="almacen"/>
+    </changeSet>
+</databaseChangeLog>

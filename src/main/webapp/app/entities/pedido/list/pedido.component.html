@@ -1,0 +1,152 @@
+<div>
+  <h2 id="page-heading" data-cy="PedidoHeading">
+    <span jhiTranslate="hardwareRemApp.pedido.home.title">Pedidos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="hardwareRemApp.pedido.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-pedido"
+        [routerLink]="['/pedido/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hardwareRemApp.pedido.home.createLabel"> Create a new Pedido </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="pedidos?.length === 0">
+    <span jhiTranslate="hardwareRemApp.pedido.home.notFound">No pedidos found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="pedidos && pedidos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="direccionEntrega">
+            <span jhiTranslate="hardwareRemApp.pedido.direccionEntrega">Direccion Entrega</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="fechaPedido">
+            <span jhiTranslate="hardwareRemApp.pedido.fechaPedido">Fecha Pedido</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="fechaEntrega">
+            <span jhiTranslate="hardwareRemApp.pedido.fechaEntrega">Fecha Entrega</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="descuento">
+            <span jhiTranslate="hardwareRemApp.pedido.descuento">Descuento</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="tipoPago">
+            <span jhiTranslate="hardwareRemApp.pedido.tipoPago">Tipo Pago</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="precioTotal">
+            <span jhiTranslate="hardwareRemApp.pedido.precioTotal">Precio Total</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="observaciones">
+            <span jhiTranslate="hardwareRemApp.pedido.observaciones">Observaciones</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="entregado">
+            <span jhiTranslate="hardwareRemApp.pedido.entregado">Entregado</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="enviado">
+            <span jhiTranslate="hardwareRemApp.pedido.enviado">Enviado</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="factura.id">
+            <span jhiTranslate="hardwareRemApp.pedido.factura">Factura</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="empleado.id">
+            <span jhiTranslate="hardwareRemApp.pedido.empleado">Empleado</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="empresa.id">
+            <span jhiTranslate="hardwareRemApp.pedido.empresa">Empresa</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="almacen.id">
+            <span jhiTranslate="hardwareRemApp.pedido.almacen">Almacen</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pedido of pedidos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/pedido', pedido.id, 'view']">{{ pedido.id }}</a>
+          </td>
+          <td>{{ pedido.direccionEntrega }}</td>
+          <td>{{ pedido.fechaPedido | formatMediumDate }}</td>
+          <td>{{ pedido.fechaEntrega | formatMediumDate }}</td>
+          <td>{{ pedido.descuento }}</td>
+          <td>{{ pedido.tipoPago }}</td>
+          <td>{{ pedido.precioTotal }}</td>
+          <td>{{ pedido.observaciones }}</td>
+          <td>{{ pedido.entregado }}</td>
+          <td>{{ pedido.enviado }}</td>
+          <td>
+            <div *ngIf="pedido.factura">
+              <a [routerLink]="['/factura', pedido.factura?.id, 'view']">{{ pedido.factura?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="pedido.empleado">
+              <a [routerLink]="['/empleado', pedido.empleado?.id, 'view']">{{ pedido.empleado?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="pedido.empresa">
+              <a [routerLink]="['/empresa', pedido.empresa?.id, 'view']">{{ pedido.empresa?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="pedido.almacen">
+              <a [routerLink]="['/almacen', pedido.almacen?.id, 'view']">{{ pedido.almacen?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/pedido', pedido.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/pedido', pedido.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(pedido)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="pedidos && pedidos.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

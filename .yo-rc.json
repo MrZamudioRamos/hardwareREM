@@ -40,6 +40,8 @@
     "clientPackageManager": "npm",
     "clientThemeVariant": "",
     "languages": ["es", "en"],
-    "enableGradleEnterprise": false
+    "enableGradleEnterprise": false,
+    "entities": ["Empresa", "Almacen", "Producto", "Componente", "Pedido", "Cliente", "Empleado", "Factura", "Iva"],
+    "lastLiquibaseTimestamp": 1643708389000
   }
 }

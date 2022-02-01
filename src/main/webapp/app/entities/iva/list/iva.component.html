@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="IvaHeading">
+    <span jhiTranslate="hardwareRemApp.iva.home.title">Ivas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="hardwareRemApp.iva.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-iva"
+        [routerLink]="['/iva/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hardwareRemApp.iva.home.createLabel"> Create a new Iva </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="ivas?.length === 0">
+    <span jhiTranslate="hardwareRemApp.iva.home.notFound">No ivas found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="ivas && ivas.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nombre">
+            <span jhiTranslate="hardwareRemApp.iva.nombre">Nombre</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="tipo"><span jhiTranslate="hardwareRemApp.iva.tipo">Tipo</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="valor"><span jhiTranslate="hardwareRemApp.iva.valor">Valor</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let iva of ivas; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/iva', iva.id, 'view']">{{ iva.id }}</a>
+          </td>
+          <td>{{ iva.nombre }}</td>
+          <td>{{ iva.tipo }}</td>
+          <td>{{ iva.valor }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/iva', iva.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/iva', iva.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(iva)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="ivas && ivas.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,216 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-empresa-heading" data-cy="EmpresaCreateUpdateHeading" jhiTranslate="hardwareRemApp.empresa.home.createOrEditLabel">
+        Create or edit a Empresa
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.empresa.nombreSocial" for="field_nombreSocial"
+            >Nombre Social</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="nombreSocial"
+            id="field_nombreSocial"
+            data-cy="nombreSocial"
+            formControlName="nombreSocial"
+          />
+          <div
+            *ngIf="editForm.get('nombreSocial')!.invalid && (editForm.get('nombreSocial')!.dirty || editForm.get('nombreSocial')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nombreSocial')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.empresa.cif" for="field_cif">Cif</label>
+          <input type="text" class="form-control" name="cif" id="field_cif" data-cy="cif" formControlName="cif" />
+          <div *ngIf="editForm.get('cif')!.invalid && (editForm.get('cif')!.dirty || editForm.get('cif')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('cif')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.empresa.telefono" for="field_telefono">Telefono</label>
+          <input type="text" class="form-control" name="telefono" id="field_telefono" data-cy="telefono" formControlName="telefono" />
+          <div *ngIf="editForm.get('telefono')!.invalid && (editForm.get('telefono')!.dirty || editForm.get('telefono')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('telefono')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.empresa.mail" for="field_mail">Mail</label>
+          <input type="text" class="form-control" name="mail" id="field_mail" data-cy="mail" formControlName="mail" />
+          <div *ngIf="editForm.get('mail')!.invalid && (editForm.get('mail')!.dirty || editForm.get('mail')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('mail')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.empresa.pais" for="field_pais">Pais</label>
+          <input type="text" class="form-control" name="pais" id="field_pais" data-cy="pais" formControlName="pais" />
+          <div *ngIf="editForm.get('pais')!.invalid && (editForm.get('pais')!.dirty || editForm.get('pais')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('pais')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.empresa.provincia" for="field_provincia">Provincia</label>
+          <input type="text" class="form-control" name="provincia" id="field_provincia" data-cy="provincia" formControlName="provincia" />
+          <div *ngIf="editForm.get('provincia')!.invalid && (editForm.get('provincia')!.dirty || editForm.get('provincia')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('provincia')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.empresa.sucursal" for="field_sucursal">Sucursal</label>
+          <input type="text" class="form-control" name="sucursal" id="field_sucursal" data-cy="sucursal" formControlName="sucursal" />
+          <div *ngIf="editForm.get('sucursal')!.invalid && (editForm.get('sucursal')!.dirty || editForm.get('sucursal')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('sucursal')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.empresa.codigoPostal" for="field_codigoPostal"
+            >Codigo Postal</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codigoPostal"
+            id="field_codigoPostal"
+            data-cy="codigoPostal"
+            formControlName="codigoPostal"
+          />
+          <div
+            *ngIf="editForm.get('codigoPostal')!.invalid && (editForm.get('codigoPostal')!.dirty || editForm.get('codigoPostal')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('codigoPostal')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.empresa.calle" for="field_calle">Calle</label>
+          <input type="text" class="form-control" name="calle" id="field_calle" data-cy="calle" formControlName="calle" />
+          <div *ngIf="editForm.get('calle')!.invalid && (editForm.get('calle')!.dirty || editForm.get('calle')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('calle')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.empresa.categoria" for="field_categoria">Categoria</label>
+          <input type="text" class="form-control" name="categoria" id="field_categoria" data-cy="categoria" formControlName="categoria" />
+          <div *ngIf="editForm.get('categoria')!.invalid && (editForm.get('categoria')!.dirty || editForm.get('categoria')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('categoria')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.empresa.fechaCreacion" for="field_fechaCreacion"
+            >Fecha Creacion</label
+          >
+          <div class="input-group">
+            <input
+              id="field_fechaCreacion"
+              data-cy="fechaCreacion"
+              type="text"
+              class="form-control"
+              name="fechaCreacion"
+              ngbDatepicker
+              #fechaCreacionDp="ngbDatepicker"
+              formControlName="fechaCreacion"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="fechaCreacionDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+          <div
+            *ngIf="
+              editForm.get('fechaCreacion')!.invalid && (editForm.get('fechaCreacion')!.dirty || editForm.get('fechaCreacion')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('fechaCreacion')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+{
+  "hardwareRemApp": {
+    "producto": {
+      "home": {
+        "title": "Productos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Producto",
+        "createOrEditLabel": "Create or edit a Producto",
+        "notFound": "No Productos found"
+      },
+      "created": "A new Producto is created with identifier {{ param }}",
+      "updated": "A Producto is updated with identifier {{ param }}",
+      "deleted": "A Producto is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Producto {{ id }}?"
+      },
+      "detail": {
+        "title": "Producto"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "numeroSerie": "Numero Serie",
+      "marca": "Marca",
+      "modelo": "Modelo",
+      "descripcion": "Descripcion",
+      "peso": "Peso",
+      "fechaVenta": "Fecha Venta",
+      "precioCompra": "Precio Compra",
+      "precioBruto": "Precio Bruto",
+      "precioIva": "Precio Iva",
+      "vendido": "Vendido",
+      "iva": "Iva",
+      "componente": "Componente",
+      "empresa": "Empresa",
+      "pedido": "Pedido",
+      "almacen": "Almacen"
+    }
+  }
+}

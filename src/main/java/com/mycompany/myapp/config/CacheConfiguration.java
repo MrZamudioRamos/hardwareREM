@@ -48,6 +48,27 @@ public class CacheConfiguration {
             createCache(cm, com.mycompany.myapp.domain.User.class.getName());
             createCache(cm, com.mycompany.myapp.domain.Authority.class.getName());
             createCache(cm, com.mycompany.myapp.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.mycompany.myapp.domain.Empresa.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Empresa.class.getName() + ".facturas");
+            createCache(cm, com.mycompany.myapp.domain.Empresa.class.getName() + ".clientes");
+            createCache(cm, com.mycompany.myapp.domain.Empresa.class.getName() + ".productos");
+            createCache(cm, com.mycompany.myapp.domain.Empresa.class.getName() + ".pedidos");
+            createCache(cm, com.mycompany.myapp.domain.Empresa.class.getName() + ".almacens");
+            createCache(cm, com.mycompany.myapp.domain.Empresa.class.getName() + ".empleados");
+            createCache(cm, com.mycompany.myapp.domain.Almacen.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Almacen.class.getName() + ".pedidos");
+            createCache(cm, com.mycompany.myapp.domain.Almacen.class.getName() + ".productos");
+            createCache(cm, com.mycompany.myapp.domain.Producto.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Producto.class.getName() + ".componentes");
+            createCache(cm, com.mycompany.myapp.domain.Componente.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Pedido.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Pedido.class.getName() + ".productos");
+            createCache(cm, com.mycompany.myapp.domain.Cliente.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Cliente.class.getName() + ".facturas");
+            createCache(cm, com.mycompany.myapp.domain.Empleado.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Empleado.class.getName() + ".pedidos");
+            createCache(cm, com.mycompany.myapp.domain.Factura.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Iva.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

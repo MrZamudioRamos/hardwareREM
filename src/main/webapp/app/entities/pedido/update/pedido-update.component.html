@@ -1,0 +1,265 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-pedido-heading" data-cy="PedidoCreateUpdateHeading" jhiTranslate="hardwareRemApp.pedido.home.createOrEditLabel">
+        Create or edit a Pedido
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.pedido.direccionEntrega" for="field_direccionEntrega"
+            >Direccion Entrega</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="direccionEntrega"
+            id="field_direccionEntrega"
+            data-cy="direccionEntrega"
+            formControlName="direccionEntrega"
+          />
+          <div
+            *ngIf="
+              editForm.get('direccionEntrega')!.invalid &&
+              (editForm.get('direccionEntrega')!.dirty || editForm.get('direccionEntrega')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('direccionEntrega')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.pedido.fechaPedido" for="field_fechaPedido">Fecha Pedido</label>
+          <div class="input-group">
+            <input
+              id="field_fechaPedido"
+              data-cy="fechaPedido"
+              type="text"
+              class="form-control"
+              name="fechaPedido"
+              ngbDatepicker
+              #fechaPedidoDp="ngbDatepicker"
+              formControlName="fechaPedido"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="fechaPedidoDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+          <div *ngIf="editForm.get('fechaPedido')!.invalid && (editForm.get('fechaPedido')!.dirty || editForm.get('fechaPedido')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('fechaPedido')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.pedido.fechaEntrega" for="field_fechaEntrega">Fecha Entrega</label>
+          <div class="input-group">
+            <input
+              id="field_fechaEntrega"
+              data-cy="fechaEntrega"
+              type="text"
+              class="form-control"
+              name="fechaEntrega"
+              ngbDatepicker
+              #fechaEntregaDp="ngbDatepicker"
+              formControlName="fechaEntrega"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="fechaEntregaDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+          <div
+            *ngIf="editForm.get('fechaEntrega')!.invalid && (editForm.get('fechaEntrega')!.dirty || editForm.get('fechaEntrega')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('fechaEntrega')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.pedido.descuento" for="field_descuento">Descuento</label>
+          <input type="number" class="form-control" name="descuento" id="field_descuento" data-cy="descuento" formControlName="descuento" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.pedido.tipoPago" for="field_tipoPago">Tipo Pago</label>
+          <input type="text" class="form-control" name="tipoPago" id="field_tipoPago" data-cy="tipoPago" formControlName="tipoPago" />
+          <div *ngIf="editForm.get('tipoPago')!.invalid && (editForm.get('tipoPago')!.dirty || editForm.get('tipoPago')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('tipoPago')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.pedido.precioTotal" for="field_precioTotal">Precio Total</label>
+          <input
+            type="number"
+            class="form-control"
+            name="precioTotal"
+            id="field_precioTotal"
+            data-cy="precioTotal"
+            formControlName="precioTotal"
+          />
+          <div *ngIf="editForm.get('precioTotal')!.invalid && (editForm.get('precioTotal')!.dirty || editForm.get('precioTotal')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('precioTotal')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('precioTotal')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.pedido.observaciones" for="field_observaciones"
+            >Observaciones</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="observaciones"
+            id="field_observaciones"
+            data-cy="observaciones"
+            formControlName="observaciones"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.pedido.entregado" for="field_entregado">Entregado</label>
+          <input type="checkbox" class="form-check" name="entregado" id="field_entregado" data-cy="entregado" formControlName="entregado" />
+          <div *ngIf="editForm.get('entregado')!.invalid && (editForm.get('entregado')!.dirty || editForm.get('entregado')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('entregado')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.pedido.enviado" for="field_enviado">Enviado</label>
+          <input type="checkbox" class="form-check" name="enviado" id="field_enviado" data-cy="enviado" formControlName="enviado" />
+          <div *ngIf="editForm.get('enviado')!.invalid && (editForm.get('enviado')!.dirty || editForm.get('enviado')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('enviado')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.pedido.factura" for="field_factura">Factura</label>
+          <select class="form-control" id="field_factura" data-cy="factura" name="factura" formControlName="factura">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="facturaOption.id === editForm.get('factura')!.value?.id ? editForm.get('factura')!.value : facturaOption"
+              *ngFor="let facturaOption of facturasCollection; trackBy: trackFacturaById"
+            >
+              {{ facturaOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.pedido.empleado" for="field_empleado">Empleado</label>
+          <select class="form-control" id="field_empleado" data-cy="empleado" name="empleado" formControlName="empleado">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="empleadoOption.id === editForm.get('empleado')!.value?.id ? editForm.get('empleado')!.value : empleadoOption"
+              *ngFor="let empleadoOption of empleadosSharedCollection; trackBy: trackEmpleadoById"
+            >
+              {{ empleadoOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.pedido.empresa" for="field_empresa">Empresa</label>
+          <select class="form-control" id="field_empresa" data-cy="empresa" name="empresa" formControlName="empresa">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="empresaOption.id === editForm.get('empresa')!.value?.id ? editForm.get('empresa')!.value : empresaOption"
+              *ngFor="let empresaOption of empresasSharedCollection; trackBy: trackEmpresaById"
+            >
+              {{ empresaOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hardwareRemApp.pedido.almacen" for="field_almacen">Almacen</label>
+          <select class="form-control" id="field_almacen" data-cy="almacen" name="almacen" formControlName="almacen">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="almacenOption.id === editForm.get('almacen')!.value?.id ? editForm.get('almacen')!.value : almacenOption"
+              *ngFor="let almacenOption of almacensSharedCollection; trackBy: trackAlmacenById"
+            >
+              {{ almacenOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

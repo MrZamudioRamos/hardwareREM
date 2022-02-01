@@ -1,0 +1,34 @@
+{
+  "hardwareRemApp": {
+    "almacen": {
+      "home": {
+        "title": "Almacens",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Almacen",
+        "createOrEditLabel": "Crear o editar Almacen",
+        "notFound": "Ningún Almacens encontrado"
+      },
+      "created": "Un nuevo Almacen ha sido creado con el identificador {{ param }}",
+      "updated": "Un Almacen ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Almacen ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Almacen {{ id }}?"
+      },
+      "detail": {
+        "title": "Almacen"
+      },
+      "id": "ID",
+      "telefono": "Telefono",
+      "pais": "Pais",
+      "provincia": "Provincia",
+      "sucursal": "Sucursal",
+      "codigoPostal": "Codigo Postal",
+      "calle": "Calle",
+      "albaran": "Albaran",
+      "stockProductos": "Stock Productos",
+      "pedido": "Pedido",
+      "producto": "Producto",
+      "empresa": "Empresa"
+    }
+  }
+}

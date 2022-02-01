@@ -1,0 +1,132 @@
+<div>
+  <h2 id="page-heading" data-cy="EmpresaHeading">
+    <span jhiTranslate="hardwareRemApp.empresa.home.title">Empresas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="hardwareRemApp.empresa.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-empresa"
+        [routerLink]="['/empresa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hardwareRemApp.empresa.home.createLabel"> Create a new Empresa </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="empresas?.length === 0">
+    <span jhiTranslate="hardwareRemApp.empresa.home.notFound">No empresas found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="empresas && empresas.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nombreSocial">
+            <span jhiTranslate="hardwareRemApp.empresa.nombreSocial">Nombre Social</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="cif"><span jhiTranslate="hardwareRemApp.empresa.cif">Cif</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="telefono">
+            <span jhiTranslate="hardwareRemApp.empresa.telefono">Telefono</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="mail"><span jhiTranslate="hardwareRemApp.empresa.mail">Mail</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="pais"><span jhiTranslate="hardwareRemApp.empresa.pais">Pais</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="provincia">
+            <span jhiTranslate="hardwareRemApp.empresa.provincia">Provincia</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="sucursal">
+            <span jhiTranslate="hardwareRemApp.empresa.sucursal">Sucursal</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="codigoPostal">
+            <span jhiTranslate="hardwareRemApp.empresa.codigoPostal">Codigo Postal</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="calle">
+            <span jhiTranslate="hardwareRemApp.empresa.calle">Calle</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="categoria">
+            <span jhiTranslate="hardwareRemApp.empresa.categoria">Categoria</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="fechaCreacion">
+            <span jhiTranslate="hardwareRemApp.empresa.fechaCreacion">Fecha Creacion</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empresa of empresas; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/empresa', empresa.id, 'view']">{{ empresa.id }}</a>
+          </td>
+          <td>{{ empresa.nombreSocial }}</td>
+          <td>{{ empresa.cif }}</td>
+          <td>{{ empresa.telefono }}</td>
+          <td>{{ empresa.mail }}</td>
+          <td>{{ empresa.pais }}</td>
+          <td>{{ empresa.provincia }}</td>
+          <td>{{ empresa.sucursal }}</td>
+          <td>{{ empresa.codigoPostal }}</td>
+          <td>{{ empresa.calle }}</td>
+          <td>{{ empresa.categoria }}</td>
+          <td>{{ empresa.fechaCreacion | formatMediumDate }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/empresa', empresa.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/empresa', empresa.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(empresa)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="empresas && empresas.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

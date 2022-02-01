@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="empresa">
+      <h2 data-cy="empresaDetailsHeading"><span jhiTranslate="hardwareRemApp.empresa.detail.title">Empresa</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ empresa.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empresa.nombreSocial">Nombre Social</span></dt>
+        <dd>
+          <span>{{ empresa.nombreSocial }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empresa.cif">Cif</span></dt>
+        <dd>
+          <span>{{ empresa.cif }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empresa.telefono">Telefono</span></dt>
+        <dd>
+          <span>{{ empresa.telefono }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empresa.mail">Mail</span></dt>
+        <dd>
+          <span>{{ empresa.mail }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empresa.pais">Pais</span></dt>
+        <dd>
+          <span>{{ empresa.pais }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empresa.provincia">Provincia</span></dt>
+        <dd>
+          <span>{{ empresa.provincia }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empresa.sucursal">Sucursal</span></dt>
+        <dd>
+          <span>{{ empresa.sucursal }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empresa.codigoPostal">Codigo Postal</span></dt>
+        <dd>
+          <span>{{ empresa.codigoPostal }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empresa.calle">Calle</span></dt>
+        <dd>
+          <span>{{ empresa.calle }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empresa.categoria">Categoria</span></dt>
+        <dd>
+          <span>{{ empresa.categoria }}</span>
+        </dd>
+        <dt><span jhiTranslate="hardwareRemApp.empresa.fechaCreacion">Fecha Creacion</span></dt>
+        <dd>
+          <span>{{ empresa.fechaCreacion | formatMediumDate }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/empresa', empresa.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
