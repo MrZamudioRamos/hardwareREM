@@ -23,6 +23,7 @@ export class EmpleadoComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  searchString = '';
 
   constructor(
     protected empleadoService: EmpleadoService,
@@ -59,6 +60,31 @@ export class EmpleadoComponent implements OnInit {
 
   trackId(index: number, item: IEmpleado): number {
     return item.id!;
+  }
+
+  buscarPorAtributo(page?: number, dontNavigate?: boolean): void {
+    this.isLoading = true;
+    const pageToLoad: number = page ?? this.page ?? 1;
+    if (this.searchString === '') {
+      this.loadPage();
+    } else {
+      this.empleadoService
+        .simpleSearch(this.searchString, {
+          page: pageToLoad - 1,
+          size: this.itemsPerPage,
+          sort: this.sort(),
+        })
+        .subscribe({
+          next: (res: HttpResponse<IEmpleado[]>) => {
+            this.isLoading = false;
+            this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+          },
+          error: () => {
+            this.isLoading = false;
+            this.onError();
+          },
+        });
+    }
   }
 
   delete(empleado: IEmpleado): void {

@@ -3,6 +3,8 @@
     <span jhiTranslate="hardwareRemApp.empleado.home.title">Empleados</span>
 
     <div class="d-flex justify-content-end">
+      <input type="text" [(ngModel)]="searchString" (ngModelChange)="buscarPorAtributo()" placeholder="Buscar empleados..." />
+
       <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span jhiTranslate="hardwareRemApp.empleado.home.refreshListLabel">Refresh List</span>

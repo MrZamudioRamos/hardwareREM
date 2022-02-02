@@ -47,4 +47,6 @@ public interface PedidoService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    Page<PedidoDTO> findAllBySearchingParam(String filtro, Pageable pageable);
 }

@@ -3,6 +3,12 @@
     <span jhiTranslate="hardwareRemApp.factura.home.title">Facturas</span>
 
     <div class="d-flex justify-content-end">
+      <!-- <input type = "text"
+          [(ngModel)]="searchString"
+          (ngModelChange)="buscarPorAtributo()"
+          placeholder="Buscar en facturas..."
+         > -->
+
       <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span jhiTranslate="hardwareRemApp.factura.home.refreshListLabel">Refresh List</span>

@@ -53,6 +53,11 @@ export class ProductoService {
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 
+  simpleSearch(filtro: string, pageable: any): Observable<HttpResponse<any>> {
+    const options = createRequestOption({ filtro, ...pageable });
+    return this.http.get<IProducto[]>(`${this.resourceUrl}/searchingParam`, { params: options, observe: 'response' });
+  }
+
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }

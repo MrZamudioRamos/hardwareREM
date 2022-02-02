@@ -199,4 +199,14 @@ ui bootstrap tweaks
   white-space: nowrap;
 }
 
+.login,
+.image {
+  min-height: 100vh;
+}
+.bg-image {
+  background-image: url('../images/login-split.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
 /* jhipster-needle-scss-add-main JHipster will add new css style */

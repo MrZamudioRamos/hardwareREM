@@ -47,4 +47,6 @@ public interface ClienteService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    Page<ClienteDTO> findAllBySearchingParam(String filtro, Pageable pageable);
 }

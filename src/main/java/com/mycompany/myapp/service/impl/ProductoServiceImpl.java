@@ -2,6 +2,7 @@ package com.mycompany.myapp.service.impl;
 
 import com.mycompany.myapp.domain.Producto;
 import com.mycompany.myapp.repository.ProductoRepository;
+import com.mycompany.myapp.repository.specification.ProductoSpecification;
 import com.mycompany.myapp.service.ProductoService;
 import com.mycompany.myapp.service.dto.ProductoDTO;
 import com.mycompany.myapp.service.mapper.ProductoMapper;
@@ -72,5 +73,10 @@ public class ProductoServiceImpl implements ProductoService {
     public void delete(Long id) {
         log.debug("Request to delete Producto : {}", id);
         productoRepository.deleteById(id);
+    }
+
+    public Page<ProductoDTO> findAllBySearchingParam(String filtro, Pageable pageable) {
+        log.debug("Filtro");
+        return productoRepository.findAll(ProductoSpecification.searchingParam(filtro), pageable).map(productoMapper::toDto);
     }
 }
