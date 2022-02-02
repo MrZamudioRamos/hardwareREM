@@ -39,6 +39,11 @@ export class EmpleadoService {
     return this.http.get<IEmpleado[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
+  simpleSearch(filtro:string, pageable:any): Observable<HttpResponse<any>> {
+    const options = createRequestOption({filtro, ...pageable});
+    return this.http.get<IEmpleado[]>(`${this.resourceUrl}/searchingParam`, { params: options, observe: 'response' });
+  }
+
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }

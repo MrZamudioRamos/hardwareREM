@@ -47,4 +47,6 @@ public interface EmpleadoService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    Page<EmpleadoDTO> findAllBySearchingParam(String filtro, Pageable pageable);
 }

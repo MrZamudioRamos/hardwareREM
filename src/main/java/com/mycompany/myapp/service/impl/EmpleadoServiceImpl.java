@@ -2,6 +2,7 @@ package com.mycompany.myapp.service.impl;
 
 import com.mycompany.myapp.domain.Empleado;
 import com.mycompany.myapp.repository.EmpleadoRepository;
+import com.mycompany.myapp.repository.specification.EmpleadoSpecification;
 import com.mycompany.myapp.service.EmpleadoService;
 import com.mycompany.myapp.service.dto.EmpleadoDTO;
 import com.mycompany.myapp.service.mapper.EmpleadoMapper;
@@ -72,5 +73,10 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     public void delete(Long id) {
         log.debug("Request to delete Empleado : {}", id);
         empleadoRepository.deleteById(id);
+    }
+
+    public Page<EmpleadoDTO> findAllBySearchingParam(String filtro, Pageable pageable) {
+        log.debug("Filtro");
+        return empleadoRepository.findAll(EmpleadoSpecification.searchingParam(filtro), pageable).map(empleadoMapper::toDto);
     }
 }

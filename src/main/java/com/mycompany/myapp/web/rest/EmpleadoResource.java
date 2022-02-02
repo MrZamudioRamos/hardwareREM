@@ -165,6 +165,16 @@ public class EmpleadoResource {
         return ResponseUtil.wrapOrNotFound(empleadoDTO);
     }
 
+    @GetMapping("/empleados/searchingParam")
+    public ResponseEntity<List<EmpleadoDTO>> findAllBySimpleSearch(Pageable pageable, @RequestParam(required = false, defaultValue ="")String filtro)
+        throws InterruptedException, URISyntaxException {
+        log.debug("REST request to search a parameter");
+        filtro = !filtro.equals("undefined") ? filtro : "%";
+        Page<EmpleadoDTO> page = empleadoService.findAllBySearchingParam(filtro,pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
     /**
      * {@code DELETE  /empleados/:id} : delete the "id" empleado.
      *
