@@ -27,26 +27,32 @@ public class Producto implements Serializable {
     private Long id;
 
     @NotNull
+    @Size(max = 50, min = 1)
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
     @NotNull
+    @Size(max = 300, min = 1)
     @Column(name = "numero_serie", nullable = false, unique = true)
     private String numeroSerie;
 
     @NotNull
+    @Size(max = 50, min = 1)
     @Column(name = "marca", nullable = false)
     private String marca;
 
     @NotNull
+    @Size(max = 150, min = 1)
     @Column(name = "modelo", nullable = false)
     private String modelo;
 
     @NotNull
+    @Size(max = 300, min = 1)
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
     @NotNull
+    @Size(min = 1)
     @Column(name = "peso", nullable = false)
     private Double peso;
 
@@ -59,6 +65,7 @@ public class Producto implements Serializable {
     private Double precioCompra;
 
     @NotNull
+    @Size(min = 0)
     @Column(name = "precio_bruto", nullable = false)
     private Double precioBruto;
 

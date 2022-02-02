@@ -23,6 +23,7 @@ public class Componente implements Serializable {
     private Long id;
 
     @NotNull
+    @Size(max = 50, min = 1)
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
@@ -31,14 +32,17 @@ public class Componente implements Serializable {
     private String numeroSerie;
 
     @NotNull
+    @Size(max = 50, min = 1)
     @Column(name = "marca", nullable = false)
     private String marca;
 
     @NotNull
+    @Size(max = 150, min = 1)
     @Column(name = "modelo", nullable = false)
     private String modelo;
 
     @NotNull
+    @Size(max = 300, min = 1)
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
