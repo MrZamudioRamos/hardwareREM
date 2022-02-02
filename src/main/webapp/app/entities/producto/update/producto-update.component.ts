@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
@@ -30,12 +30,12 @@ export class ProductoUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    nombre: [null, [Validators.required]],
-    numeroSerie: [null, [Validators.required]],
-    marca: [null, [Validators.required]],
-    modelo: [null, [Validators.required]],
-    descripcion: [null, [Validators.required]],
-    peso: [null, [Validators.required]],
+    nombre: new FormControl(null, [Validators.minLength(3), Validators.required]),
+    numeroSerie: new FormControl(null, [Validators.min(1), Validators.required]),
+    marca: new FormControl(null, [Validators.minLength(3), Validators.required]),
+    modelo: new FormControl(null, [Validators.minLength(3), Validators.required]),
+    descripcion: new FormControl(null, [Validators.minLength(3), Validators.required]),
+    peso: new FormControl(null, [Validators.minLength(3), Validators.required]),
     fechaVenta: [],
     precioCompra: [null, [Validators.required]],
     precioBruto: [null, [Validators.required]],
@@ -46,6 +46,7 @@ export class ProductoUpdateComponent implements OnInit {
     pedido: [],
     almacen: [],
   });
+  // Enum moneda
 
   constructor(
     protected productoService: ProductoService,

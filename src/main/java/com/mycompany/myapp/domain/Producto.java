@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+import javax.annotation.RegEx;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
@@ -53,6 +54,7 @@ public class Producto implements Serializable {
     private LocalDate fechaVenta;
 
     @NotNull
+    @Size(min = 0)
     @Column(name = "precio_compra", nullable = false)
     private Double precioCompra;
 
