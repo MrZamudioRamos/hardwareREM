@@ -5,6 +5,8 @@ import com.mycompany.myapp.repository.EmpresaRepository;
 import com.mycompany.myapp.service.EmpresaService;
 import com.mycompany.myapp.service.dto.EmpresaDTO;
 import com.mycompany.myapp.service.mapper.EmpresaMapper;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,10 +33,13 @@ public class EmpresaServiceImpl implements EmpresaService {
         this.empresaMapper = empresaMapper;
     }
 
+    // public static LocalDateTime now()
+
     @Override
     public EmpresaDTO save(EmpresaDTO empresaDTO) {
         log.debug("Request to save Empresa : {}", empresaDTO);
         Empresa empresa = empresaMapper.toEntity(empresaDTO);
+
         empresa = empresaRepository.save(empresa);
         return empresaMapper.toDto(empresa);
     }

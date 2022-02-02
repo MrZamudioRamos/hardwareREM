@@ -25,30 +25,37 @@ public class Almacen implements Serializable {
     private Long id;
 
     @NotNull
+    @Size(max = 15, min = 9)
     @Column(name = "telefono", nullable = false)
     private String telefono;
 
     @NotNull
+    @Size(max = 150, min = 3)
     @Column(name = "pais", nullable = false)
     private String pais;
 
     @NotNull
+    @Size(max = 150, min = 3)
     @Column(name = "provincia", nullable = false)
     private String provincia;
 
     @NotNull
+    @Size(max = 150, min = 3)
     @Column(name = "sucursal", nullable = false)
     private String sucursal;
 
     @NotNull
+    @Size(min = 5, max = 10)
     @Column(name = "codigo_postal", nullable = false)
     private String codigoPostal;
 
     @NotNull
+    @Size(max = 150, min = 3)
     @Column(name = "calle", nullable = false)
     private String calle;
 
     @NotNull
+    @Size(max = 150, min = 3)
     @Column(name = "albaran", nullable = false)
     private String albaran;
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
@@ -21,13 +21,13 @@ export class AlmacenUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    telefono: [null, [Validators.required]],
-    pais: [null, [Validators.required]],
-    provincia: [null, [Validators.required]],
-    sucursal: [null, [Validators.required]],
-    codigoPostal: [null, [Validators.required]],
-    calle: [null, [Validators.required]],
-    albaran: [null, [Validators.required]],
+    telefono: new FormControl(null, [Validators.minLength(9), Validators.required]),
+    pais: new FormControl(null, [Validators.minLength(3), Validators.required]),
+    provincia: new FormControl(null, [Validators.minLength(3), Validators.required]),
+    sucursal: new FormControl(null, [Validators.minLength(3), Validators.required]),
+    codigoPostal: new FormControl(null, [Validators.minLength(5), Validators.required]),
+    calle: new FormControl(null, [Validators.minLength(3), Validators.required]),
+    albaran: new FormControl(null, [Validators.minLength(3), Validators.required]),
     stockProductos: [],
     empresa: [],
   });

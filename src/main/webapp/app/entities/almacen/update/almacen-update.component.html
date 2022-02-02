@@ -15,53 +15,83 @@
 
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.almacen.telefono" for="field_telefono">Telefono</label>
-          <input type="text" class="form-control" name="telefono" id="field_telefono" data-cy="telefono" formControlName="telefono" />
+          <input
+            type="text"
+            class="form-control"
+            name="telefono"
+            id="field_telefono"
+            data-cy="telefono"
+            formControlName="telefono"
+            [maxlength]="15"
+          />
           <div *ngIf="editForm.get('telefono')!.invalid && (editForm.get('telefono')!.dirty || editForm.get('telefono')!.touched)">
             <small
               class="form-text text-danger"
               *ngIf="editForm.get('telefono')?.errors?.required"
               jhiTranslate="entity.validation.required"
             >
-              This field is required.
+              Este campo es obligatorio.
             </small>
+            <small class="form-text text-danger" else="editForm.get('telefono')?.errors?.validation.minLength"> Minimo 9 caracteres </small>
           </div>
         </div>
 
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.almacen.pais" for="field_pais">Pais</label>
-          <input type="text" class="form-control" name="pais" id="field_pais" data-cy="pais" formControlName="pais" />
+          <input type="text" class="form-control" name="pais" id="field_pais" data-cy="pais" formControlName="pais" [maxlength]="150" />
           <div *ngIf="editForm.get('pais')!.invalid && (editForm.get('pais')!.dirty || editForm.get('pais')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('pais')?.errors?.required" jhiTranslate="entity.validation.required">
-              This field is required.
+              Este campo es obligatorio.
             </small>
+            <small class="form-text text-danger" else="editForm.get('pais')?.errors?.validation.minLength"> Minimo 3 caracteres </small>
           </div>
         </div>
 
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.almacen.provincia" for="field_provincia">Provincia</label>
-          <input type="text" class="form-control" name="provincia" id="field_provincia" data-cy="provincia" formControlName="provincia" />
+          <input
+            type="text"
+            class="form-control"
+            name="provincia"
+            id="field_provincia"
+            data-cy="provincia"
+            formControlName="provincia"
+            [maxlength]="150"
+          />
           <div *ngIf="editForm.get('provincia')!.invalid && (editForm.get('provincia')!.dirty || editForm.get('provincia')!.touched)">
             <small
               class="form-text text-danger"
               *ngIf="editForm.get('provincia')?.errors?.required"
               jhiTranslate="entity.validation.required"
             >
-              This field is required.
+              Este campo es obligatorio.
+            </small>
+            <small class="form-text text-danger" else="editForm.get('provincia')?.errors?.validation.minLength">
+              Minimo 3 caracteres
             </small>
           </div>
         </div>
 
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.almacen.sucursal" for="field_sucursal">Sucursal</label>
-          <input type="text" class="form-control" name="sucursal" id="field_sucursal" data-cy="sucursal" formControlName="sucursal" />
+          <input
+            type="text"
+            class="form-control"
+            name="sucursal"
+            id="field_sucursal"
+            data-cy="sucursal"
+            formControlName="sucursal"
+            [maxlength]="150"
+          />
           <div *ngIf="editForm.get('sucursal')!.invalid && (editForm.get('sucursal')!.dirty || editForm.get('sucursal')!.touched)">
             <small
               class="form-text text-danger"
               *ngIf="editForm.get('sucursal')?.errors?.required"
               jhiTranslate="entity.validation.required"
             >
-              This field is required.
+              Este campo es obligatorio.
             </small>
+            <small class="form-text text-danger" else="editForm.get('sucursal')?.errors?.validation.minLength"> Minimo 3 caracteres </small>
           </div>
         </div>
 
@@ -76,6 +106,7 @@
             id="field_codigoPostal"
             data-cy="codigoPostal"
             formControlName="codigoPostal"
+            [maxlength]="9"
           />
           <div
             *ngIf="editForm.get('codigoPostal')!.invalid && (editForm.get('codigoPostal')!.dirty || editForm.get('codigoPostal')!.touched)"
@@ -85,32 +116,45 @@
               *ngIf="editForm.get('codigoPostal')?.errors?.required"
               jhiTranslate="entity.validation.required"
             >
-              This field is required.
+              Este campo es obligatorio.
+            </small>
+            <small class="form-text text-danger" else="editForm.get('codigoPostal)?.errors?.validation.minLength">
+              Minimo 5 caracteres
             </small>
           </div>
         </div>
 
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.almacen.calle" for="field_calle">Calle</label>
-          <input type="text" class="form-control" name="calle" id="field_calle" data-cy="calle" formControlName="calle" />
+          <input type="text" class="form-control" name="calle" id="field_calle" data-cy="calle" formControlName="calle" [maxlength]="150" />
           <div *ngIf="editForm.get('calle')!.invalid && (editForm.get('calle')!.dirty || editForm.get('calle')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('calle')?.errors?.required" jhiTranslate="entity.validation.required">
-              This field is required.
+              Este campo es obligatorio.
             </small>
+            <small class="form-text text-danger" else="editForm.get('calle')?.errors?.validation.minLength"> Minimo 3 caracteres </small>
           </div>
         </div>
 
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.almacen.albaran" for="field_albaran">Albaran</label>
-          <input type="text" class="form-control" name="albaran" id="field_albaran" data-cy="albaran" formControlName="albaran" />
+          <input
+            type="text"
+            class="form-control"
+            name="albaran"
+            id="field_albaran"
+            data-cy="albaran"
+            formControlName="albaran"
+            [maxlength]="150"
+          />
           <div *ngIf="editForm.get('albaran')!.invalid && (editForm.get('albaran')!.dirty || editForm.get('albaran')!.touched)">
             <small
               class="form-text text-danger"
               *ngIf="editForm.get('albaran')?.errors?.required"
               jhiTranslate="entity.validation.required"
             >
-              This field is required.
+              Este campo es obligatorio.
             </small>
+            <small class="form-text text-danger" else="editForm.get('albaran')?.errors?.validation.minLength"> Minimo 3 caracteres </small>
           </div>
         </div>
 
