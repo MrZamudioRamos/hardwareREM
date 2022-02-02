@@ -46,17 +46,17 @@ public class Empresa implements Serializable {
     private String mail;
 
     @NotNull
-    @Size(max = 50, min = 3)
+    @Size(max = 150, min = 3)
     @Column(name = "pais", nullable = false)
     private String pais;
 
     @NotNull
-    @Size(max = 50, min = 3)
+    @Size(max = 150, min = 3)
     @Column(name = "provincia", nullable = false)
     private String provincia;
 
     @NotNull
-    @Size(max = 50, min = 3)
+    @Size(max = 150, min = 3)
     @Column(name = "sucursal", nullable = false)
     private String sucursal;
 
@@ -66,7 +66,7 @@ public class Empresa implements Serializable {
     private String codigoPostal;
 
     @NotNull
-    @Size(max = 50, min = 3)
+    @Size(max = 150, min = 3)
     @Column(name = "calle", nullable = false)
     private String calle;
 

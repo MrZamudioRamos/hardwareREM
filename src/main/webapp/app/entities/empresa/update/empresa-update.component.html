@@ -35,10 +35,12 @@
             >
               Este campo es obligatorio
             </small>
-            <small class="form-text text-danger" *ngIf="editForm.get('nombreSocial')?.errors?.validation.min">
+            <small class="form-text text-danger" *ngIf="editForm.get('nombreSocial')?.errors?.validation.minLength">
               Minimo caracteres no introducido
             </small>
-            <small class="form-text text-danger" *ngIf="editForm.get('nombreSocial')?.errors?.max"> Maximo de caracteres superado </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('nombreSocial')?.errors?.maxLength">
+              Maximo de caracteres superado
+            </small>
           </div>
         </div>
 
@@ -48,6 +50,12 @@
           <div *ngIf="editForm.get('cif')!.invalid && (editForm.get('cif')!.dirty || editForm.get('cif')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('cif')?.errors?.required" jhiTranslate="entity.validation.required">
               Este campo es obligatorio
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('cif')?.errors?.minLength">
+              Este campo se compone de 9 caracteres
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('cif')?.errors?.maxLength">
+              Este campo se compone de 9 caracteres
             </small>
           </div>
         </div>
@@ -75,6 +83,7 @@
             <small class="form-text text-danger" *ngIf="editForm.get('mail')?.errors?.required" jhiTranslate="entity.validation.required">
               Este campo es obligatorio
             </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('mail')?.errors?.email"> El email introducido no es correcto </small>
           </div>
         </div>
 
@@ -85,6 +94,10 @@
             <small class="form-text text-danger" *ngIf="editForm.get('pais')?.errors?.required" jhiTranslate="entity.validation.required">
               Este campo es obligatorio
             </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('pais')?.errors?.validation.minLength">
+              Minimo caracteres no introducido
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('pais')?.errors?.maxLength"> Maximo de caracteres superado </small>
           </div>
         </div>
 
@@ -98,6 +111,12 @@
               jhiTranslate="entity.validation.required"
             >
               Este campo es obligatorio
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('provincia')?.errors?.validation.minLength">
+              Minimo caracteres no introducido
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('provincia')?.errors?.maxLength">
+              Maximo de caracteres superado
             </small>
           </div>
         </div>
@@ -113,6 +132,10 @@
             >
               Este campo es obligatorio
             </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('sucursal')?.errors?.validation.minLength">
+              Minimo caracteres no introducido
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('sucursal')?.errors?.maxLength"> Maximo de caracteres superado </small>
           </div>
         </div>
 
@@ -138,6 +161,12 @@
             >
               Este campo es obligatorio
             </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('codigoPostal')?.errors?.validation.minLength">
+              Minimo caracteres no introducido
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('codigoPostal')?.errors?.maxLength">
+              Maximo de caracteres superado
+            </small>
           </div>
         </div>
 
@@ -148,6 +177,10 @@
             <small class="form-text text-danger" *ngIf="editForm.get('calle')?.errors?.required" jhiTranslate="entity.validation.required">
               Este campo es obligatorio
             </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('calle')?.errors?.validation.minLength">
+              Minimo caracteres no introducido
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('calle')?.errors?.maxLength"> Maximo de caracteres superado </small>
           </div>
         </div>
 

@@ -21,12 +21,12 @@ export class EmpresaUpdateComponent implements OnInit {
     cif: new FormControl(null, [Validators.required, Validators.minLength(9), Validators.maxLength(9)]),
     telefono: new FormControl(null, [Validators.minLength(9), Validators.maxLength(15), Validators.required]),
     mail: new FormControl(null, [Validators.required, Validators.email]),
-    pais: new FormControl(null, [Validators.required, Validators.min(3), Validators.max(150)]),
-    provincia: new FormControl(null, [Validators.required, Validators.min(3), Validators.max(150)]),
-    sucursal: new FormControl(null, [Validators.required, Validators.min(3), Validators.max(50)]),
-    codigoPostal: new FormControl(null, [Validators.required, Validators.min(5), Validators.max(10)]),
-    calle: new FormControl(null, [Validators.required, Validators.min(3), Validators.max(150)]),
-    categoria: new FormControl(null, [Validators.required, Validators.min(3), Validators.max(100)]),
+    pais: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(150)]),
+    provincia: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(150)]),
+    sucursal: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(150)]),
+    codigoPostal: new FormControl(null, [Validators.required, Validators.minLength(5), Validators.maxLength(10)]),
+    calle: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(150)]),
+    categoria: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
     fechaCreacion: [null, [Validators.required]],
   });
 
