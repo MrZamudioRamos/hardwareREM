@@ -24,6 +24,7 @@
             id="field_direccionEntrega"
             data-cy="direccionEntrega"
             formControlName="direccionEntrega"
+            [maxlength]="300"
           />
           <div
             *ngIf="
@@ -36,7 +37,7 @@
               *ngIf="editForm.get('direccionEntrega')?.errors?.required"
               jhiTranslate="entity.validation.required"
             >
-              This field is required.
+              Este campo es obligatorio.
             </small>
           </div>
         </div>
@@ -66,7 +67,7 @@
               *ngIf="editForm.get('fechaPedido')?.errors?.required"
               jhiTranslate="entity.validation.required"
             >
-              This field is required.
+              Este campo es obligatorio.
             </small>
           </div>
         </div>
@@ -98,7 +99,7 @@
               *ngIf="editForm.get('fechaEntrega')?.errors?.required"
               jhiTranslate="entity.validation.required"
             >
-              This field is required.
+              Este campo es obligatorio.
             </small>
           </div>
         </div>
@@ -117,7 +118,7 @@
               *ngIf="editForm.get('tipoPago')?.errors?.required"
               jhiTranslate="entity.validation.required"
             >
-              This field is required.
+              Este campo es obligatorio.
             </small>
           </div>
         </div>
@@ -138,14 +139,14 @@
               *ngIf="editForm.get('precioTotal')?.errors?.required"
               jhiTranslate="entity.validation.required"
             >
-              This field is required.
+              Este campo es obligatorio.
             </small>
             <small
               class="form-text text-danger"
               [hidden]="!editForm.get('precioTotal')?.errors?.number"
               jhiTranslate="entity.validation.number"
             >
-              This field should be a number.
+              Este campo tiene que ser numerico.
             </small>
           </div>
         </div>
@@ -173,7 +174,7 @@
               *ngIf="editForm.get('entregado')?.errors?.required"
               jhiTranslate="entity.validation.required"
             >
-              This field is required.
+              Este campo es obligatorio.
             </small>
           </div>
         </div>
@@ -187,7 +188,7 @@
               *ngIf="editForm.get('enviado')?.errors?.required"
               jhiTranslate="entity.validation.required"
             >
-              This field is required.
+              Este campo es obligatorio.
             </small>
           </div>
         </div>

@@ -26,6 +26,7 @@ public class Pedido implements Serializable {
     private Long id;
 
     @NotNull
+    @Size(max = 300, min = 1)
     @Column(name = "direccion_entrega", nullable = false)
     private String direccionEntrega;
 
@@ -48,6 +49,7 @@ public class Pedido implements Serializable {
     @Column(name = "precio_total", nullable = false)
     private Double precioTotal;
 
+    @Size(max = 300)
     @Column(name = "observaciones")
     private String observaciones;
 
