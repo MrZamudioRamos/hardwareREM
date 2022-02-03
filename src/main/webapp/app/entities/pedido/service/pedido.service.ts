@@ -9,6 +9,7 @@ import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IPedido, getPedidoIdentifier } from '../pedido.model';
+import { IEmpleado } from 'app/entities/empleado/empleado.model';
 
 export type EntityResponseType = HttpResponse<IPedido>;
 export type EntityArrayResponseType = HttpResponse<IPedido[]>;
@@ -51,6 +52,11 @@ export class PedidoService {
     return this.http
       .get<IPedido[]>(this.resourceUrl, { params: options, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
+  buscarPorEmpleado(empleado: IEmpleado, pageable: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption({ empleado, ...pageable });
+    return this.http.get<IPedido[]>(`${this.resourceUrl}/empleado`, { params: options, observe: 'response' });
   }
 
   simpleSearch(filtro: string, pageable: any): Observable<HttpResponse<any>> {

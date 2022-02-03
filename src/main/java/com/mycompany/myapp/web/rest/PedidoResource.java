@@ -1,7 +1,9 @@
 package com.mycompany.myapp.web.rest;
 
+import com.mycompany.myapp.domain.Empleado;
 import com.mycompany.myapp.repository.PedidoRepository;
 import com.mycompany.myapp.service.PedidoService;
+import com.mycompany.myapp.service.dto.EmpleadoDTO;
 import com.mycompany.myapp.service.dto.PedidoDTO;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -173,6 +175,14 @@ public class PedidoResource {
         log.debug("REST request to search a parameter");
         filtro = !filtro.equals("undefined") ? filtro : "%";
         Page<PedidoDTO> page = pedidoService.findAllBySearchingParam(filtro, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @GetMapping("/pedidos/empleado")
+    public ResponseEntity<List<PedidoDTO>> findAllByEmpleado(@RequestBody Empleado empleado, Pageable pageable) {
+        log.debug("REST request to search a parameter");
+        Page<PedidoDTO> page = pedidoService.findAllByEmpleado(empleado, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

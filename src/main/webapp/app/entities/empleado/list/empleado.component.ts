@@ -1,14 +1,19 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IEmpleado } from '../empleado.model';
 
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { EmpleadoService } from '../service/empleado.service';
 import { EmpleadoDeleteDialogComponent } from '../delete/empleado-delete-dialog.component';
+import { PedidoService } from 'app/entities/pedido/service/pedido.service';
+import { IPedido } from 'app/entities/pedido/pedido.model';
+import { ModalComponent } from './modal/modal-pedidos-por-empleado-component';
 
 @Component({
   selector: 'jhi-empleado',
@@ -16,6 +21,7 @@ import { EmpleadoDeleteDialogComponent } from '../delete/empleado-delete-dialog.
 })
 export class EmpleadoComponent implements OnInit {
   empleados?: IEmpleado[];
+  pedidos?: IPedido[];
   isLoading = false;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -24,9 +30,11 @@ export class EmpleadoComponent implements OnInit {
   ascending!: boolean;
   ngbPaginationPage = 1;
   searchString = '';
+  closeResult: string | undefined;
 
   constructor(
     protected empleadoService: EmpleadoService,
+    protected pedidoService: PedidoService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected modalService: NgbModal
@@ -87,6 +95,28 @@ export class EmpleadoComponent implements OnInit {
     }
   }
 
+  buscarPorEmpleado(empleado: IEmpleado, page?: number, dontNavigate?: boolean): void {
+    this.isLoading = true;
+    const pageToLoad: number = page ?? this.page ?? 1;
+
+    this.pedidoService
+      .buscarPorEmpleado(empleado, {
+        page: pageToLoad - 1,
+        size: this.itemsPerPage,
+        sort: this.sort(),
+      })
+      .subscribe({
+        next: (res: HttpResponse<IEmpleado[]>) => {
+          this.isLoading = false;
+          this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+        },
+        error: () => {
+          this.isLoading = false;
+          this.onError();
+        },
+      });
+  }
+
   delete(empleado: IEmpleado): void {
     const modalRef = this.modalService.open(EmpleadoDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.empleado = empleado;
@@ -96,6 +126,11 @@ export class EmpleadoComponent implements OnInit {
         this.loadPage();
       }
     });
+  }
+
+  open(empleado: IEmpleado): void {
+    const modalRef = this.modalService.open(ModalComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.empleado = empleado;
   }
 
   protected sort(): string[] {

@@ -1,5 +1,6 @@
 package com.mycompany.myapp.service.impl;
 
+import com.mycompany.myapp.domain.Empleado;
 import com.mycompany.myapp.domain.Pedido;
 import com.mycompany.myapp.repository.PedidoRepository;
 import com.mycompany.myapp.repository.specification.PedidoSpecification;
@@ -78,5 +79,10 @@ public class PedidoServiceImpl implements PedidoService {
     public Page<PedidoDTO> findAllBySearchingParam(String filtro, Pageable pageable) {
         log.debug("Filtro");
         return pedidoRepository.findAll(PedidoSpecification.searchingParam(filtro), pageable).map(pedidoMapper::toDto);
+    }
+
+    public Page<PedidoDTO> findAllByEmpleado(Empleado empleado, Pageable pageable) {
+        log.debug("Encontrar pedidos de un empleado");
+        return pedidoRepository.findAllByEmpleado(empleado, pageable).map(pedidoMapper::toDto);
     }
 }
