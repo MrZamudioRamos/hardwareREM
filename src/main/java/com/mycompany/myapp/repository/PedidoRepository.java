@@ -16,5 +16,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Long>, JpaSpecificationExecutor<Pedido> {
     @Query("SELECT u FROM Pedido u WHERE u.empleado = ?1")
-    Page<Pedido> findAllByEmpleado(Empleado empleado, org.springframework.data.domain.Pageable pageable);
+    List<Pedido> findAllByEmpleado(Empleado empleado);
 }

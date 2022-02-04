@@ -7,7 +7,10 @@ import com.mycompany.myapp.repository.specification.PedidoSpecification;
 import com.mycompany.myapp.service.PedidoService;
 import com.mycompany.myapp.service.dto.PedidoDTO;
 import com.mycompany.myapp.service.mapper.PedidoMapper;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -81,8 +84,13 @@ public class PedidoServiceImpl implements PedidoService {
         return pedidoRepository.findAll(PedidoSpecification.searchingParam(filtro), pageable).map(pedidoMapper::toDto);
     }
 
-    public Page<PedidoDTO> findAllByEmpleado(Empleado empleado, Pageable pageable) {
+    public List<PedidoDTO> findAllByEmpleado(Empleado empleado) {
         log.debug("Encontrar pedidos de un empleado");
-        return pedidoRepository.findAllByEmpleado(empleado, pageable).map(pedidoMapper::toDto);
+        return pedidoRepository
+            .findAllByEmpleado(empleado)
+            .stream()
+            .filter(Objects::nonNull)
+            .map(pedidoMapper::toDto)
+            .collect(Collectors.toList());
     }
 }

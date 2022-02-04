@@ -1,7 +1,15 @@
-<p>
-  You can pass an existing component as content of the modal window. In this case, if you're still using Angular 8 or older, remember to add
-  the content component in the <code>entryComponents</code> section of your <code>NgModule</code>. For Angular 9 or newer, it's not needed
-  anymore.
-</p>
-
-<button class="btn btn-lg btn-outline-primary" (click)="open()">Launch demo modal</button>
+<div class="modal-header">
+  <h4 class="modal-title">Pedidos asignados</h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div *ngFor="let pedido of pedidosEmpleado">
+    - Id:{{pedido.id}}, Fecha de pedido: {{pedido.fechaPedido}}, precio total:{{pedido.precioTotal}}, observaciones:
+    {{pedido.observaciones}}
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="cancel()">Close</button>
+</div>

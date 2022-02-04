@@ -54,7 +54,9 @@ public class PedidoResource {
      * {@code POST  /pedidos} : Create a new pedido.
      *
      * @param pedidoDTO the pedidoDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new pedidoDTO, or with status {@code 400 (Bad Request)} if the pedido has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
+     *         body the new pedidoDTO, or with status {@code 400 (Bad Request)} if
+     *         the pedido has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/pedidos")
@@ -73,11 +75,14 @@ public class PedidoResource {
     /**
      * {@code PUT  /pedidos/:id} : Updates an existing pedido.
      *
-     * @param id the id of the pedidoDTO to save.
+     * @param id        the id of the pedidoDTO to save.
      * @param pedidoDTO the pedidoDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated pedidoDTO,
-     * or with status {@code 400 (Bad Request)} if the pedidoDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the pedidoDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated pedidoDTO,
+     *         or with status {@code 400 (Bad Request)} if the pedidoDTO is not
+     *         valid,
+     *         or with status {@code 500 (Internal Server Error)} if the pedidoDTO
+     *         couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/pedidos/{id}")
@@ -105,14 +110,18 @@ public class PedidoResource {
     }
 
     /**
-     * {@code PATCH  /pedidos/:id} : Partial updates given fields of an existing pedido, field will ignore if it is null
+     * {@code PATCH  /pedidos/:id} : Partial updates given fields of an existing
+     * pedido, field will ignore if it is null
      *
-     * @param id the id of the pedidoDTO to save.
+     * @param id        the id of the pedidoDTO to save.
      * @param pedidoDTO the pedidoDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated pedidoDTO,
-     * or with status {@code 400 (Bad Request)} if the pedidoDTO is not valid,
-     * or with status {@code 404 (Not Found)} if the pedidoDTO is not found,
-     * or with status {@code 500 (Internal Server Error)} if the pedidoDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated pedidoDTO,
+     *         or with status {@code 400 (Bad Request)} if the pedidoDTO is not
+     *         valid,
+     *         or with status {@code 404 (Not Found)} if the pedidoDTO is not found,
+     *         or with status {@code 500 (Internal Server Error)} if the pedidoDTO
+     *         couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/pedidos/{id}", consumes = { "application/json", "application/merge-patch+json" })
@@ -144,7 +153,8 @@ public class PedidoResource {
      * {@code GET  /pedidos} : get all the pedidos.
      *
      * @param pageable the pagination information.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of pedidos in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of pedidos in body.
      */
     @GetMapping("/pedidos")
     public ResponseEntity<List<PedidoDTO>> getAllPedidos(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
@@ -158,7 +168,8 @@ public class PedidoResource {
      * {@code GET  /pedidos/:id} : get the "id" pedido.
      *
      * @param id the id of the pedidoDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the pedidoDTO, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the pedidoDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/pedidos/{id}")
     public ResponseEntity<PedidoDTO> getPedido(@PathVariable Long id) {
@@ -179,12 +190,11 @@ public class PedidoResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    @GetMapping("/pedidos/empleado")
-    public ResponseEntity<List<PedidoDTO>> findAllByEmpleado(@RequestBody Empleado empleado, Pageable pageable) {
+    @PostMapping("/pedidos/empleado")
+    public ResponseEntity<List<PedidoDTO>> findAllByEmpleado(@RequestBody Empleado empleado) {
         log.debug("REST request to search a parameter");
-        Page<PedidoDTO> page = pedidoService.findAllByEmpleado(empleado, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
+        List<PedidoDTO> pedidos = pedidoService.findAllByEmpleado(empleado);
+        return ResponseEntity.ok().body(pedidos);
     }
 
     /**

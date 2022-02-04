@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IEmpleado } from '../empleado.model';
 
@@ -22,6 +22,7 @@ import { ModalComponent } from './modal/modal-pedidos-por-empleado-component';
 export class EmpleadoComponent implements OnInit {
   empleados?: IEmpleado[];
   pedidos?: IPedido[];
+  pedidosPorEmpleado?: IPedido[];
   isLoading = false;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -95,26 +96,17 @@ export class EmpleadoComponent implements OnInit {
     }
   }
 
-  buscarPorEmpleado(empleado: IEmpleado, page?: number, dontNavigate?: boolean): void {
-    this.isLoading = true;
-    const pageToLoad: number = page ?? this.page ?? 1;
-
-    this.pedidoService
-      .buscarPorEmpleado(empleado, {
-        page: pageToLoad - 1,
-        size: this.itemsPerPage,
-        sort: this.sort(),
-      })
-      .subscribe({
-        next: (res: HttpResponse<IEmpleado[]>) => {
-          this.isLoading = false;
-          this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
-        },
-        error: () => {
-          this.isLoading = false;
-          this.onError();
-        },
-      });
+  buscarPorEmpleado(empleado: IEmpleado): void {
+    this.pedidoService.buscarPorEmpleado(empleado).subscribe({
+      next: (res: HttpResponse<IPedido[]>) => {
+        this.isLoading = false;
+        this.pedidosPorEmpleado = res.body ?? [];
+      },
+      error: () => {
+        this.isLoading = false;
+        this.onError();
+      },
+    });
   }
 
   delete(empleado: IEmpleado): void {

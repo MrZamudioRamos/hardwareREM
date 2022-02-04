@@ -2,6 +2,7 @@ package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.domain.Empleado;
 import com.mycompany.myapp.service.dto.PedidoDTO;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -51,5 +52,5 @@ public interface PedidoService {
 
     Page<PedidoDTO> findAllBySearchingParam(String filtro, Pageable pageable);
 
-    Page<PedidoDTO> findAllByEmpleado(Empleado empleado, Pageable pageable);
+    List<PedidoDTO> findAllByEmpleado(Empleado empleado);
 }

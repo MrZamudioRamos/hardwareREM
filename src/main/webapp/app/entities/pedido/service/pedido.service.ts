@@ -27,6 +27,12 @@ export class PedidoService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
+  buscarPorEmpleado(empleado: IEmpleado): Observable<EntityArrayResponseType> {
+    return this.http
+      .post<IPedido[]>(`${this.resourceUrl}/empleado`, empleado, { observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
   update(pedido: IPedido): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(pedido);
     return this.http
@@ -52,11 +58,6 @@ export class PedidoService {
     return this.http
       .get<IPedido[]>(this.resourceUrl, { params: options, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
-  }
-
-  buscarPorEmpleado(empleado: IEmpleado, pageable: any): Observable<EntityArrayResponseType> {
-    const options = createRequestOption({ empleado, ...pageable });
-    return this.http.get<IPedido[]>(`${this.resourceUrl}/empleado`, { params: options, observe: 'response' });
   }
 
   simpleSearch(filtro: string, pageable: any): Observable<HttpResponse<any>> {
