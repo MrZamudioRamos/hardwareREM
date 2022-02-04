@@ -39,7 +39,20 @@ public class Factura implements Serializable {
     @JsonIgnoreProperties(value = { "facturas", "clientes", "productos", "pedidos", "almacens", "empleados" }, allowSetters = true)
     private Empresa empresa;
 
+    @JsonIgnoreProperties(value = { "iva", "componentes", "empresa", "pedido", "almacen" }, allowSetters = true)
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Pedido pedido;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
 
     public Long getId() {
         return this.id;

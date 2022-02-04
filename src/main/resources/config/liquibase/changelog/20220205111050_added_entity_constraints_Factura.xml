@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+     <!--
+        Added the constraints for entity Factura.
+    -->
+    <changeSet id="20220205111050-3" author="jhipster">
+        <addColumn tableName="factura">
+            <column name="pedido_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+
+        <addForeignKeyConstraint baseColumnNames="pedido_id"
+        baseTableName="factura"
+        constraintName="fk_factura__pedido_id"
+        referencedColumnNames="id"
+        referencedTableName="pedido"/>
+
+
+    </changeSet>
+</databaseChangeLog>

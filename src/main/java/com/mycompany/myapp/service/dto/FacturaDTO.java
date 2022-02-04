@@ -22,6 +22,16 @@ public class FacturaDTO implements Serializable {
 
     private EmpresaDTO empresa;
 
+    public PedidoDTO getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(PedidoDTO pedido) {
+        this.pedido = pedido;
+    }
+
+    private PedidoDTO pedido;
+
     public Long getId() {
         return id;
     }
