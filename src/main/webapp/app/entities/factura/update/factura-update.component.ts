@@ -11,6 +11,8 @@ import { ICliente } from 'app/entities/cliente/cliente.model';
 import { ClienteService } from 'app/entities/cliente/service/cliente.service';
 import { IEmpresa } from 'app/entities/empresa/empresa.model';
 import { EmpresaService } from 'app/entities/empresa/service/empresa.service';
+import { IPedido } from 'app/entities/pedido/pedido.model';
+import { PedidoService } from 'app/entities/pedido/service/pedido.service';
 
 @Component({
   selector: 'jhi-factura-update',
@@ -21,6 +23,7 @@ export class FacturaUpdateComponent implements OnInit {
 
   clientesSharedCollection: ICliente[] = [];
   empresasSharedCollection: IEmpresa[] = [];
+  pedidosSharedCollection: IPedido[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -28,12 +31,14 @@ export class FacturaUpdateComponent implements OnInit {
     fechaVencimiento: [null, [Validators.required]],
     cliente: [],
     empresa: [],
+    pedido: [],
   });
 
   constructor(
     protected facturaService: FacturaService,
     protected clienteService: ClienteService,
     protected empresaService: EmpresaService,
+    protected pedidoService: PedidoService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
@@ -67,6 +72,9 @@ export class FacturaUpdateComponent implements OnInit {
   trackEmpresaById(index: number, item: IEmpresa): number {
     return item.id!;
   }
+  trackPedidoById(index: number, item: IEmpresa): number {
+    return item.id!;
+  }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IFactura>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
@@ -94,10 +102,12 @@ export class FacturaUpdateComponent implements OnInit {
       fechaVencimiento: factura.fechaVencimiento,
       cliente: factura.cliente,
       empresa: factura.empresa,
+      pedido: factura.pedido,
     });
 
     this.clientesSharedCollection = this.clienteService.addClienteToCollectionIfMissing(this.clientesSharedCollection, factura.cliente);
     this.empresasSharedCollection = this.empresaService.addEmpresaToCollectionIfMissing(this.empresasSharedCollection, factura.empresa);
+    this.pedidosSharedCollection = this.pedidoService.addPedidoToCollectionIfMissing(this.pedidosSharedCollection, factura.pedido);
   }
 
   protected loadRelationshipsOptions(): void {
@@ -116,6 +126,12 @@ export class FacturaUpdateComponent implements OnInit {
         map((empresas: IEmpresa[]) => this.empresaService.addEmpresaToCollectionIfMissing(empresas, this.editForm.get('empresa')!.value))
       )
       .subscribe((empresas: IEmpresa[]) => (this.empresasSharedCollection = empresas));
+
+    this.pedidoService
+      .query()
+      .pipe(map((res: HttpResponse<IEmpresa[]>) => res.body ?? []))
+      .pipe(map((pedidos: IPedido[]) => this.pedidoService.addPedidoToCollectionIfMissing(pedidos, this.editForm.get('pedido')!.value)))
+      .subscribe((pedidos: IPedido[]) => (this.pedidosSharedCollection = pedidos));
   }
 
   protected createFromForm(): IFactura {
@@ -126,6 +142,7 @@ export class FacturaUpdateComponent implements OnInit {
       fechaVencimiento: this.editForm.get(['fechaVencimiento'])!.value,
       cliente: this.editForm.get(['cliente'])!.value,
       empresa: this.editForm.get(['empresa'])!.value,
+      pedido: this.editForm.get(['pedido'])!.value,
     };
   }
 }

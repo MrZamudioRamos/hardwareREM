@@ -113,6 +113,19 @@
           </select>
         </div>
       </div>
+      <!-- La lista de pedidos  -->
+      <div class="form-group">
+        <label class="form-control-label" jhiTranslate="hardwareRemApp.factura.pedido" for="field_pedido">Pedido</label>
+        <select class="form-control" id="field_pedido" data-cy="pedido" name="pedido" formControlName="pedido">
+          <option [ngValue]="null"></option>
+          <option
+            [ngValue]="pedidoOption.id === editForm.get('pedido')!.value?.id ? editForm.get('pedido')!.value : pedidoOption"
+            *ngFor="let pedidoOption of pedidosSharedCollection; trackBy: trackEmpresaById"
+          >
+            {{ pedidoOption.id }}
+          </option>
+        </select>
+      </div>
 
       <div>
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">

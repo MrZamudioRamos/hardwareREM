@@ -34,6 +34,12 @@
             <a [routerLink]="['/empresa', factura.empresa?.id, 'view']">{{ factura.empresa?.id }}</a>
           </div>
         </dd>
+        <dt><span jhiTranslate="hardwareRemApp.factura.pedido">Pedido</span></dt>
+        <dd>
+          <div *ngIf="factura.pedido">
+            <a [routerLink]="['/pedido', factura.pedido?.id, 'view']">{{ factura.pedido?.id }}</a>
+          </div>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

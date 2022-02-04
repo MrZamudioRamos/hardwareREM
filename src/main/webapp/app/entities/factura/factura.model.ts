@@ -1,6 +1,7 @@
 import dayjs from 'dayjs/esm';
 import { ICliente } from 'app/entities/cliente/cliente.model';
 import { IEmpresa } from 'app/entities/empresa/empresa.model';
+import { IPedido } from '../pedido/pedido.model';
 
 export interface IFactura {
   id?: number;
@@ -8,6 +9,7 @@ export interface IFactura {
   fechaVencimiento?: dayjs.Dayjs;
   cliente?: ICliente | null;
   empresa?: IEmpresa | null;
+  pedido?: IPedido | null;
 }
 
 export class Factura implements IFactura {
@@ -16,7 +18,8 @@ export class Factura implements IFactura {
     public fechaFacturacion?: dayjs.Dayjs,
     public fechaVencimiento?: dayjs.Dayjs,
     public cliente?: ICliente | null,
-    public empresa?: IEmpresa | null
+    public empresa?: IEmpresa | null,
+    public pedido?: IPedido | null
   ) {}
 }
 

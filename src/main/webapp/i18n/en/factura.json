@@ -21,7 +21,8 @@
       "fechaFacturacion": "Fecha Facturacion",
       "fechaVencimiento": "Fecha Vencimiento",
       "cliente": "Cliente",
-      "empresa": "Empresa"
+      "empresa": "Empresa",
+      "pedido": "Pedido"
     }
   }
 }

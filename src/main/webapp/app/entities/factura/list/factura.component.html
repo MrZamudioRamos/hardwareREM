@@ -38,18 +38,29 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="id">
+            <span jhiTranslate="global.field.id">ID</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="fechaFacturacion">
-            <span jhiTranslate="hardwareRemApp.factura.fechaFacturacion">Fecha Facturacion</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="hardwareRemApp.factura.fechaFacturacion">Fecha Facturacion</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="fechaVencimiento">
-            <span jhiTranslate="hardwareRemApp.factura.fechaVencimiento">Fecha Vencimiento</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="hardwareRemApp.factura.fechaVencimiento">Fecha Vencimiento</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="cliente.id">
-            <span jhiTranslate="hardwareRemApp.factura.cliente">Cliente</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="hardwareRemApp.factura.cliente">Cliente</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="empresa.id">
-            <span jhiTranslate="hardwareRemApp.factura.empresa">Empresa</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="hardwareRemApp.factura.empresa">Empresa</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pedido.id">
+            <span jhiTranslate="hardwareRemApp.factura.pedido">Empresa</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -69,6 +80,11 @@
           <td>
             <div *ngIf="factura.empresa">
               <a [routerLink]="['/empresa', factura.empresa?.id, 'view']">{{ factura.empresa?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="factura.pedido">
+              <a [routerLink]="['/pedido', factura.pedido?.id, 'view']">{{ factura.pedido?.id }}</a>
             </div>
           </td>
           <td class="text-right">
