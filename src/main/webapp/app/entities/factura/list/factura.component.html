@@ -89,6 +89,17 @@
           </td>
           <td class="text-right">
             <div class="btn-group">
+              <!--Generar PDF -->
+              <button
+                type="submit"
+                [routerLink]="['/factura', factura.id, 'view']"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="file-pdf"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
               <button
                 type="submit"
                 [routerLink]="['/factura', factura.id, 'view']"
