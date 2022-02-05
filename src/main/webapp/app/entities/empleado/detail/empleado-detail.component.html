@@ -76,6 +76,7 @@
             <a [routerLink]="['/empresa', empleado.empresa?.id, 'view']">{{ empleado.empresa?.id }}</a>
           </div>
         </dd>
+        &nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-sm btn-secondary" (click)="open(empleado)">Ver Pedidos</button>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

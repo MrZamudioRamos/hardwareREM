@@ -59,15 +59,10 @@
           <th scope="col" jhiSortBy="activo">
             <span jhiTranslate="hardwareRemApp.empleado.activo">Activo</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="contrasena">
-            <span jhiTranslate="hardwareRemApp.empleado.contrasena">Contrasena</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col" jhiSortBy="empresa.id">
             <span jhiTranslate="hardwareRemApp.empleado.empresa">Empresa</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"><span>Pedidos</span> <fa-icon icon="sort"></fa-icon></th>
-
-          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -84,7 +79,6 @@
           <td>{{ empleado.tipoContrato }}</td>
           <td>{{ empleado.comision }}</td>
           <td>{{ empleado.activo }}</td>
-          <td>{{ empleado.contrasena }}</td>
           <td>
             <div *ngIf="empleado.empresa">
               <a [routerLink]="['/empresa', empleado.empresa?.id, 'view']">{{ empleado.empresa?.id }}</a>
