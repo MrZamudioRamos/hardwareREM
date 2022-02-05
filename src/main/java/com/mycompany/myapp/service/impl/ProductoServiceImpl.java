@@ -1,12 +1,16 @@
 package com.mycompany.myapp.service.impl;
 
+import com.mycompany.myapp.domain.Pedido;
 import com.mycompany.myapp.domain.Producto;
 import com.mycompany.myapp.repository.ProductoRepository;
 import com.mycompany.myapp.repository.specification.ProductoSpecification;
 import com.mycompany.myapp.service.ProductoService;
 import com.mycompany.myapp.service.dto.ProductoDTO;
 import com.mycompany.myapp.service.mapper.ProductoMapper;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -78,5 +82,16 @@ public class ProductoServiceImpl implements ProductoService {
     public Page<ProductoDTO> findAllBySearchingParam(String filtro, Pageable pageable) {
         log.debug("Filtro");
         return productoRepository.findAll(ProductoSpecification.searchingParam(filtro), pageable).map(productoMapper::toDto);
+    }
+
+    @Override
+    public List<ProductoDTO> findAllByPedidoId(Pedido pedido) {
+        log.debug("Encontrar productos de un pedido");
+        return productoRepository
+            .findAllByPedidoId(pedido)
+            .stream()
+            .filter(Objects::nonNull)
+            .map(productoMapper::toDto)
+            .collect(Collectors.toList());
     }
 }

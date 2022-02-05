@@ -1,6 +1,9 @@
 package com.mycompany.myapp.service;
 
+import com.mycompany.myapp.domain.Pedido;
+import com.mycompany.myapp.domain.Producto;
 import com.mycompany.myapp.service.dto.ProductoDTO;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -49,4 +52,6 @@ public interface ProductoService {
     void delete(Long id);
 
     Page<ProductoDTO> findAllBySearchingParam(String filtro, Pageable pageable);
+
+    List<ProductoDTO> findAllByPedidoId(Pedido pedido);
 }
