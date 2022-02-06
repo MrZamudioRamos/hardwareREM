@@ -12,6 +12,8 @@ import { FacturaDeleteDialogComponent } from '../delete/factura-delete-dialog.co
 
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { ClienteService } from 'app/entities/cliente/service/cliente.service';
+import { EmpresaService } from 'app/entities/empresa/service/empresa.service';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -34,7 +36,10 @@ export class FacturaComponent implements OnInit {
     protected facturaService: FacturaService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+
+    protected clienteService: ClienteService,
+    protected empresaService: EmpresaService
   ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
@@ -67,30 +72,34 @@ export class FacturaComponent implements OnInit {
     return item.id!;
   }
 
-  // buscarPorAtributo(page?: number, dontNavigate?: boolean): void {
-  //   this.isLoading = true;
-  //   const pageToLoad: number = page ?? this.page ?? 1;
-  //   if (this.searchString ==="") {
-  //     this.loadPage();
-  //   } else {
-  //   this.facturaService
-  //     .simpleSearch(this.searchString,{
-  //       page: pageToLoad - 1,
-  //       size: this.itemsPerPage,
-  //       sort: this.sort(),
-  //     })
-  //     .subscribe({
-  //       next: (res: HttpResponse<IFactura[]>) => {
-  //         this.isLoading = false;
-  //         this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
-  //       },
-  //       error: () => {
-  //         this.isLoading = false;
-  //         this.onError();
-  //       },
-  //     });
-  //   }
-  // }
+  trackIdCliente(index: number, item: IFactura): number {
+    return item.id!;
+  }
+
+  buscarPorAtributo(page?: number, dontNavigate?: boolean): void {
+    this.isLoading = true;
+    const pageToLoad: number = page ?? this.page ?? 1;
+    if (this.searchString === '') {
+      this.loadPage();
+    } else {
+      this.facturaService
+        .simpleSearch(this.searchString, {
+          page: pageToLoad - 1,
+          size: this.itemsPerPage,
+          sort: this.sort(),
+        })
+        .subscribe({
+          next: (res: HttpResponse<IFactura[]>) => {
+            this.isLoading = false;
+            this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+          },
+          error: () => {
+            this.isLoading = false;
+            this.onError();
+          },
+        });
+    }
+  }
 
   // Metodo para generar pdf
 

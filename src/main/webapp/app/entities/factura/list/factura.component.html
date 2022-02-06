@@ -74,7 +74,9 @@
           <td>{{ factura.fechaVencimiento | formatMediumDate }}</td>
           <td>
             <div *ngIf="factura.cliente">
-              <a [routerLink]="['/cliente', factura.cliente?.id, 'view']">{{ factura.cliente?.nombre }}</a>
+              <span>
+                <a [routerLink]="['/cliente', factura.cliente?.id, 'view']">{{ factura.cliente?.id }} </a>
+              </span>
             </div>
           </td>
           <td>
