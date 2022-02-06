@@ -6,7 +6,8 @@
         "refreshListLabel": "Refrescar lista",
         "createLabel": "Crear nuevo Factura",
         "createOrEditLabel": "Crear o editar Factura",
-        "notFound": "Ningún Facturas encontrado"
+        "notFound": "Ningún Facturas encontrado",
+        "createPDF": "Crear nuevo pdf"
       },
       "created": "Un nuevo Factura ha sido creado con el identificador {{ param }}",
       "updated": "Un Factura ha sido actualizado con el identificador {{ param }}",

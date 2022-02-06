@@ -10,6 +10,11 @@ import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants
 import { FacturaService } from '../service/factura.service';
 import { FacturaDeleteDialogComponent } from '../delete/factura-delete-dialog.component';
 
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 @Component({
   selector: 'jhi-factura',
   templateUrl: './factura.component.html',
@@ -86,6 +91,20 @@ export class FacturaComponent implements OnInit {
   //     });
   //   }
   // }
+
+  // Metodo para generar pdf
+
+  createPDF(): void {
+    const pdfDefinition: any = {
+      pageSize: 'A4',
+      pageMargins: [40, 60, 40, 60],
+
+      content: [],
+    };
+
+    const pdf = pdfMake.createPdf(pdfDefinition);
+    pdf.open();
+  }
 
   delete(factura: IFactura): void {
     const modalRef = this.modalService.open(FacturaDeleteDialogComponent, { size: 'lg', backdrop: 'static' });

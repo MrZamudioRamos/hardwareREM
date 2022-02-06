@@ -36,7 +36,7 @@
 
   <div class="table-responsive" id="entities" *ngIf="facturas && facturas.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
+      <thead class="facturacion">
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <th scope="col" jhiSortBy="id">
             <span jhiTranslate="global.field.id">ID</span>
@@ -74,7 +74,7 @@
           <td>{{ factura.fechaVencimiento | formatMediumDate }}</td>
           <td>
             <div *ngIf="factura.cliente">
-              <a [routerLink]="['/cliente', factura.cliente?.id, 'view']">{{ factura.cliente?.id }}</a>
+              <a [routerLink]="['/cliente', factura.cliente?.id, 'view']">{{ factura.cliente?.nombre }}</a>
             </div>
           </td>
           <td>
@@ -90,14 +90,9 @@
           <td class="text-right">
             <div class="btn-group">
               <!--Generar PDF -->
-              <button
-                type="submit"
-                [routerLink]="['/factura', factura.id, 'view']"
-                class="btn btn-danger btn-sm"
-                data-cy="entityDetailsButton"
-              >
+              <button type="submit" class="btn btn-danger btn-sm" data-cy="entityDetailsButton">
                 <fa-icon icon="file-pdf"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                <span class="d-none d-md-inline" jhiTranslate="hardwareRemApp.factura.home.createPDF" (click)="createPDF()">Generar</span>
               </button>
 
               <button
