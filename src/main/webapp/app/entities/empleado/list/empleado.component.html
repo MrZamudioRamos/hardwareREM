@@ -35,12 +35,10 @@
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+
           <th scope="col" jhiSortBy="dni"><span jhiTranslate="hardwareRemApp.empleado.dni">Dni</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="nombre">
             <span jhiTranslate="hardwareRemApp.empleado.nombre">Nombre</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="apellidos">
-            <span jhiTranslate="hardwareRemApp.empleado.apellidos">Apellidos</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="telefono">
             <span jhiTranslate="hardwareRemApp.empleado.telefono">Telefono</span> <fa-icon icon="sort"></fa-icon>
@@ -48,18 +46,7 @@
           <th scope="col" jhiSortBy="mail">
             <span jhiTranslate="hardwareRemApp.empleado.mail">Mail</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="pais">
-            <span jhiTranslate="hardwareRemApp.empleado.pais">Pais</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="provincia">
-            <span jhiTranslate="hardwareRemApp.empleado.provincia">Provincia</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="codigoPostal">
-            <span jhiTranslate="hardwareRemApp.empleado.codigoPostal">Codigo Postal</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="calle">
-            <span jhiTranslate="hardwareRemApp.empleado.calle">Calle</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+          <th scope="col"><span>Direccion</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="numeroPedidos">
             <span jhiTranslate="hardwareRemApp.empleado.numeroPedidos">Numero Pedidos</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -72,13 +59,10 @@
           <th scope="col" jhiSortBy="activo">
             <span jhiTranslate="hardwareRemApp.empleado.activo">Activo</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="contrasena">
-            <span jhiTranslate="hardwareRemApp.empleado.contrasena">Contrasena</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col" jhiSortBy="empresa.id">
             <span jhiTranslate="hardwareRemApp.empleado.empresa">Empresa</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col"></th>
+          <th scope="col"><span>Pedidos</span> <fa-icon icon="sort"></fa-icon></th>
         </tr>
       </thead>
       <tbody>
@@ -87,24 +71,26 @@
             <a [routerLink]="['/empleado', empleado.id, 'view']">{{ empleado.id }}</a>
           </td>
           <td>{{ empleado.dni }}</td>
-          <td>{{ empleado.nombre }}</td>
-          <td>{{ empleado.apellidos }}</td>
+          <td>{{ empleado.nombre }}{{ empleado.apellidos }}</td>
           <td>{{ empleado.telefono }}</td>
           <td>{{ empleado.mail }}</td>
-          <td>{{ empleado.pais }}</td>
-          <td>{{ empleado.provincia }}</td>
-          <td>{{ empleado.codigoPostal }}</td>
-          <td>{{ empleado.calle }}</td>
+          <td>{{ empleado.calle }}{{ empleado.provincia }}{{ empleado.codigoPostal }}{{ empleado.pais }}</td>
           <td>{{ empleado.numeroPedidos }}</td>
           <td>{{ empleado.tipoContrato }}</td>
           <td>{{ empleado.comision }}</td>
-          <td>{{ empleado.activo }}</td>
-          <td>{{ empleado.contrasena }}</td>
+          <td>
+            <span *ngIf="empleado.activo === true">Activo</span>
+            <span *ngIf="empleado.activo === false">Inactivo</span>
+          </td>
           <td>
             <div *ngIf="empleado.empresa">
               <a [routerLink]="['/empresa', empleado.empresa?.id, 'view']">{{ empleado.empresa?.id }}</a>
             </div>
           </td>
+          <td>
+            <button class="btn btn-sm btn-outline-dark" (click)="open(empleado)">Ver pedidos</button>
+          </td>
+
           <td class="text-right">
             <div class="btn-group">
               <button

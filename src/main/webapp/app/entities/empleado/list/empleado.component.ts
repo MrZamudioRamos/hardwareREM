@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,6 +11,9 @@ import { IEmpleado } from '../empleado.model';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { EmpleadoService } from '../service/empleado.service';
 import { EmpleadoDeleteDialogComponent } from '../delete/empleado-delete-dialog.component';
+import { PedidoService } from 'app/entities/pedido/service/pedido.service';
+import { IPedido } from 'app/entities/pedido/pedido.model';
+import { ModalComponent } from './modal/modal-pedidos-por-empleado-component';
 
 @Component({
   selector: 'jhi-empleado',
@@ -16,6 +21,8 @@ import { EmpleadoDeleteDialogComponent } from '../delete/empleado-delete-dialog.
 })
 export class EmpleadoComponent implements OnInit {
   empleados?: IEmpleado[];
+  pedidos?: IPedido[];
+  pedidosPorEmpleado?: IPedido[];
   isLoading = false;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -24,9 +31,11 @@ export class EmpleadoComponent implements OnInit {
   ascending!: boolean;
   ngbPaginationPage = 1;
   searchString = '';
+  closeResult: string | undefined;
 
   constructor(
     protected empleadoService: EmpleadoService,
+    protected pedidoService: PedidoService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected modalService: NgbModal
@@ -87,6 +96,19 @@ export class EmpleadoComponent implements OnInit {
     }
   }
 
+  buscarPorEmpleado(empleado: IEmpleado): void {
+    this.pedidoService.buscarPorEmpleado(empleado).subscribe({
+      next: (res: HttpResponse<IPedido[]>) => {
+        this.isLoading = false;
+        this.pedidosPorEmpleado = res.body ?? [];
+      },
+      error: () => {
+        this.isLoading = false;
+        this.onError();
+      },
+    });
+  }
+
   delete(empleado: IEmpleado): void {
     const modalRef = this.modalService.open(EmpleadoDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.empleado = empleado;
@@ -96,6 +118,11 @@ export class EmpleadoComponent implements OnInit {
         this.loadPage();
       }
     });
+  }
+
+  open(empleado: IEmpleado): void {
+    const modalRef = this.modalService.open(ModalComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.empleado = empleado;
   }
 
   protected sort(): string[] {

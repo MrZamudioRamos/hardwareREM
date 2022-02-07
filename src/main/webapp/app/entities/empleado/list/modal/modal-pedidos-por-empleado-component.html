@@ -1,0 +1,57 @@
+<div class="modal-header">
+  <h4 class="modal-title">Pedidos asignados</h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body" [ngSwitch]="pedidosEmpleado && pedidosEmpleado.length > 0">
+  <div class="table-responsive" id="entities" *ngSwitchCase="true">
+    <table class="table table-striped">
+      <thead>
+        <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+
+        <th scope="col"><span>Direccion y fecha de entrega</span></th>
+        <th scope="col">
+          <span>Fecha de pedido</span>
+        </th>
+        <th scope="col">
+          <span>Tipo de pago</span>
+        </th>
+        <th scope="col"><span>Precio total</span></th>
+        <th scope="col">
+          <span>Observaciones</span>
+        </th>
+        <th scope="col">
+          <span>Entregado</span>
+        </th>
+        <th scope="col">
+          <span>Enviado</span>
+        </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pedido of pedidosEmpleado" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/pedido', pedido.id, 'view']">{{ pedido.id }}</a>
+          </td>
+          <td>
+            <ng-container [ngSwitch]="pedido.entregado === false">
+              <span *ngSwitchCase="false">El pedido aun no ha sido entregado</span>
+              <ng-container *ngSwitchCase="true"> {{ pedido.fechaEntrega }}, {{pedido.direccionEntrega}} </ng-container>
+            </ng-container>
+          </td>
+
+          <td>{{ pedido.fechaPedido }}</td>
+          <td>{{ pedido.tipoPago }}</td>
+          <td>{{ pedido.precioTotal }}</td>
+          <td>{{ pedido.observaciones }}</td>
+          <td>{{ pedido.entregado }}</td>
+          <td>{{ pedido.entregado }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <span *ngSwitchCase="false">El empleado aún no tiene asignado ningún pedido</span>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="cancel()">Close</button>
+</div>

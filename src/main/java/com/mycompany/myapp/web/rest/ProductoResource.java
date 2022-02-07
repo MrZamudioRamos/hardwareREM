@@ -1,5 +1,6 @@
 package com.mycompany.myapp.web.rest;
 
+import com.mycompany.myapp.domain.Pedido;
 import com.mycompany.myapp.repository.ProductoRepository;
 import com.mycompany.myapp.service.ProductoService;
 import com.mycompany.myapp.service.dto.ProductoDTO;
@@ -52,7 +53,9 @@ public class ProductoResource {
      * {@code POST  /productos} : Create a new producto.
      *
      * @param productoDTO the productoDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new productoDTO, or with status {@code 400 (Bad Request)} if the producto has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
+     *         body the new productoDTO, or with status {@code 400 (Bad Request)} if
+     *         the producto has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/productos")
@@ -71,11 +74,14 @@ public class ProductoResource {
     /**
      * {@code PUT  /productos/:id} : Updates an existing producto.
      *
-     * @param id the id of the productoDTO to save.
+     * @param id          the id of the productoDTO to save.
      * @param productoDTO the productoDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated productoDTO,
-     * or with status {@code 400 (Bad Request)} if the productoDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the productoDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated productoDTO,
+     *         or with status {@code 400 (Bad Request)} if the productoDTO is not
+     *         valid,
+     *         or with status {@code 500 (Internal Server Error)} if the productoDTO
+     *         couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/productos/{id}")
@@ -103,14 +109,19 @@ public class ProductoResource {
     }
 
     /**
-     * {@code PATCH  /productos/:id} : Partial updates given fields of an existing producto, field will ignore if it is null
+     * {@code PATCH  /productos/:id} : Partial updates given fields of an existing
+     * producto, field will ignore if it is null
      *
-     * @param id the id of the productoDTO to save.
+     * @param id          the id of the productoDTO to save.
      * @param productoDTO the productoDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated productoDTO,
-     * or with status {@code 400 (Bad Request)} if the productoDTO is not valid,
-     * or with status {@code 404 (Not Found)} if the productoDTO is not found,
-     * or with status {@code 500 (Internal Server Error)} if the productoDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated productoDTO,
+     *         or with status {@code 400 (Bad Request)} if the productoDTO is not
+     *         valid,
+     *         or with status {@code 404 (Not Found)} if the productoDTO is not
+     *         found,
+     *         or with status {@code 500 (Internal Server Error)} if the productoDTO
+     *         couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/productos/{id}", consumes = { "application/json", "application/merge-patch+json" })
@@ -142,7 +153,8 @@ public class ProductoResource {
      * {@code GET  /productos} : get all the productos.
      *
      * @param pageable the pagination information.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of productos in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of productos in body.
      */
     @GetMapping("/productos")
     public ResponseEntity<List<ProductoDTO>> getAllProductos(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
@@ -153,10 +165,25 @@ public class ProductoResource {
     }
 
     /**
+     * {@code POST /productos/by-pedido} : get all the productos.
+     *
+     * @param pageable the pagination information.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of productos in body.
+     */
+    @PostMapping("/productos/by-pedido")
+    public ResponseEntity<List<ProductoDTO>> findProductosByPedidoId(@RequestBody Pedido pedido) {
+        log.debug("REST request to get a page of Productos");
+        List<ProductoDTO> productos = productoService.findAllByPedidoId(pedido);
+        return ResponseEntity.ok().body(productos);
+    }
+
+    /**
      * {@code GET  /productos/:id} : get the "id" producto.
      *
      * @param id the id of the productoDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the productoDTO, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the productoDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/productos/{id}")
     public ResponseEntity<ProductoDTO> getProducto(@PathVariable Long id) {

@@ -9,6 +9,7 @@ import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IProducto, getProductoIdentifier } from '../producto.model';
+import { IPedido } from 'app/entities/pedido/pedido.model';
 
 export type EntityResponseType = HttpResponse<IProducto>;
 export type EntityArrayResponseType = HttpResponse<IProducto[]>;
@@ -50,6 +51,12 @@ export class ProductoService {
     const options = createRequestOption(req);
     return this.http
       .get<IProducto[]>(this.resourceUrl, { params: options, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
+  findProductosByPedidoId(pedido: IPedido): Observable<EntityArrayResponseType> {
+    return this.http
+      .post<IProducto[]>(`${this.resourceUrl}/by-pedido`, pedido, { observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 
