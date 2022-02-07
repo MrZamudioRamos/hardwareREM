@@ -97,7 +97,8 @@ public class Empleado implements Serializable {
     private Empresa empresa;
 
     @OneToOne
-    @MapsId("id")
+    @MapsId
+    @JoinColumn(name ="id")
     private User user;
 
 
@@ -390,6 +391,7 @@ public class Empleado implements Serializable {
             ", comision=" + getComision() +
             ", activo='" + getActivo() + "'" +
             ", contrasena='" + getContrasena() + "'" +
+            ", user='" + getUser() + "'" +
             "}";
     }
 }

@@ -48,6 +48,7 @@ public class AdminUserDTO {
 
     private Set<String> authorities;
 
+
     public AdminUserDTO() {
         // Empty constructor needed for Jackson.
     }

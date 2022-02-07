@@ -138,11 +138,18 @@
       </div>
 
       <div class="form-group">
-        <label>Empleado</label>
-        <select class="form-control" multiple name="empleado" formControlName="empleado">
-          <option *ngFor="let empleado of empleados" [value]="empleado">{{ empleado }}</option>
+        <label class="form-control-label" for="field_empleado">Empleado</label>
+        <select class="form-control" id="field_empleado" data-cy="empleado" name="empleado" formControlName="empleado">
+          <option [ngValue]="null"></option>
+          <option
+            [ngValue]="empleadoOption.id === editForm.get('empleado')!.value?.id ? editForm.get('empleado')!.value : empleadoOption"
+            *ngFor="let empleadoOption of empleadosSharedCollection; trackBy: trackEmpleadoById"
+          >
+            {{ empleadoOption.id }}
+          </option>
         </select>
       </div>
+
 
 
       <div *ngIf="user">

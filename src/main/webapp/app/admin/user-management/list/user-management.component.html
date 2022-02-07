@@ -74,7 +74,9 @@
               <span class="badge badge-info">{{ authority }}</span>
             </div>
           </td>
-          <td>{{ user.empleado?.id}}</td>
+          <td>
+            <a [routerLink]="['./empleado', user.empleado?.id, 'view']">{{ user.empleado?.id }}</a>
+           </td>
           <td>{{ user.createdDate | date: 'dd/MM/yy HH:mm' }}</td>
           <td>{{ user.lastModifiedBy }}</td>
           <td>{{ user.lastModifiedDate | date: 'dd/MM/yy HH:mm' }}</td>
