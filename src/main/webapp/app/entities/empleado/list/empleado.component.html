@@ -78,7 +78,10 @@
           <td>{{ empleado.numeroPedidos }}</td>
           <td>{{ empleado.tipoContrato }}</td>
           <td>{{ empleado.comision }}</td>
-          <td>{{ empleado.activo }}</td>
+          <td>
+            <span *ngIf="empleado.activo === true">Activo</span>
+            <span *ngIf="empleado.activo === false">Inactivo</span>
+          </td>
           <td>
             <div *ngIf="empleado.empresa">
               <a [routerLink]="['/empresa', empleado.empresa?.id, 'view']">{{ empleado.empresa?.id }}</a>
