@@ -45,6 +45,7 @@ export class EmpleadoComponent implements OnInit {
     this.isLoading = true;
     const pageToLoad: number = page ?? this.page ?? 1;
 
+
     this.empleadoService
       .query({
         page: pageToLoad - 1,
@@ -65,6 +66,7 @@ export class EmpleadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.handleNavigation();
+
   }
 
   trackId(index: number, item: IEmpleado): number {
