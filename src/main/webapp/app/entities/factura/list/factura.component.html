@@ -81,7 +81,7 @@
           </td>
           <td>
             <div *ngIf="factura.empresa">
-              <a [routerLink]="['/empresa', factura.empresa?.id, 'view']">{{ factura.empresa?.id }}</a>
+              <a [routerLink]="['/empresa', factura.empresa?.id, 'view']">{{ factura.empresa?.nombreSocial }}</a>
             </div>
           </td>
           <td>
@@ -91,12 +91,6 @@
           </td>
           <td class="text-right">
             <div class="btn-group">
-              <!--Generar PDF -->
-              <button type="submit" class="btn btn-danger btn-sm" data-cy="entityDetailsButton">
-                <fa-icon icon="file-pdf"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="hardwareRemApp.factura.home.createPDF" (click)="createPDF()">Generar</span>
-              </button>
-
               <button
                 type="submit"
                 [routerLink]="['/factura', factura.id, 'view']"

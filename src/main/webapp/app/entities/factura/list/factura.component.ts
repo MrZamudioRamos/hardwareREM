@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IFactura } from '../factura.model';
 
@@ -10,12 +9,9 @@ import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants
 import { FacturaService } from '../service/factura.service';
 import { FacturaDeleteDialogComponent } from '../delete/factura-delete-dialog.component';
 
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { ClienteService } from 'app/entities/cliente/service/cliente.service';
 import { EmpresaService } from 'app/entities/empresa/service/empresa.service';
-
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'jhi-factura',
@@ -99,20 +95,6 @@ export class FacturaComponent implements OnInit {
           },
         });
     }
-  }
-
-  // Metodo para generar pdf
-
-  createPDF(): void {
-    const pdfDefinition: any = {
-      pageSize: 'A4',
-      pageMargins: [40, 60, 40, 60],
-
-      content: [{ text: 'Hola' }],
-    };
-
-    const pdf = pdfMake.createPdf(pdfDefinition);
-    pdf.open();
   }
 
   delete(factura: IFactura): void {

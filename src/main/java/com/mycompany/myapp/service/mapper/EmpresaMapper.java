@@ -12,5 +12,6 @@ public interface EmpresaMapper extends EntityMapper<EmpresaDTO, Empresa> {
     @Named("id")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
+    @Mapping(target = "nombreSocial", source = "nombreSocial")
     EmpresaDTO toDtoId(Empresa empresa);
 }
