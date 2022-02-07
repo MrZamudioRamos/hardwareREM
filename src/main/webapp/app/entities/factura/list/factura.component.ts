@@ -108,7 +108,7 @@ export class FacturaComponent implements OnInit {
       pageSize: 'A4',
       pageMargins: [40, 60, 40, 60],
 
-      content: [],
+      content: [{ text: 'Hola' }],
     };
 
     const pdf = pdfMake.createPdf(pdfDefinition);
