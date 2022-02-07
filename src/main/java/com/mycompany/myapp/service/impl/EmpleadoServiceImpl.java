@@ -84,6 +84,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
         empleadoRepository.deleteById(id);
     }
 
+    @Override
     public Page<EmpleadoDTO> findAllBySearchingParam(String filtro, Pageable pageable) {
         log.debug("Filtro");
         return empleadoRepository.findAll(EmpleadoSpecification.searchingParam(filtro), pageable).map(empleadoMapper::toDto);

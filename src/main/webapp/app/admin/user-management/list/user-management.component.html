@@ -29,6 +29,7 @@
             <span jhiTranslate="userManagement.langKey">Lang Key</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"><span jhiTranslate="userManagement.profiles">Profiles</span></th>
+          <th scope="col"><span>Empleado asignado</span></th>
           <th scope="col" jhiSortBy="createdDate">
             <span jhiTranslate="userManagement.createdDate">Created Date</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -73,6 +74,7 @@
               <span class="badge badge-info">{{ authority }}</span>
             </div>
           </td>
+          <td>{{ user.empleado?.id}}</td>
           <td>{{ user.createdDate | date: 'dd/MM/yy HH:mm' }}</td>
           <td>{{ user.lastModifiedBy }}</td>
           <td>{{ user.lastModifiedDate | date: 'dd/MM/yy HH:mm' }}</td>

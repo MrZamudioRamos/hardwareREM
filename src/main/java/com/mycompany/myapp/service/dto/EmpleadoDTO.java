@@ -53,6 +53,8 @@ public class EmpleadoDTO implements Serializable {
 
     private EmpresaDTO empresa;
 
+    private UserDTO user;
+
     public Long getId() {
         return id;
     }
@@ -181,6 +183,14 @@ public class EmpleadoDTO implements Serializable {
         this.empresa = empresa;
     }
 
+    public UserDTO getUser() {
+        return user;
+    }
+
+    public void setUser(UserDTO user) {
+        this.user = user;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -222,6 +232,7 @@ public class EmpleadoDTO implements Serializable {
             ", activo='" + getActivo() + "'" +
             ", contrasena='" + getContrasena() + "'" +
             ", empresa=" + getEmpresa() +
+            ", user=" + getUser() +
             "}";
     }
 }

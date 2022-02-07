@@ -82,6 +82,15 @@
       "otherEntityName": "empresa",
       "otherEntityRelationshipName": "empleado",
       "relationshipName": "empresa"
+    },
+    {
+      "relationshipName": "user",
+      "otherEntityName": "user",
+      "relationshipType": "one-to-one",
+      "otherEntityField": "login",
+      "ownerSide": true,
+      "id": false,
+      "otherEntityRelationshipName": "empleado"
     }
   ],
   "entityTableName": "empleado",

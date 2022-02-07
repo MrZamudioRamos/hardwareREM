@@ -33,7 +33,8 @@
       "activo": "Activo",
       "contrasena": "Contrasena",
       "pedido": "Pedido",
-      "empresa": "Empresa"
+      "empresa": "Empresa",
+      "user": "User"
     }
   }
 }

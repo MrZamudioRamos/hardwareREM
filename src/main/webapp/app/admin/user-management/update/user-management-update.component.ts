@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LANGUAGES } from 'app/config/language.constants';
 import { User } from '../user-management.model';
 import { UserManagementService } from '../service/user-management.service';
+import { IEmpleado } from 'app/entities/empleado/empleado.model';
 
 @Component({
   selector: 'jhi-user-mgmt-update',
@@ -15,6 +16,7 @@ export class UserManagementUpdateComponent implements OnInit {
   languages = LANGUAGES;
   authorities: string[] = [];
   isSaving = false;
+  empleados?: IEmpleado[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -80,6 +82,7 @@ export class UserManagementUpdateComponent implements OnInit {
       activated: user.activated,
       langKey: user.langKey,
       authorities: user.authorities,
+      empleado: user.empleado,
     });
   }
 
@@ -91,6 +94,7 @@ export class UserManagementUpdateComponent implements OnInit {
     user.activated = this.editForm.get(['activated'])!.value;
     user.langKey = this.editForm.get(['langKey'])!.value;
     user.authorities = this.editForm.get(['authorities'])!.value;
+    user.empleado = this.editForm.get(['authorities'])!.value;
   }
 
   private onSaveSuccess(): void {

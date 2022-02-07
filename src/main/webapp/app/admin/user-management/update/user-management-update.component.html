@@ -137,6 +137,14 @@
         </div>
       </div>
 
+      <div class="form-group">
+        <label>Empleado</label>
+        <select class="form-control" multiple name="empleado" formControlName="empleado">
+          <option *ngFor="let empleado of empleados" [value]="empleado">{{ empleado }}</option>
+        </select>
+      </div>
+
+
       <div *ngIf="user">
         <button type="button" class="btn btn-secondary" (click)="previousState()">
           <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>

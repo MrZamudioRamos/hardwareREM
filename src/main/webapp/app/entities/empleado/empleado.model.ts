@@ -1,5 +1,6 @@
 import { IPedido } from 'app/entities/pedido/pedido.model';
 import { IEmpresa } from 'app/entities/empresa/empresa.model';
+import { IUser } from 'app/entities/user/user.model';
 
 export interface IEmpleado {
   id?: number;
@@ -19,6 +20,7 @@ export interface IEmpleado {
   contrasena?: string;
   pedidos?: IPedido[] | null;
   empresa?: IEmpresa | null;
+  user?: IUser | null;
 }
 
 export class Empleado implements IEmpleado {
@@ -39,7 +41,8 @@ export class Empleado implements IEmpleado {
     public activo?: boolean,
     public contrasena?: string,
     public pedidos?: IPedido[] | null,
-    public empresa?: IEmpresa | null
+    public empresa?: IEmpresa | null,
+    public user?: IUser | null
   ) {
     this.activo = this.activo ?? false;
   }

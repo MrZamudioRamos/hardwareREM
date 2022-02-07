@@ -96,6 +96,11 @@ public class Empleado implements Serializable {
     @JsonIgnoreProperties(value = { "facturas", "clientes", "productos", "pedidos", "almacens", "empleados" }, allowSetters = true)
     private Empresa empresa;
 
+    @OneToOne
+    @MapsId("id")
+    private User user;
+
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -297,6 +302,8 @@ public class Empleado implements Serializable {
         return this.pedidos;
     }
 
+
+
     public void setPedidos(Set<Pedido> pedidos) {
         if (this.pedidos != null) {
             this.pedidos.forEach(i -> i.setEmpleado(null));
@@ -335,6 +342,14 @@ public class Empleado implements Serializable {
     public Empleado empresa(Empresa empresa) {
         this.setEmpresa(empresa);
         return this;
+    }
+
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

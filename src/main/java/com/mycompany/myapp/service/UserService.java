@@ -2,8 +2,10 @@ package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.config.Constants;
 import com.mycompany.myapp.domain.Authority;
+import com.mycompany.myapp.domain.Empleado;
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.AuthorityRepository;
+import com.mycompany.myapp.repository.EmpleadoRepository;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
 import com.mycompany.myapp.security.SecurityUtils;
@@ -18,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,22 +38,27 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final EmpleadoRepository empleadoRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     private final AuthorityRepository authorityRepository;
 
     private final CacheManager cacheManager;
 
+
     public UserService(
         UserRepository userRepository,
         PasswordEncoder passwordEncoder,
         AuthorityRepository authorityRepository,
-        CacheManager cacheManager
+        CacheManager cacheManager,
+        EmpleadoRepository empleadoRepository
     ) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
+        this.empleadoRepository = empleadoRepository;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -176,6 +184,11 @@ public class UserService {
         }
         userRepository.save(user);
         this.clearUserCaches(user);
+
+        Empleado empleado = new Empleado();
+        empleado.setUser(user);
+        empleadoRepository.save(empleado);
+
         log.debug("Created Information for User: {}", user);
         return user;
     }

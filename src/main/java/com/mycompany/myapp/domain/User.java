@@ -1,6 +1,7 @@
 package com.mycompany.myapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mycompany.myapp.config.Constants;
 import java.io.Serializable;
 import java.time.Instant;
