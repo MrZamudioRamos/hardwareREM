@@ -5,11 +5,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
-import javax.annotation.RegEx;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.Range;
 
 /**
  * A Producto.
@@ -52,7 +52,7 @@ public class Producto implements Serializable {
     private String descripcion;
 
     @NotNull
-    @Size(min = 1)
+    @Range(min = (long) 0.0)
     @Column(name = "peso", nullable = false)
     private Double peso;
 
@@ -60,16 +60,17 @@ public class Producto implements Serializable {
     private LocalDate fechaVenta;
 
     @NotNull
-    @Size(min = 0)
+    @Range(min = (long) 0.0)
     @Column(name = "precio_compra", nullable = false)
     private Double precioCompra;
 
     @NotNull
-    @Size(min = 0)
+    @Range(min = (long) 0.0)
     @Column(name = "precio_bruto", nullable = false)
     private Double precioBruto;
 
     @NotNull
+    @Range(min = (long) 0.0)
     @Column(name = "precio_iva", nullable = false)
     private Double precioIva;
 

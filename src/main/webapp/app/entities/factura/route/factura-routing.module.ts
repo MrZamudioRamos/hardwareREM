@@ -6,7 +6,6 @@ import { FacturaComponent } from '../list/factura.component';
 import { FacturaDetailComponent } from '../detail/factura-detail.component';
 import { FacturaUpdateComponent } from '../update/factura-update.component';
 import { FacturaRoutingResolveService } from './factura-routing-resolve.service';
-import { FacturaPDFComponent } from '../plantillaFactura/facturaPDF.component';
 
 const facturaRoute: Routes = [
   {
@@ -36,14 +35,6 @@ const facturaRoute: Routes = [
   {
     path: ':id/edit',
     component: FacturaUpdateComponent,
-    resolve: {
-      factura: FacturaRoutingResolveService,
-    },
-    canActivate: [UserRouteAccessService],
-  },
-  {
-    path: 'newplantilla',
-    component: FacturaPDFComponent,
     resolve: {
       factura: FacturaRoutingResolveService,
     },

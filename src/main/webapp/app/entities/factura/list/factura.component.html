@@ -86,11 +86,17 @@
           </td>
           <td>
             <div *ngIf="factura.pedido">
-              <a [routerLink]="['/pedido', factura.pedido?.id, 'view']">{{ factura.pedido?.id }}</a>
+              <a [routerLink]="['/pedido', factura.pedido?.id, 'view']">{{ factura.pedido?.precioTotal }}</a>
             </div>
           </td>
           <td class="text-right">
             <div class="btn-group">
+              <!-- El boton de ver la modal de la factiura -->
+              <button class="btn btn-outline-info" (click)="open(factura)">
+                <fa-icon icon="file-invoice"></fa-icon>
+                Factura
+              </button>
+
               <button
                 type="submit"
                 [routerLink]="['/factura', factura.id, 'view']"

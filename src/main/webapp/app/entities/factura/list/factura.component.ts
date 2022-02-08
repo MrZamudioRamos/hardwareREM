@@ -12,6 +12,7 @@ import { FacturaDeleteDialogComponent } from '../delete/factura-delete-dialog.co
 import { ClienteService } from 'app/entities/cliente/service/cliente.service';
 import { EmpresaService } from 'app/entities/empresa/service/empresa.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalPlantillaComponent } from '../detail/modal-factura/modal-facturaPlantilla.component';
 
 @Component({
   selector: 'jhi-factura',
@@ -68,10 +69,6 @@ export class FacturaComponent implements OnInit {
     return item.id!;
   }
 
-  trackIdCliente(index: number, item: IFactura): number {
-    return item.id!;
-  }
-
   buscarPorAtributo(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;
     const pageToLoad: number = page ?? this.page ?? 1;
@@ -106,6 +103,11 @@ export class FacturaComponent implements OnInit {
         this.loadPage();
       }
     });
+  }
+
+  open(factura: IFactura): void {
+    const modalRef = this.modalService.open(ModalPlantillaComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.factura = factura;
   }
 
   protected sort(): string[] {
