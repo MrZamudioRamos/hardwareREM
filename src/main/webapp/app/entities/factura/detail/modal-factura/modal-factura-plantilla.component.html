@@ -1,0 +1,152 @@
+<div class="modal-header">
+  <h2 class="modal-title-factura">Factura</h2>
+  <button type="button" class="close" aria-label="Close" (click)="cancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container-fluid">
+    <div class="container mt-5 mb-3" id="pdfTable" #pdfTable>
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="d-flex flex-row p-2">
+              <div class="d-flex flex-column"><span class="font-weight-bold">Tax Invoice</span> <small>INV-001</small></div>
+            </div>
+
+            <hr />
+            <div class="table-responsive p-2">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr class="add">
+                    <td>To</td>
+                    <td>From</td>
+                  </tr>
+                  <tr class="content">
+                    <td class="font-weight-bold">Google <br />Attn: Jassa Smith Pymont <br />Australia</td>
+                    <td class="font-weight-bold">
+                      Facebook <br />
+                      Attn: Jassa Right Polymont <br />
+                      USA
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <hr />
+            <div class="products p-2">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr class="add">
+                    <td>{{ factura?.cliente?.calle }}</td>
+                    <td>Days</td>
+                    <td>Price</td>
+                    <td class="text-center">Total</td>
+                  </tr>
+                  <tr class="content">
+                    <td>Website Redesign</td>
+                    <td>15</td>
+                    <td>$1,500</td>
+                    <td class="text-center">$22,500</td>
+                  </tr>
+                  <tr class="content">
+                    <td>Logo & Identity</td>
+                    <td>10</td>
+                    <td>$1,500</td>
+                    <td class="text-center">$15,000</td>
+                  </tr>
+                  <tr class="content">
+                    <td>Marketing Collateral</td>
+                    <td>3</td>
+                    <td>$1,500</td>
+                    <td class="text-center">$4,500</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <hr />
+            <div class="products p-2">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr class="add">
+                    <td></td>
+                    <td>Subtotal</td>
+                    <td>GST(10%)</td>
+                    <td class="text-center">Total</td>
+                  </tr>
+                  <tr class="content">
+                    <td></td>
+                    <td>$40,000</td>
+                    <td>2,500</td>
+                    <td class="text-center">$42,500</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <hr />
+            <div class="address p-2">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr class="add">
+                    <td>Bank Details</td>
+                  </tr>
+                  <tr class="content">
+                    <td>
+                      Bank Name : ADS BANK <br />
+                      Swift Code : 00220022 <br />
+                      Account Holder : Jassa Pepper <br />
+                      Account Number : 6953PO789 <br />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row">
+            <div class="col-md-4">
+                <div *ngIf="factura">
+                    <dl class="row-md">
+                        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+                        <dd>
+                            <span>{{ factura?.id }}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hardwareRemApp.factura.fechaFacturacion">Fecha Facturacion</span></dt>
+                        <dd>
+                            <span>{{ factura?.fechaFacturacion }}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hardwareRemApp.factura.fechaVencimiento">Fecha Vencimiento</span></dt>
+                        <dd>
+                            <span>{{ factura?.fechaVencimiento }}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hardwareRemApp.factura.cliente">Cliente</span></dt>
+
+                    </dl>
+                </div>
+                <div class="col-md-4 ml-auto">{{ factura?.id }} HOLA</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 ml-auto">{{ factura?.fechaFacturacion }}</div>
+                <div class="col-md-2 ml-auto">{{ factura?.fechaFacturacion }</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 ml-auto">{{ factura?.fechaFacturacion }</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    Level 1: .col-sm-9
+                    <div class="row">
+                        <div class="col-8 col-sm-6">{{ factura?.fechaFacturacion }</div>
+                        <div class="col-4 col-sm-6">{{ factura?.fechaFacturacion }</div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="cancel()">Close</button>
+    </div>
+  </div>
+</div>

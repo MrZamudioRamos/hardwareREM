@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ICliente } from 'app/entities/cliente/cliente.model';
@@ -13,40 +13,28 @@ import { EmpresaService } from 'app/entities/empresa/service/empresa.service';
 import { IFactura } from '../../factura.model';
 import { FacturaService } from 'app/entities/factura/service/factura.service';
 
+// import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
-  templateUrl: './modal-facturaPlantilla.component.html',
+  templateUrl: './modal-factura-plantilla.component.html',
 })
-export class ModalPlantillaComponent implements OnInit {
+export class ModalPlantillaComponent {
   empresa?: IEmpresa;
   cliente?: ICliente;
   pedido?: IPedido;
-  factura?: IFactura;
+  factura: IFactura | null = null;
 
   constructor(
     protected pedidoService: PedidoService,
     protected activeModal: NgbActiveModal,
     protected empresaService: EmpresaService,
     protected clienteService: ClienteService,
-    protected facturaService: FacturaService
+    protected facturaService: FacturaService,
+    protected activatedRoute: ActivatedRoute
   ) {}
-
-  ngOnInit(): void {
-    if (this.empresa) {
-      this.loadData(this.empresa);
-    }
-    if (this.pedido) {
-      this.loadData(this.pedido);
-    }
-    if (this.cliente) {
-      this.loadData(this.cliente);
-    }
-  }
 
   cancel(): void {
     this.activeModal.dismiss();
-  }
-
-  loadData(cliente: ICliente): void {
-    this.facturaService.find;
   }
 }

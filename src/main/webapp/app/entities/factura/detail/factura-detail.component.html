@@ -25,13 +25,13 @@
         <dt><span jhiTranslate="hardwareRemApp.factura.cliente">Cliente</span></dt>
         <dd>
           <div *ngIf="factura.cliente">
-            <a [routerLink]="['/cliente', factura.cliente?.id, 'view']">{{ factura.cliente?.id }}</a>
+            <a [routerLink]="['/cliente', factura.cliente?.id, 'view']">{{ factura.cliente?.nombre }}</a>
           </div>
         </dd>
         <dt><span jhiTranslate="hardwareRemApp.factura.empresa">Empresa</span></dt>
         <dd>
           <div *ngIf="factura.empresa">
-            <a [routerLink]="['/empresa', factura.empresa?.id, 'view']">{{ factura.empresa?.id }}</a>
+            <a [routerLink]="['/empresa', factura.empresa?.id, 'view']">{{ factura.empresa?.nombreSocial }}</a>
           </div>
         </dd>
         <dt><span jhiTranslate="hardwareRemApp.factura.pedido">Pedido</span></dt>
