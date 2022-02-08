@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <h4 class="modal-title">Productos disponibles</h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body" [ngSwitch]="productos && productos.length > 0">
+  <div class="table-responsive" id="entities" *ngSwitchCase="true">
+    <table class="table table-striped">
+      <thead>
+        <th scope="col">
+          <span>Marca</span>
+        </th>
+        <th scope="col">
+          <span>Modelo</span>
+        </th>
+        <th scope="col">
+          <span>Peso</span>
+        </th>
+        <th scope="col">
+          <span>Descripcion</span>
+        </th>
+        <th scope="col">
+          <span>Precio Iva</span>
+        </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of productos" data-cy="entityTable">
+          <td>{{ producto.marca }}</td>
+          <td>{{ producto.modelo }}</td>
+          <td>{{ producto.peso }}</td>
+          <td>{{ producto.descripcion }}</td>
+          <td>{{ producto.precioIva }}</td>
+          <td>
+            <button class="btn btn-sm btn-outline-dark" (click)="addProduct(producto)">Add producto</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <span *ngSwitchCase="false">No hay productos añadidos</span>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="cancel()">Close</button>
+</div>

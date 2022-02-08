@@ -10,6 +10,7 @@ import { ApplicationConfigService } from 'app/core/config/application-config.ser
 import { createRequestOption } from 'app/core/request/request-util';
 import { IPedido, getPedidoIdentifier } from '../pedido.model';
 import { IEmpleado } from 'app/entities/empleado/empleado.model';
+import { ProductoService } from 'app/entities/producto/service/producto.service';
 
 export type EntityResponseType = HttpResponse<IPedido>;
 export type EntityArrayResponseType = HttpResponse<IPedido[]>;
@@ -18,10 +19,15 @@ export type EntityArrayResponseType = HttpResponse<IPedido[]>;
 export class PedidoService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/pedidos');
 
-  constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
+  constructor(
+    protected http: HttpClient,
+    protected applicationConfigService: ApplicationConfigService,
+    protected serviceProducto: ProductoService
+  ) {}
 
   create(pedido: IPedido): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(pedido);
+
     return this.http
       .post<IPedido>(this.resourceUrl, copy, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));

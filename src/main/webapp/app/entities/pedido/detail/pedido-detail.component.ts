@@ -12,6 +12,8 @@ import { IPedido } from '../pedido.model';
 export class PedidoDetailComponent implements OnInit {
   pedido: IPedido | null = null;
   productos?: IProducto[] = [];
+  precioTotal = 0;
+  precioTotalSinIva = 0;
 
   constructor(protected activatedRoute: ActivatedRoute, protected productoService: ProductoService) {}
 
@@ -28,5 +30,9 @@ export class PedidoDetailComponent implements OnInit {
 
   loadProductosByPedidoId(pedido: IPedido): void {
     this.productoService.findProductosByPedidoId(pedido).subscribe(res => (this.productos = res.body ?? []));
+    this.productos?.forEach(producto => {
+      this.precioTotal = producto.precioIva! + this.precioTotal;
+      this.precioTotalSinIva = producto.precioBruto! + this.precioTotalSinIva;
+    });
   }
 }

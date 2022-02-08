@@ -54,4 +54,6 @@ public interface ProductoService {
     Page<ProductoDTO> findAllBySearchingParam(String filtro, Pageable pageable);
 
     List<ProductoDTO> findAllByPedidoId(Pedido pedido);
+
+    List<ProductoDTO> findAllProducts();
 }

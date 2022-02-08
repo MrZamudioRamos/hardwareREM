@@ -1,5 +1,6 @@
 package com.mycompany.myapp.service.dto;
 
+import com.mycompany.myapp.domain.Producto;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -38,6 +39,8 @@ public class PedidoDTO implements Serializable {
     private Boolean enviado;
 
     private FacturaDTO factura;
+
+    private Producto[] productos;
 
     private EmpleadoDTO empleado;
 
@@ -131,6 +134,14 @@ public class PedidoDTO implements Serializable {
 
     public void setFactura(FacturaDTO factura) {
         this.factura = factura;
+    }
+
+    public Producto[] getProductos() {
+        return productos;
+    }
+
+    public void setProductos(Producto[] productos) {
+        this.productos = productos;
     }
 
     public EmpleadoDTO getEmpleado() {

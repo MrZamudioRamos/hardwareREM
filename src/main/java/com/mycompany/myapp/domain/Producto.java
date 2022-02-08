@@ -52,7 +52,6 @@ public class Producto implements Serializable {
     private String descripcion;
 
     @NotNull
-    @Size(min = 1)
     @Column(name = "peso", nullable = false)
     private Double peso;
 
@@ -60,12 +59,10 @@ public class Producto implements Serializable {
     private LocalDate fechaVenta;
 
     @NotNull
-    @Size(min = 0)
     @Column(name = "precio_compra", nullable = false)
     private Double precioCompra;
 
     @NotNull
-    @Size(min = 0)
     @Column(name = "precio_bruto", nullable = false)
     private Double precioBruto;
 

@@ -165,6 +165,20 @@ public class ProductoResource {
     }
 
     /**
+     * {@code GET  /productos} : get list the productos sin page.
+     *
+     * @param pageable the pagination information.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of productos in body.
+     */
+    @GetMapping("/productos/productos")
+    public ResponseEntity<List<ProductoDTO>> getAllProductos2() {
+        log.debug("REST request to search a parameter");
+        List<ProductoDTO> productos = productoService.findAllProducts();
+        return ResponseEntity.ok().body(productos);
+    }
+
+    /**
      * {@code POST /productos/by-pedido} : get all the productos.
      *
      * @param pageable the pagination information.

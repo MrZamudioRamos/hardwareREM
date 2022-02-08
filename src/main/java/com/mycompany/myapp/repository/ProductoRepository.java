@@ -17,4 +17,7 @@ import org.springframework.stereotype.Repository;
 public interface ProductoRepository extends JpaRepository<Producto, Long>, JpaSpecificationExecutor<Producto> {
     @Query("SELECT u FROM Producto u WHERE u.pedido = ?1")
     List<Producto> findAllByPedidoId(Pedido pedido);
+
+    @Query("SELECT u FROM Producto u WHERE u.vendido = false")
+    List<Producto> findAll();
 }

@@ -54,6 +54,12 @@ export class ProductoService {
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 
+  getListProducts(): Observable<EntityArrayResponseType> {
+    return this.http
+      .get<IProducto[]>(`${this.resourceUrl}/productos`, { observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
   findProductosByPedidoId(pedido: IPedido): Observable<EntityArrayResponseType> {
     return this.http
       .post<IProducto[]>(`${this.resourceUrl}/by-pedido`, pedido, { observe: 'response' })

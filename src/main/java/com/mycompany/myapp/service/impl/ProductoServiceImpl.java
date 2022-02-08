@@ -94,4 +94,9 @@ public class ProductoServiceImpl implements ProductoService {
             .map(productoMapper::toDto)
             .collect(Collectors.toList());
     }
+
+    @Override
+    public List<ProductoDTO> findAllProducts() {
+        return productoRepository.findAll().stream().filter(Objects::nonNull).map(productoMapper::toDto).collect(Collectors.toList());
+    }
 }

@@ -6,11 +6,11 @@ import { PedidoUpdateComponent } from './update/pedido-update.component';
 import { PedidoDeleteDialogComponent } from './delete/pedido-delete-dialog.component';
 import { PedidoRoutingModule } from './route/pedido-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ModalComponent } from '../empleado/list/modal/modal-pedidos-por-empleado-component';
+import { ModalProductComponent } from './update/modal/pedido-modal-productos-list.component';
 
 @NgModule({
   imports: [SharedModule, PedidoRoutingModule, ReactiveFormsModule],
-  declarations: [PedidoComponent, PedidoDetailComponent, PedidoUpdateComponent, PedidoDeleteDialogComponent, ModalComponent],
+  declarations: [PedidoComponent, PedidoDetailComponent, PedidoUpdateComponent, PedidoDeleteDialogComponent, ModalProductComponent],
   entryComponents: [PedidoDeleteDialogComponent],
 })
 export class PedidoModule {}

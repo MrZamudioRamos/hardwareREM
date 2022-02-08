@@ -4,9 +4,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IPedido, Pedido } from '../pedido.model';
-import { PedidoService } from '../service/pedido.service';
 import { IFactura } from 'app/entities/factura/factura.model';
 import { FacturaService } from 'app/entities/factura/service/factura.service';
 import { IEmpleado } from 'app/entities/empleado/empleado.model';
@@ -15,6 +15,10 @@ import { IEmpresa } from 'app/entities/empresa/empresa.model';
 import { EmpresaService } from 'app/entities/empresa/service/empresa.service';
 import { IAlmacen } from 'app/entities/almacen/almacen.model';
 import { AlmacenService } from 'app/entities/almacen/service/almacen.service';
+import { IProducto } from 'app/entities/producto/producto.model';
+import { ModalProductComponent } from './modal/pedido-modal-productos-list.component';
+import dayjs from 'dayjs/esm';
+import { ProductoService } from 'app/entities/producto/service/producto.service';
 
 @Component({
   selector: 'jhi-pedido-update',
@@ -22,37 +26,43 @@ import { AlmacenService } from 'app/entities/almacen/service/almacen.service';
 })
 export class PedidoUpdateComponent implements OnInit {
   isSaving = false;
+  pedidoAux?: IPedido;
+  guardados = false;
 
   facturasCollection: IFactura[] = [];
   empleadosSharedCollection: IEmpleado[] = [];
   empresasSharedCollection: IEmpresa[] = [];
   almacensSharedCollection: IAlmacen[] = [];
+  productosInPedidoCollection: IProducto[] = [];
 
   editForm = this.fb.group({
     id: [],
     direccionEntrega: [null, [Validators.required]],
-    fechaPedido: [null, [Validators.required]],
-    fechaEntrega: [null, [Validators.required]],
+    fechaPedido: [null, [Validators.required]], // SETEAR AUTOMATICAMENTE
+    fechaEntrega: [null, [Validators.required]], // SETEAR AUTOMATICAMENTE + 5 DIAS POR EJ
     descuento: [],
-    tipoPago: [null, [Validators.required]],
-    precioTotal: [null, [Validators.required]],
+    tipoPago: [null, [Validators.required]], // ENUM
+    precioTotal: [null, [Validators.required]], // AUTOMATICO CON UNA FUNCION DE SUMAS
     observaciones: [],
-    entregado: [null, [Validators.required]],
-    enviado: [null, [Validators.required]],
-    factura: [],
-    empleado: [],
-    empresa: [],
-    almacen: [],
+    entregado: [null, [Validators.required]], // FALSE
+    enviado: [null, [Validators.required]], // FALSE
+    factura: [], // SE DEBERIA DE CREAR UNA FUNCION QUE CREE UNA NUEVA FACTURA A RAIZ DE ESTA
+    empleado: [], // SE SETEA CON EL ID DEL USUAIRO QUE HA INICIADO SESION
+    empresa: [], // SE SETEA CON EL ID DE LA EMPRESA AUTOMATICAMENTE
+    almacen: [], // SE SETEA CON EL ID DEL ALMACEN AUTOMATICAMENTE
+    productos: [],
   });
 
   constructor(
     protected pedidoService: PedidoService,
+    protected productoService: ProductoService,
     protected facturaService: FacturaService,
     protected empleadoService: EmpleadoService,
     protected empresaService: EmpresaService,
     protected almacenService: AlmacenService,
     protected activatedRoute: ActivatedRoute,
-    protected fb: FormBuilder
+    protected fb: FormBuilder,
+    protected modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -67,13 +77,41 @@ export class PedidoUpdateComponent implements OnInit {
     window.history.back();
   }
 
+  open(): void {
+    const modalRef = this.modalService.open(ModalProductComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.emitService.subscribe((emmitedValue: IProducto[]) => {
+      this.productosInPedidoCollection = emmitedValue;
+    });
+  }
+
   save(): void {
     this.isSaving = true;
     const pedido = this.createFromForm();
     if (pedido.id !== undefined) {
       this.subscribeToSaveResponse(this.pedidoService.update(pedido));
     } else {
+      pedido.fechaPedido = dayjs();
+      pedido.fechaEntrega = dayjs().add(7, 'day');
+      // hacer metodo para calcular el precio total.
+      pedido.precioTotal = 100;
+      pedido.entregado = false;
+      pedido.enviado = false;
+      pedido.productos = this.productosInPedidoCollection;
+      pedido.empleado = this.empleadosSharedCollection[1];
+      pedido.empresa = this.empresasSharedCollection[1];
+      pedido.almacen = this.almacensSharedCollection[1];
+
+      // for (let producto of pedido.productos) {
+      //   producto.pedido = pedido.id;
+      //   this.productoService.update(producto);
+      // }
+
       this.subscribeToSaveResponse(this.pedidoService.create(pedido));
+
+      // for (let producto of pedido.productos) {
+      //   producto.pedido = this.pedidoAux!;
+      //   this.productoService.update(producto);
+      // }
     }
   }
 
@@ -94,10 +132,23 @@ export class PedidoUpdateComponent implements OnInit {
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPedido>>): void {
-    result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
-      next: () => this.onSaveSuccess(),
-      error: () => this.onSaveError(),
-    });
+    result
+      .pipe(
+        //   map((res: EntityResponseType) =>
+        //   // this.pedidoAux = res.body!
+        //   this.productosInPedidoCollection.forEach(producto => {
+
+        //     producto.pedido = res.body;
+
+        //     this.productoService.update(producto);
+        //   })
+        // ),
+        finalize(() => this.onSaveFinalize())
+      )
+      .subscribe({
+        next: () => this.onSaveSuccess(),
+        error: () => this.onSaveError(),
+      });
   }
 
   protected onSaveSuccess(): void {

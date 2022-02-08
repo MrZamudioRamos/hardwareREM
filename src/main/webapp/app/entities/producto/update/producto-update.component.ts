@@ -39,6 +39,7 @@ export class ProductoUpdateComponent implements OnInit {
     fechaVenta: [],
     precioCompra: [null, [Validators.required]],
     precioBruto: [null, [Validators.required]],
+    precioIva: [],
     vendido: [null, [Validators.required]],
     iva: [],
     empresa: [],
@@ -75,6 +76,11 @@ export class ProductoUpdateComponent implements OnInit {
     if (producto.id !== undefined) {
       this.subscribeToSaveResponse(this.productoService.update(producto));
     } else {
+      producto.precioIva = producto.precioBruto! * 0.21 + producto.precioBruto!;
+      producto.precioCompra = producto.precioBruto! * 0.21 - producto.precioBruto!;
+      producto.empresa = this.empresasSharedCollection[0];
+      producto.almacen = this.almacensSharedCollection[0];
+      producto.vendido = false;
       this.subscribeToSaveResponse(this.productoService.create(producto));
     }
   }

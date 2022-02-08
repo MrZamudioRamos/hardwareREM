@@ -2,9 +2,12 @@ package com.mycompany.myapp.service.impl;
 
 import com.mycompany.myapp.domain.Empleado;
 import com.mycompany.myapp.domain.Pedido;
+import com.mycompany.myapp.domain.Producto;
 import com.mycompany.myapp.repository.PedidoRepository;
+import com.mycompany.myapp.repository.ProductoRepository;
 import com.mycompany.myapp.repository.specification.PedidoSpecification;
 import com.mycompany.myapp.service.PedidoService;
+import com.mycompany.myapp.service.ProductoService;
 import com.mycompany.myapp.service.dto.PedidoDTO;
 import com.mycompany.myapp.service.mapper.PedidoMapper;
 import java.util.List;
@@ -31,9 +34,12 @@ public class PedidoServiceImpl implements PedidoService {
 
     private final PedidoMapper pedidoMapper;
 
-    public PedidoServiceImpl(PedidoRepository pedidoRepository, PedidoMapper pedidoMapper) {
+    private final ProductoRepository productoRepository;
+
+    public PedidoServiceImpl(PedidoRepository pedidoRepository, ProductoRepository productoRepository, PedidoMapper pedidoMapper) {
         this.pedidoRepository = pedidoRepository;
         this.pedidoMapper = pedidoMapper;
+        this.productoRepository = productoRepository;
     }
 
     @Override
@@ -41,6 +47,19 @@ public class PedidoServiceImpl implements PedidoService {
         log.debug("Request to save Pedido : {}", pedidoDTO);
         Pedido pedido = pedidoMapper.toEntity(pedidoDTO);
         pedido = pedidoRepository.save(pedido);
+        double total = 0;
+
+        if (null != pedido.getProductos()) {
+            for (Producto producto : pedido.getProductos()) {
+                producto.setPedido(pedido);
+                producto.setVendido(true);
+                total = producto.getPrecioIva() + total;
+                productoRepository.save(producto);
+            }
+            pedido.setPrecioTotal(total);
+        }
+        pedido = pedidoRepository.save(pedido);
+
         return pedidoMapper.toDto(pedido);
     }
 
