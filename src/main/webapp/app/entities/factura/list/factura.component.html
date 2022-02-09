@@ -75,7 +75,9 @@
           <td>
             <div *ngIf="factura.cliente">
               <span>
-                <a [routerLink]="['/cliente', factura.cliente?.id, 'view']">{{ factura.cliente?.nombre }} </a>
+                <a [routerLink]="['/cliente', factura.cliente?.id, 'view']"
+                  >{{ factura.cliente?.nombre }} {{ factura.cliente?.apellidos }}
+                </a>
               </span>
             </div>
           </td>

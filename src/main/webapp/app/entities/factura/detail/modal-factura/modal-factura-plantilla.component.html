@@ -11,23 +11,37 @@
         <div class="col-md-8">
           <div class="card">
             <div class="d-flex flex-row p-2">
-              <div class="d-flex flex-column"><span class="font-weight-bold">Tax Invoice</span> <small>INV-001</small></div>
+              <div class="d-flex flex-column">
+                <span class="font-weight-bold">Numero de Factura</span> <small> {{ factura?.id }} </small>
+              </div>
             </div>
 
             <hr />
             <div class="table-responsive p-2">
               <table class="table table-borderless">
                 <tbody>
-                  <tr class="add">
-                    <td>To</td>
-                    <td>From</td>
-                  </tr>
                   <tr class="content">
-                    <td class="font-weight-bold">Google <br />Attn: Jassa Smith Pymont <br />Australia</td>
                     <td class="font-weight-bold">
-                      Facebook <br />
-                      Attn: Jassa Right Polymont <br />
-                      USA
+                      <span><h3>Empresa</h3></span>
+                      <br />
+                      {{ factura?.empresa?.nombreSocial }} <br />
+                      {{ factura?.empresa?.cif }} <br />
+                      {{ factura?.empresa?.calle }} <br />
+                      {{ factura?.empresa?.codigoPostal }} {{ factura?.empresa?.sucursal }} <br />
+                      {{ factura?.empresa?.provincia }} {{ factura?.empresa?.pais }} <br />
+                      {{ factura?.empresa?.telefono }} <br />
+                      {{ factura?.empresa?.mail }}
+                    </td>
+                    <td class="font-weight-bold float-right">
+                      <span><h3>Empresa</h3></span>
+                      <br />
+                      {{ factura?.cliente?.nombre }} {{ factura?.cliente?.apellidos }} <br />
+                      {{ factura?.cliente?.dni }} <br />
+                      {{ factura?.cliente?.calle }} <br />
+                      {{ factura?.cliente?.codigoPostal }} {{ factura?.empresa?.sucursal }} <br />
+                      {{ factura?.cliente?.provincia }} {{ factura?.empresa?.pais }} <br />
+                      {{ factura?.cliente?.telefono }} <br />
+                      {{ factura?.cliente?.mail }}
                     </td>
                   </tr>
                 </tbody>
@@ -37,66 +51,36 @@
             <div class="products p-2">
               <table class="table table-borderless">
                 <tbody>
-                  <tr class="add">
-                    <td>{{ factura?.cliente?.calle }}</td>
-                    <td>Days</td>
-                    <td>Price</td>
-                    <td class="text-center">Total</td>
-                  </tr>
-                  <tr class="content">
-                    <td>Website Redesign</td>
-                    <td>15</td>
-                    <td>$1,500</td>
-                    <td class="text-center">$22,500</td>
-                  </tr>
-                  <tr class="content">
-                    <td>Logo & Identity</td>
-                    <td>10</td>
-                    <td>$1,500</td>
-                    <td class="text-center">$15,000</td>
-                  </tr>
-                  <tr class="content">
-                    <td>Marketing Collateral</td>
-                    <td>3</td>
-                    <td>$1,500</td>
-                    <td class="text-center">$4,500</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <hr />
-            <div class="products p-2">
-              <table class="table table-borderless">
-                <tbody>
-                  <tr class="add">
-                    <td></td>
-                    <td>Subtotal</td>
-                    <td>GST(10%)</td>
-                    <td class="text-center">Total</td>
-                  </tr>
-                  <tr class="content">
-                    <td></td>
-                    <td>$40,000</td>
-                    <td>2,500</td>
-                    <td class="text-center">$42,500</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <hr />
-            <div class="address p-2">
-              <table class="table table-borderless">
-                <tbody>
-                  <tr class="add">
-                    <td>Bank Details</td>
-                  </tr>
-                  <tr class="content">
+                  <tr class="add font-weight-bold">
                     <td>
-                      Bank Name : ADS BANK <br />
-                      Swift Code : 00220022 <br />
-                      Account Holder : Jassa Pepper <br />
-                      Account Number : 6953PO789 <br />
+                      Fecha del Pedido <br />
+                      {{ factura?.pedido?.fechaPedido }}
                     </td>
+                    <td>
+                      Fecha de Entrega <br />
+                      {{ factura?.pedido?.fechaEntrega }}
+                    </td>
+                    <td>
+                      Direccion de Entrega <br />
+                      {{ factura?.pedido?.direccionEntrega }}
+                    </td>
+                  </tr>
+                  <tr class="content"></tr>
+                </tbody>
+              </table>
+            </div>
+            <hr />
+            <div class="products p-2">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr class="add">
+                    <td class="font-weight-bold float-right">Descuento <br />{{ factura?.pedido?.descuento }} %</td>
+                  </tr>
+                  <tr class="add">
+                    <td class="font-weight-bold float-right">Total con IVA <br />{{ factura?.pedido?.precioTotal }} €</td>
+                  </tr>
+                  <tr class="add">
+                    <td class="font-weight-bold float-right">Forma de Pago <br />{{ factura?.pedido?.tipoPago }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -104,45 +88,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="row">
-            <div class="col-md-4">
-                <div *ngIf="factura">
-                    <dl class="row-md">
-                        <dt><span jhiTranslate="global.field.id">ID</span></dt>
-                        <dd>
-                            <span>{{ factura?.id }}</span>
-                        </dd>
-                        <dt><span jhiTranslate="hardwareRemApp.factura.fechaFacturacion">Fecha Facturacion</span></dt>
-                        <dd>
-                            <span>{{ factura?.fechaFacturacion }}</span>
-                        </dd>
-                        <dt><span jhiTranslate="hardwareRemApp.factura.fechaVencimiento">Fecha Vencimiento</span></dt>
-                        <dd>
-                            <span>{{ factura?.fechaVencimiento }}</span>
-                        </dd>
-                        <dt><span jhiTranslate="hardwareRemApp.factura.cliente">Cliente</span></dt>
-
-                    </dl>
-                </div>
-                <div class="col-md-4 ml-auto">{{ factura?.id }} HOLA</div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 ml-auto">{{ factura?.fechaFacturacion }}</div>
-                <div class="col-md-2 ml-auto">{{ factura?.fechaFacturacion }</div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 ml-auto">{{ factura?.fechaFacturacion }</div>
-            </div>
-            <div class="row">
-                <div class="col-sm-9">
-                    Level 1: .col-sm-9
-                    <div class="row">
-                        <div class="col-8 col-sm-6">{{ factura?.fechaFacturacion }</div>
-                        <div class="col-4 col-sm-6">{{ factura?.fechaFacturacion }</div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </div>
 
     <div class="modal-footer">

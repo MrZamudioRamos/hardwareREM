@@ -13,5 +13,13 @@ public interface EmpresaMapper extends EntityMapper<EmpresaDTO, Empresa> {
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
     @Mapping(target = "nombreSocial", source = "nombreSocial")
+    @Mapping(target = "cif", source = "cif")
+    @Mapping(target = "telefono", source = "telefono")
+    @Mapping(target = "mail", source = "mail")
+    @Mapping(target = "pais", source = "pais")
+    @Mapping(target = "provincia", source = "provincia")
+    @Mapping(target = "sucursal", source = "sucursal")
+    @Mapping(target = "calle", source = "calle")
+    @Mapping(target = "codigoPostal", source = "codigoPostal")
     EmpresaDTO toDtoId(Empresa empresa);
 }
