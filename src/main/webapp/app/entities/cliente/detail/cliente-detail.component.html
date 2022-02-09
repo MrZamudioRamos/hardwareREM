@@ -52,18 +52,18 @@
         </dd>
         <dt><span jhiTranslate="hardwareRemApp.cliente.fidelizado">Fidelizado</span></dt>
         <dd>
-          <span>{{ cliente.fidelizado }}</span>
+
+          <span *ngIf="cliente.fidelizado === true">Fidelizado</span>
+          <span *ngIf="cliente.fidelizado === false">No fidelizado</span>
         </dd>
         <dt><span jhiTranslate="hardwareRemApp.cliente.activo">Activo</span></dt>
         <dd>
-          <span>{{ cliente.activo }}</span>
+
+          <span *ngIf="cliente.activo === true">Activo</span>
+          <span *ngIf="cliente.activo === false">Inactivo</span>
+
         </dd>
-        <dt><span jhiTranslate="hardwareRemApp.cliente.empresa">Empresa</span></dt>
-        <dd>
-          <div *ngIf="cliente.empresa">
-            <a [routerLink]="['/empresa', cliente.empresa?.id, 'view']">{{ cliente.empresa?.id }}</a>
-          </div>
-        </dd>
+
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
