@@ -1,26 +1,27 @@
-<div s>
+<div class="d-flex justify-content-center">
   <h2 id="page-heading" data-cy="EmpleadoHeading">
     <span jhiTranslate="hardwareRemApp.empleado.home.title">Empleados</span>
-
-    <div class="d-flex justify-content-end">
-      <input type="text" [(ngModel)]="searchString" (ngModelChange)="buscarPorAtributo()" placeholder="Buscar empleados..." />
-
-      <button class="btn btn-info mr-2 ml-3" (click)="loadPage()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="hardwareRemApp.empleado.home.refreshListLabel">Refresh List</span>
-      </button>
-
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-empleado"
-        [routerLink]="['/empleado/new']"
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="hardwareRemApp.empleado.home.createLabel"> Create a new Empleado </span>
-      </button>
-    </div>
   </h2>
+</div>
+<div class="container-fluid mt-100 gradient-custom2">
+  <div class="d-flex justify-content-end">
+    <input type="text" [(ngModel)]="searchString" (ngModelChange)="buscarPorAtributo()" placeholder="Buscar empleados..." />
+
+    <button class="btn btn-info mr-2 ml-3" (click)="loadPage()" [disabled]="isLoading">
+      <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+      <span jhiTranslate="hardwareRemApp.empleado.home.refreshListLabel">Refresh List</span>
+    </button>
+
+    <button
+      id="jh-create-entity"
+      data-cy="entityCreateButton"
+      class="btn btn-primary jh-create-entity create-empleado"
+      [routerLink]="['/empleado/new']"
+    >
+      <fa-icon icon="plus"></fa-icon>
+      <span jhiTranslate="hardwareRemApp.empleado.home.createLabel"> Create a new Empleado </span>
+    </button>
+  </div>
 
   <jhi-alert-error></jhi-alert-error>
 
@@ -34,28 +35,43 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead class="facturacion">
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="id">
+            <span jhiTranslate="global.field.id">ID</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
 
-          <th scope="col" jhiSortBy="dni"><span jhiTranslate="hardwareRemApp.empleado.dni">Dni</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dni">
+            <span jhiTranslate="hardwareRemApp.empleado.dni">Dni</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="nombre">
-            <span jhiTranslate="hardwareRemApp.empleado.nombre">Nombre</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="hardwareRemApp.empleado.nombre">Nombre</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="telefono">
-            <span jhiTranslate="hardwareRemApp.empleado.telefono">Telefono</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="hardwareRemApp.empleado.telefono">Telefono</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="mail">
-            <span jhiTranslate="hardwareRemApp.empleado.mail">Mail</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col"><span>Direccion</span> <fa-icon icon="sort"></fa-icon></th>
-
-          <th scope="col" jhiSortBy="tipoContrato">
-            <span jhiTranslate="hardwareRemApp.empleado.tipoContrato">Tipo Contrato</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="activo">
-            <span jhiTranslate="hardwareRemApp.empleado.activo">Activo</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="hardwareRemApp.empleado.mail">Mail</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col">
-            <span>Pedidos</span> <fa-icon icon="sort"></fa-icon>
+            <span>Direccion</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+
+          <th scope="col" jhiSortBy="tipoContrato">
+            <span jhiTranslate="hardwareRemApp.empleado.tipoContrato">Tipo Contrato</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="activo">
+            <span jhiTranslate="hardwareRemApp.empleado.activo">Activo</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col">
+            <span>Pedidos</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -78,8 +94,8 @@
           </td>
           <td>
             <div class="btn">
-            <button class="btn btn-sm btn-outline-dark" (click)="open(empleado)">Ver pedidos</button>
-          </div>
+              <button class="btn btn-sm btn-outline-dark" (click)="open(empleado)">Ver pedidos</button>
+            </div>
           </td>
 
           <td class="text-right">

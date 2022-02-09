@@ -37,12 +37,8 @@
           <div class="active-member">
             <div class="table-responsive" id="entities" *ngIf="pedidos && pedidos.length > 0">
               <table class="table table-xs mb-0" aria-describedby="page-heading">
-                <thead>
+                <thead class="facturacion">
                   <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-                    <th scope="col" jhiSortBy="id">
-                      <span jhiTranslate="global.field.id">ID</span>
-                      <fa-icon icon="sort"></fa-icon>
-                    </th>
                     <th scope="col" jhiSortBy="direccionEntrega">
                       <span jhiTranslate="hardwareRemApp.pedido.direccionEntrega">Direccion Entrega</span>
                       <fa-icon icon="sort"></fa-icon>
@@ -80,9 +76,6 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let pedido of pedidos; trackBy: trackId" data-cy="entityTable">
-                    <td>
-                      <a [routerLink]="['/pedido', pedido.id, 'view']">{{ pedido.id }}</a>
-                    </td>
                     <td>{{ pedido.direccionEntrega }}</td>
                     <td>{{ pedido.fechaPedido | formatMediumDate }}</td>
                     <td>{{ pedido.tipoPago }}</td>

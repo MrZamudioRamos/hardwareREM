@@ -67,7 +67,9 @@ export class PedidoUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ pedido }) => {
       this.updateForm(pedido);
-
+      if (pedido.productos) {
+        this.productosInPedidoCollection = pedido.productos;
+      }
       this.loadRelationshipsOptions();
     });
   }
