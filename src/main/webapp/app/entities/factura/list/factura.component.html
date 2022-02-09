@@ -75,26 +75,28 @@
           <td>
             <div *ngIf="factura.cliente">
               <span>
-                <a [routerLink]="['/cliente', factura.cliente?.id, 'view']">{{ factura.cliente?.nombre }} </a>
+                <a [routerLink]="['/cliente', factura.cliente?.id, 'view']"
+                  >{{ factura.cliente?.nombre }} {{ factura.cliente?.apellidos }}
+                </a>
               </span>
             </div>
           </td>
           <td>
             <div *ngIf="factura.empresa">
-              <a [routerLink]="['/empresa', factura.empresa?.id, 'view']">{{ factura.empresa?.id }}</a>
+              <a [routerLink]="['/empresa', factura.empresa?.id, 'view']">{{ factura.empresa?.nombreSocial }}</a>
             </div>
           </td>
           <td>
             <div *ngIf="factura.pedido">
-              <a [routerLink]="['/pedido', factura.pedido?.id, 'view']">{{ factura.pedido?.id }}</a>
+              <a [routerLink]="['/pedido', factura.pedido?.id, 'view']">{{ factura.pedido?.precioTotal }}</a>
             </div>
           </td>
           <td class="text-right">
             <div class="btn-group">
-              <!--Generar PDF -->
-              <button type="submit" class="btn btn-danger btn-sm" data-cy="entityDetailsButton">
-                <fa-icon icon="file-pdf"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="hardwareRemApp.factura.home.createPDF" (click)="createPDF()">Generar</span>
+              <!-- El boton de ver la modal de la factiura -->
+              <button class="btn btn-outline-info" (click)="open(factura)">
+                <fa-icon icon="file-invoice"></fa-icon>
+                Factura
               </button>
 
               <button

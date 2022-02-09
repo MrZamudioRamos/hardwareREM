@@ -1,0 +1,97 @@
+<div class="modal-header">
+  <h2 class="modal-title-factura">Factura</h2>
+  <button type="button" class="close" aria-label="Close" (click)="cancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container-fluid">
+    <div class="container mt-5 mb-3" id="pdfTable" #pdfTable>
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="d-flex flex-row p-2">
+              <div class="d-flex flex-column">
+                <span class="font-weight-bold">Numero de Factura</span> <small> {{ factura?.id }} </small>
+              </div>
+            </div>
+
+            <hr />
+            <div class="table-responsive p-2">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr class="content">
+                    <td class="font-weight-bold">
+                      <span><h3>Empresa</h3></span>
+                      <br />
+                      {{ factura?.empresa?.nombreSocial }} <br />
+                      {{ factura?.empresa?.cif }} <br />
+                      {{ factura?.empresa?.calle }} <br />
+                      {{ factura?.empresa?.codigoPostal }} {{ factura?.empresa?.sucursal }} <br />
+                      {{ factura?.empresa?.provincia }} {{ factura?.empresa?.pais }} <br />
+                      {{ factura?.empresa?.telefono }} <br />
+                      {{ factura?.empresa?.mail }}
+                    </td>
+                    <td class="font-weight-bold float-right">
+                      <span><h3>Empresa</h3></span>
+                      <br />
+                      {{ factura?.cliente?.nombre }} {{ factura?.cliente?.apellidos }} <br />
+                      {{ factura?.cliente?.dni }} <br />
+                      {{ factura?.cliente?.calle }} <br />
+                      {{ factura?.cliente?.codigoPostal }} {{ factura?.empresa?.sucursal }} <br />
+                      {{ factura?.cliente?.provincia }} {{ factura?.empresa?.pais }} <br />
+                      {{ factura?.cliente?.telefono }} <br />
+                      {{ factura?.cliente?.mail }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <hr />
+            <div class="products p-2">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr class="add font-weight-bold">
+                    <td>
+                      Fecha del Pedido <br />
+                      {{ factura?.pedido?.fechaPedido }}
+                    </td>
+                    <td>
+                      Fecha de Entrega <br />
+                      {{ factura?.pedido?.fechaEntrega }}
+                    </td>
+                    <td>
+                      Direccion de Entrega <br />
+                      {{ factura?.pedido?.direccionEntrega }}
+                    </td>
+                  </tr>
+                  <tr class="content"></tr>
+                </tbody>
+              </table>
+            </div>
+            <hr />
+            <div class="products p-2">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr class="add">
+                    <td class="font-weight-bold float-right">Descuento <br />{{ factura?.pedido?.descuento }} %</td>
+                  </tr>
+                  <tr class="add">
+                    <td class="font-weight-bold float-right">Total con IVA <br />{{ factura?.pedido?.precioTotal }} €</td>
+                  </tr>
+                  <tr class="add">
+                    <td class="font-weight-bold float-right">Forma de Pago <br />{{ factura?.pedido?.tipoPago }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="cancel()">Close</button>
+    </div>
+  </div>
+</div>

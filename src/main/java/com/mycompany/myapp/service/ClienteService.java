@@ -49,4 +49,5 @@ public interface ClienteService {
     void delete(Long id);
 
     Page<ClienteDTO> findAllBySearchingParam(String filtro, Pageable pageable);
+    //  Bus
 }

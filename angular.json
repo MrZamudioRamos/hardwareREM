@@ -44,11 +44,15 @@
               { "glob": "**/*", "input": "src/main/webapp/swagger-ui/", "output": "swagger-ui" }
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/main/webapp/content/scss/vendor.scss",
-              "src/main/webapp/content/scss/global.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/main/webapp/content/scss/global.scss"
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {

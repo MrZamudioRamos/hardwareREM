@@ -19,6 +19,12 @@ h4 {
   background-color: #9ec3e8;
 }
 
+h2.modal-title-factura {
+  font-weight: bold;
+  padding-left: 45%;
+  margin: 5px;
+}
+
 /* Increase contrast of links to get 100% on Lighthouse Accessability Audit. Override this color if you want to change the link color, or use a Bootswatch theme */
 
 a {
@@ -226,10 +232,8 @@ ui bootstrap tweaks
 .gradient-custom {
   /* fallback for old browsers */
   background: #cd9cf2;
-
   /* Chrome 10-25, Safari 5.1-6 */
   background: -webkit-linear-gradient(to top left, rgba(205, 156, 242, 1), rgba(246, 243, 255, 1));
-
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: linear-gradient(to top left, rgba(205, 156, 242, 1), rgba(246, 243, 255, 1));
 }
@@ -237,11 +241,10 @@ ui bootstrap tweaks
 gradient-custom2 {
   /* fallback for old browsers */
   background: #4d85d8;
-
   /* Chrome 10-25, Safari 5.1-6 */
   background: -webkit-linear-gradient(to top left, rgb(41, 101, 136), rgba(246, 243, 255, 1));
-
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: linear-gradient(to top left, rgb(40, 143, 143), rgba(246, 243, 255, 1));
 }
+
 /* jhipster-needle-scss-add-main JHipster will add new css style */

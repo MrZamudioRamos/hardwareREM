@@ -197,19 +197,6 @@
             </small>
           </div>
         </div>
-
-        <div class="form-group">
-          <label class="form-control-label" jhiTranslate="hardwareRemApp.cliente.empresa" for="field_empresa">Empresa</label>
-          <select class="form-control" id="field_empresa" data-cy="empresa" name="empresa" formControlName="empresa">
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="empresaOption.id === editForm.get('empresa')!.value?.id ? editForm.get('empresa')!.value : empresaOption"
-              *ngFor="let empresaOption of empresasSharedCollection; trackBy: trackEmpresaById"
-            >
-              {{ empresaOption.id }}
-            </option>
-          </select>
-        </div>
       </div>
 
       <div>
