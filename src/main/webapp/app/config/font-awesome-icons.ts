@@ -39,16 +39,25 @@ import {
   faWrench,
   faFilePdf,
   faFileInvoice,
+  faBriefcase,
+  faAddressBook,
+  faBoxOpen,
+  faInbox,
+  faHandHolding,
   // jhipster-needle-add-icon-import
 } from '@fortawesome/free-solid-svg-icons';
 
 export const fontAwesomeIcons = [
+  faAddressBook,
   faArrowLeft,
   faAsterisk,
   faBan,
   faBars,
   faBell,
   faBook,
+  faBoxOpen,
+  faInbox,
+  faBriefcase,
   faCalendarAlt,
   faCheck,
   faCloud,
@@ -58,6 +67,7 @@ export const fontAwesomeIcons = [
   faFlag,
   faHeart,
   faHome,
+  faHandHolding,
   faList,
   faLock,
   faPencilAlt,

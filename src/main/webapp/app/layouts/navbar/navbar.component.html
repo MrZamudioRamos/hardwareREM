@@ -1,4 +1,4 @@
-<nav data-cy="navbar" class="navbar navbar-dark navbar-expand-md">
+<nav data-cy="navbar" class="navbar navbar-light navbar-expand-md">
   <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
     <span class="logo-img"></span>
     <span jhiTranslate="global.title" class="navbar-title">HardwareREM</span>
@@ -42,30 +42,7 @@
           </span>
         </a>
         <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
-          <li>
-            <a
-              class="dropdown-item"
-              routerLink="empresa"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-              (click)="collapseNavbar()"
-            >
-              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-              <span jhiTranslate="global.menu.entities.empresa">Empresa</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="dropdown-item"
-              routerLink="almacen"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-              (click)="collapseNavbar()"
-            >
-              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-              <span jhiTranslate="global.menu.entities.almacen">Almacen</span>
-            </a>
-          </li>
+
           <li>
             <a
               class="dropdown-item"
@@ -74,22 +51,11 @@
               [routerLinkActiveOptions]="{ exact: true }"
               (click)="collapseNavbar()"
             >
-              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+              <fa-icon icon="box-open" [fixedWidth]="true"></fa-icon>
               <span jhiTranslate="global.menu.entities.producto">Producto</span>
             </a>
           </li>
-          <li>
-            <a
-              class="dropdown-item"
-              routerLink="componente"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-              (click)="collapseNavbar()"
-            >
-              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-              <span jhiTranslate="global.menu.entities.componente">Componente</span>
-            </a>
-          </li>
+
           <li>
             <a
               class="dropdown-item"
@@ -98,7 +64,7 @@
               [routerLinkActiveOptions]="{ exact: true }"
               (click)="collapseNavbar()"
             >
-              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+              <fa-icon icon="hand-holding" [fixedWidth]="true"></fa-icon>
               <span jhiTranslate="global.menu.entities.pedido">Pedido</span>
             </a>
           </li>
@@ -110,7 +76,7 @@
               [routerLinkActiveOptions]="{ exact: true }"
               (click)="collapseNavbar()"
             >
-              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+              <fa-icon icon="user" [fixedWidth]="true"></fa-icon>
               <span jhiTranslate="global.menu.entities.cliente">Cliente</span>
             </a>
           </li>
@@ -122,7 +88,7 @@
               [routerLinkActiveOptions]="{ exact: true }"
               (click)="collapseNavbar()"
             >
-              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+              <fa-icon icon="briefcase" [fixedWidth]="true"></fa-icon>
               <span jhiTranslate="global.menu.entities.empleado">Empleado</span>
             </a>
           </li>
@@ -134,20 +100,8 @@
               [routerLinkActiveOptions]="{ exact: true }"
               (click)="collapseNavbar()"
             >
-              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+              <fa-icon icon="file-invoice" [fixedWidth]="true"></fa-icon>
               <span jhiTranslate="global.menu.entities.factura">Factura</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="dropdown-item"
-              routerLink="iva"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-              (click)="collapseNavbar()"
-            >
-              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-              <span jhiTranslate="global.menu.entities.iva">Iva</span>
             </a>
           </li>
           <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
