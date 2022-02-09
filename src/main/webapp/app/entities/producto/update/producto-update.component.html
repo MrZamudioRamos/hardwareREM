@@ -5,15 +5,10 @@
         Create or edit a Producto
       </h2>
 
-      <div>
+      <div class="row">
         <jhi-alert-error></jhi-alert-error>
 
-        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
-          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-        </div>
-
-        <div class="form-group">
+        <div class="form-group col-md-6 mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.producto.nombre" for="field_nombre">Nombre</label>
           <input
             type="text"
@@ -32,7 +27,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6 mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.producto.numeroSerie" for="field_numeroSerie">Numero Serie</label>
           <input
             type="text"
@@ -53,7 +48,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6 mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.producto.marca" for="field_marca">Marca</label>
           <input type="text" class="form-control" name="marca" id="field_marca" data-cy="marca" formControlName="marca" [maxlength]="50" />
           <div *ngIf="editForm.get('marca')!.invalid && (editForm.get('marca')!.dirty || editForm.get('marca')!.touched)">
@@ -64,7 +59,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-4 mb-4">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.producto.modelo" for="field_modelo">Modelo</label>
           <input
             type="text"
@@ -83,7 +78,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6 mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.producto.descripcion" for="field_descripcion">Descripcion</label>
           <input
             type="text"
@@ -108,7 +103,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-2 mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.producto.peso" for="field_peso">Peso</label>
           <input type="number" class="form-control" name="peso" id="field_peso" data-cy="peso" formControlName="peso" />
           <div *ngIf="editForm.get('peso')!.invalid && (editForm.get('peso')!.dirty || editForm.get('peso')!.touched)">
@@ -121,7 +116,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-4 mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.producto.fechaVenta" for="field_fechaVenta">Fecha Venta</label>
           <div class="input-group">
             <input
@@ -142,39 +137,7 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="form-control-label" jhiTranslate="hardwareRemApp.producto.precioCompra" for="field_precioCompra"
-            >Precio Compra</label
-          >
-          <input
-            type="number"
-            class="form-control"
-            name="precioCompra"
-            id="field_precioCompra"
-            data-cy="precioCompra"
-            formControlName="precioCompra"
-          />
-          <div
-            *ngIf="editForm.get('precioCompra')!.invalid && (editForm.get('precioCompra')!.dirty || editForm.get('precioCompra')!.touched)"
-          >
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('precioCompra')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              Este campo es obligatorio.
-            </small>
-            <small
-              class="form-text text-danger"
-              [hidden]="!editForm.get('precioCompra')?.errors?.number"
-              jhiTranslate="entity.validation.number"
-            >
-              Este campo tiene que ser numerico.
-            </small>
-          </div>
-        </div>
-
-        <div class="form-group">
+        <div class="form-group col-md-4 mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.producto.precioBruto" for="field_precioBruto">Precio Bruto</label>
           <input
             type="number"
@@ -202,7 +165,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-5">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.producto.vendido" for="field_vendido">Vendido</label>
           <input type="checkbox" class="form-check" name="vendido" id="field_vendido" data-cy="vendido" formControlName="vendido" />
           <div *ngIf="editForm.get('vendido')!.invalid && (editForm.get('vendido')!.dirty || editForm.get('vendido')!.touched)">
@@ -215,34 +178,7 @@
             </small>
           </div>
         </div>
-
-        <div class="form-group">
-          <label class="form-control-label" jhiTranslate="hardwareRemApp.producto.iva" for="field_iva">Iva</label>
-          <select class="form-control" id="field_iva" data-cy="iva" name="iva" formControlName="iva">
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="ivaOption.id === editForm.get('iva')!.value?.id ? editForm.get('iva')!.value : ivaOption"
-              *ngFor="let ivaOption of ivasCollection; trackBy: trackIvaById"
-            >
-              {{ ivaOption.id }}
-            </option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label class="form-control-label" jhiTranslate="hardwareRemApp.producto.empresa" for="field_empresa">Empresa</label>
-          <select class="form-control" id="field_empresa" data-cy="empresa" name="empresa" formControlName="empresa">
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="empresaOption.id === editForm.get('empresa')!.value?.id ? editForm.get('empresa')!.value : empresaOption"
-              *ngFor="let empresaOption of empresasSharedCollection; trackBy: trackEmpresaById"
-            >
-              {{ empresaOption.id }}
-            </option>
-          </select>
-        </div>
-
-        <div class="form-group">
+        <div class="form-group col-md-2 mb-5" [hidden]="editForm.get('id')!.value == null">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.producto.pedido" for="field_pedido">Pedido</label>
           <select class="form-control" id="field_pedido" data-cy="pedido" name="pedido" formControlName="pedido">
             <option [ngValue]="null"></option>
@@ -251,19 +187,6 @@
               *ngFor="let pedidoOption of pedidosSharedCollection; trackBy: trackPedidoById"
             >
               {{ pedidoOption.id }}
-            </option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label class="form-control-label" jhiTranslate="hardwareRemApp.producto.almacen" for="field_almacen">Almacen</label>
-          <select class="form-control" id="field_almacen" data-cy="almacen" name="almacen" formControlName="almacen">
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="almacenOption.id === editForm.get('almacen')!.value?.id ? editForm.get('almacen')!.value : almacenOption"
-              *ngFor="let almacenOption of almacensSharedCollection; trackBy: trackAlmacenById"
-            >
-              {{ almacenOption.id }}
             </option>
           </select>
         </div>

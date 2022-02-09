@@ -27,8 +27,6 @@ import { PedidoService } from '../service/pedido.service';
 })
 export class PedidoUpdateComponent implements OnInit {
   isSaving = false;
-  pedidoAux?: IPedido;
-  guardados = false;
 
   facturasCollection: IFactura[] = [];
   empleadosSharedCollection: IEmpleado[] = [];

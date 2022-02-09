@@ -5,15 +5,10 @@
         Create or edit a Cliente
       </h2>
 
-      <div>
+      <div class="row">
         <jhi-alert-error></jhi-alert-error>
 
-        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
-          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-        </div>
-
-        <div class="form-group">
+        <div class="form-group col-md-auto mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.cliente.dni" for="field_dni">Dni</label>
           <input type="text" class="form-control" name="dni" id="field_dni" data-cy="dni" formControlName="dni" [maxlength]="9" />
           <div *ngIf="editForm.get('dni')!.invalid && (editForm.get('dni')!.dirty || editForm.get('dni')!.touched)">
@@ -26,7 +21,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-auto mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.cliente.nombre" for="field_nombre">Nombre</label>
           <input
             type="text"
@@ -45,7 +40,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6 mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.cliente.apellidos" for="field_apellidos">Apellidos</label>
           <input
             type="text"
@@ -70,7 +65,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-6">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.cliente.telefono" for="field_telefono">Telefono</label>
           <input
             type="text"
@@ -92,7 +87,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6 mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.cliente.mail" for="field_mail">Mail</label>
           <input type="text" class="form-control" name="mail" id="field_mail" data-cy="mail" formControlName="mail" />
           <div *ngIf="editForm.get('mail')!.invalid && (editForm.get('mail')!.dirty || editForm.get('mail')!.touched)">
@@ -103,7 +98,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.cliente.pais" for="field_pais">Pais</label>
           <input type="text" class="form-control" name="pais" id="field_pais" data-cy="pais" formControlName="pais" />
           <div *ngIf="editForm.get('pais')!.invalid && (editForm.get('pais')!.dirty || editForm.get('pais')!.touched)">
@@ -114,7 +109,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.cliente.provincia" for="field_provincia">Provincia</label>
           <input type="text" class="form-control" name="provincia" id="field_provincia" data-cy="provincia" formControlName="provincia" />
           <div *ngIf="editForm.get('provincia')!.invalid && (editForm.get('provincia')!.dirty || editForm.get('provincia')!.touched)">
@@ -131,7 +126,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-auto mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.cliente.codigoPostal" for="field_codigoPostal"
             >Codigo Postal</label
           >
@@ -156,7 +151,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-8 mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.cliente.calle" for="field_calle">Calle</label>
           <input type="text" class="form-control" name="calle" id="field_calle" data-cy="calle" formControlName="calle" />
           <div *ngIf="editForm.get('calle')!.invalid && (editForm.get('calle')!.dirty || editForm.get('calle')!.touched)">
@@ -167,7 +162,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-2 mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.cliente.fidelizado" for="field_fidelizado">Fidelizado</label>
           <input
             type="checkbox"
@@ -188,7 +183,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-2 mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.cliente.activo" for="field_activo">Activo</label>
           <input type="checkbox" class="form-check" name="activo" id="field_activo" data-cy="activo" formControlName="activo" />
           <div *ngIf="editForm.get('activo')!.invalid && (editForm.get('activo')!.dirty || editForm.get('activo')!.touched)">
