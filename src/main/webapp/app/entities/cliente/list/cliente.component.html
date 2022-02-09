@@ -4,7 +4,8 @@
 
     <div class="d-flex justify-content-end">
       <input type="text" [(ngModel)]="searchString" (ngModelChange)="buscarPorAtributo()" placeholder="Buscar clientes..." />
-      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+
+      <button class="btn btn-info mr-2 ml-3" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span jhiTranslate="hardwareRemApp.cliente.home.refreshListLabel">Refresh List</span>
       </button>
@@ -31,7 +32,7 @@
 
   <div class="table-responsive" id="entities" *ngIf="clientes && clientes.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
+      <thead class="facturacion">
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="dni"><span jhiTranslate="hardwareRemApp.cliente.dni">Dni</span> <fa-icon icon="sort"></fa-icon></th>

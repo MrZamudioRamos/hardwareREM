@@ -6,7 +6,7 @@
 <div class="container-fluid mt-100 gradient-custom2">
   <div class="d-flex justify-content-end mr-2">
     <input type="text" [(ngModel)]="searchString" (ngModelChange)="buscarPorAtributo()" placeholder="Buscar en pedidos..." />
-    <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+    <button class="btn btn-info mr-2 ml-3" (click)="loadPage()" [disabled]="isLoading">
       <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
       <span jhiTranslate="hardwareRemApp.pedido.home.refreshListLabel">Refresh List</span>
     </button>

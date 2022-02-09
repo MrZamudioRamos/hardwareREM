@@ -1,11 +1,11 @@
-<div>
+<div s>
   <h2 id="page-heading" data-cy="EmpleadoHeading">
     <span jhiTranslate="hardwareRemApp.empleado.home.title">Empleados</span>
 
     <div class="d-flex justify-content-end">
       <input type="text" [(ngModel)]="searchString" (ngModelChange)="buscarPorAtributo()" placeholder="Buscar empleados..." />
 
-      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+      <button class="btn btn-info mr-2 ml-3" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span jhiTranslate="hardwareRemApp.empleado.home.refreshListLabel">Refresh List</span>
       </button>
@@ -32,7 +32,7 @@
 
   <div class="table-responsive" id="entities" *ngIf="empleados && empleados.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
+      <thead class="facturacion">
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
 
@@ -59,10 +59,10 @@
           <th scope="col" jhiSortBy="activo">
             <span jhiTranslate="hardwareRemApp.empleado.activo">Activo</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="empresa.id">
-            <span jhiTranslate="hardwareRemApp.empleado.empresa">Empresa</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col">
+            <span>Pedidos</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col"><span>Pedidos</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -83,12 +83,9 @@
             <span *ngIf="empleado.activo === false">Inactivo</span>
           </td>
           <td>
-            <div *ngIf="empleado.empresa">
-              <a [routerLink]="['/empresa', empleado.empresa?.id, 'view']">{{ empleado.empresa?.id }}</a>
-            </div>
-          </td>
-          <td>
+            <div class="btn">
             <button class="btn btn-sm btn-outline-dark" (click)="open(empleado)">Ver pedidos</button>
+          </div>
           </td>
 
           <td class="text-right">

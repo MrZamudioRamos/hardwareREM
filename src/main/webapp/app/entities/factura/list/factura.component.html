@@ -9,7 +9,7 @@
           placeholder="Buscar en facturas..."
          > -->
 
-      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+      <button class="btn btn-info mr-2 ml-3" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span jhiTranslate="hardwareRemApp.factura.home.refreshListLabel">Refresh List</span>
       </button>
