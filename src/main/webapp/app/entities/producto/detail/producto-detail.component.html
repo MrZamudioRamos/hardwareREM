@@ -50,38 +50,19 @@
         <dd>
           <span>{{ producto.precioBruto }}</span>
         </dd>
-        <dt><span jhiTranslate="hardwareRemApp.producto.precioIva">Precio Iva</span></dt>
-        <dd>
-          <span>{{ producto.precioIva }}</span>
-        </dd>
+
         <dt><span jhiTranslate="hardwareRemApp.producto.vendido">Vendido</span></dt>
         <dd>
           <span>{{ producto.vendido }}</span>
         </dd>
-        <dt><span jhiTranslate="hardwareRemApp.producto.iva">Iva</span></dt>
-        <dd>
-          <div *ngIf="producto.iva">
-            <a [routerLink]="['/iva', producto.iva?.id, 'view']">{{ producto.iva?.id }}</a>
-          </div>
-        </dd>
-        <dt><span jhiTranslate="hardwareRemApp.producto.empresa">Empresa</span></dt>
-        <dd>
-          <div *ngIf="producto.empresa">
-            <a [routerLink]="['/empresa', producto.empresa?.id, 'view']">{{ producto.empresa?.id }}</a>
-          </div>
-        </dd>
+
         <dt><span jhiTranslate="hardwareRemApp.producto.pedido">Pedido</span></dt>
         <dd>
           <div *ngIf="producto.pedido">
             <a [routerLink]="['/pedido', producto.pedido?.id, 'view']">{{ producto.pedido?.id }}</a>
           </div>
         </dd>
-        <dt><span jhiTranslate="hardwareRemApp.producto.almacen">Almacen</span></dt>
-        <dd>
-          <div *ngIf="producto.almacen">
-            <a [routerLink]="['/almacen', producto.almacen?.id, 'view']">{{ producto.almacen?.id }}</a>
-          </div>
-        </dd>
+
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
