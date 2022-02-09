@@ -1,26 +1,27 @@
-<div>
+<div class="d-flex justify-content-center">
   <h2 id="page-heading" data-cy="ProductoHeading">
     <span jhiTranslate="hardwareRemApp.producto.home.title">Productos</span>
-
-    <div class="d-flex justify-content-end">
-      <input type="text" [(ngModel)]="searchString" (ngModelChange)="buscarPorAtributo()" placeholder="Buscar en productos..." />
-
-      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="hardwareRemApp.producto.home.refreshListLabel">Refresh List</span>
-      </button>
-
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-producto"
-        [routerLink]="['/producto/new']"
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="hardwareRemApp.producto.home.createLabel"> Create a new Producto </span>
-      </button>
-    </div>
   </h2>
+</div>
+<div class="container-fluid mt-100 gradient-custom2">
+  <div class="d-flex justify-content-end">
+    <input type="text" [(ngModel)]="searchString" (ngModelChange)="buscarPorAtributo()" placeholder="Buscar en productos..." />
+
+    <button class="btn btn-info mr-2 ml-3" (click)="loadPage()" [disabled]="isLoading">
+      <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+      <span jhiTranslate="hardwareRemApp.producto.home.refreshListLabel">Refresh List</span>
+    </button>
+
+    <button
+      id="jh-create-entity"
+      data-cy="entityCreateButton"
+      class="btn btn-primary jh-create-entity create-producto"
+      [routerLink]="['/producto/new']"
+    >
+      <fa-icon icon="plus"></fa-icon>
+      <span jhiTranslate="hardwareRemApp.producto.home.createLabel"> Create a new Producto </span>
+    </button>
+  </div>
 
   <jhi-alert-error></jhi-alert-error>
 
@@ -32,62 +33,49 @@
 
   <div class="table-responsive" id="entities" *ngIf="productos && productos.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
+      <thead class="facturacion">
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="nombre">
-            <span jhiTranslate="hardwareRemApp.producto.nombre">Nombre</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="hardwareRemApp.producto.nombre">Nombre</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="numeroSerie">
-            <span jhiTranslate="hardwareRemApp.producto.numeroSerie">Numero Serie</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="hardwareRemApp.producto.numeroSerie">Numero Serie</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="marca">
-            <span jhiTranslate="hardwareRemApp.producto.marca">Marca</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="hardwareRemApp.producto.marca">Marca</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="modelo">
-            <span jhiTranslate="hardwareRemApp.producto.modelo">Modelo</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="hardwareRemApp.producto.modelo">Modelo</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="descripcion">
-            <span jhiTranslate="hardwareRemApp.producto.descripcion">Descripcion</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="hardwareRemApp.producto.descripcion">Descripcion</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="peso">
-            <span jhiTranslate="hardwareRemApp.producto.peso">Peso</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="hardwareRemApp.producto.peso">Peso</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="fechaVenta">
-            <span jhiTranslate="hardwareRemApp.producto.fechaVenta">Fecha Venta</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="hardwareRemApp.producto.fechaVenta">Fecha Venta</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="precioCompra">
-            <span jhiTranslate="hardwareRemApp.producto.precioCompra">Precio Compra</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="hardwareRemApp.producto.precioCompra">Precio Compra</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="precioBruto">
-            <span jhiTranslate="hardwareRemApp.producto.precioBruto">Precio Bruto</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="precioIva">
-            <span jhiTranslate="hardwareRemApp.producto.precioIva">Precio Iva</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="vendido">
-            <span jhiTranslate="hardwareRemApp.producto.vendido">Vendido</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="iva.id">
-            <span jhiTranslate="hardwareRemApp.producto.iva">Iva</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="empresa.id">
-            <span jhiTranslate="hardwareRemApp.producto.empresa">Empresa</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="pedido.id">
-            <span jhiTranslate="hardwareRemApp.producto.pedido">Pedido</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="almacen.id">
-            <span jhiTranslate="hardwareRemApp.producto.almacen">Almacen</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="hardwareRemApp.producto.precioBruto">Precio Bruto</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let producto of productos; trackBy: trackId" data-cy="entityTable">
-          <td>
-            <a [routerLink]="['/producto', producto.id, 'view']">{{ producto.id }}</a>
-          </td>
           <td>{{ producto.nombre }}</td>
           <td>{{ producto.numeroSerie }}</td>
           <td>{{ producto.marca }}</td>
@@ -97,28 +85,7 @@
           <td>{{ producto.fechaVenta | formatMediumDate }}</td>
           <td>{{ producto.precioCompra }}</td>
           <td>{{ producto.precioBruto }}</td>
-          <td>{{ producto.precioIva }}</td>
-          <td>{{ producto.vendido }}</td>
-          <td>
-            <div *ngIf="producto.iva">
-              <a [routerLink]="['/iva', producto.iva?.id, 'view']">{{ producto.iva?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="producto.empresa">
-              <a [routerLink]="['/empresa', producto.empresa?.id, 'view']">{{ producto.empresa?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="producto.pedido">
-              <a [routerLink]="['/pedido', producto.pedido?.id, 'view']">{{ producto.pedido?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="producto.almacen">
-              <a [routerLink]="['/almacen', producto.almacen?.id, 'view']">{{ producto.almacen?.id }}</a>
-            </div>
-          </td>
+
           <td class="text-right">
             <div class="btn-group">
               <button

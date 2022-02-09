@@ -27,8 +27,6 @@ import { PedidoService } from '../service/pedido.service';
 })
 export class PedidoUpdateComponent implements OnInit {
   isSaving = false;
-  pedidoAux?: IPedido;
-  guardados = false;
 
   facturasCollection: IFactura[] = [];
   empleadosSharedCollection: IEmpleado[] = [];
@@ -69,7 +67,9 @@ export class PedidoUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ pedido }) => {
       this.updateForm(pedido);
-
+      if (pedido.productos) {
+        this.productosInPedidoCollection = pedido.productos;
+      }
       this.loadRelationshipsOptions();
     });
   }

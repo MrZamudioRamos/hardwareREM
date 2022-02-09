@@ -7,7 +7,6 @@ import { ProductoService } from 'app/entities/producto/service/producto.service'
   templateUrl: './pedido-modal-productos-list.component.html',
 })
 export class ModalProductComponent implements OnInit {
-  isSaving = false;
   productos?: IProducto[] = [];
   productsToAddPedido?: IProducto[] = [];
   @Output() emitService = new EventEmitter();
@@ -20,18 +19,14 @@ export class ModalProductComponent implements OnInit {
 
   cancel(): void {
     this.activeModal.dismiss();
-    this.isSaving = false;
     this.emitService.next(this.productsToAddPedido);
   }
 
   addProduct(producto: IProducto): void {
-    this.isSaving = true;
+    const index = this.productos!.indexOf(producto);
+    this.productos!.splice(index, 1);
     this.productsToAddPedido?.push(producto);
   }
-
-  // getListProductsInPedido(): IProducto[] {
-
-  // }
 
   loadData(): void {
     this.productoService.getListProducts().subscribe(res => (this.productos = res.body ?? []));

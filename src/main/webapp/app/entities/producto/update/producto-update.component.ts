@@ -77,7 +77,7 @@ export class ProductoUpdateComponent implements OnInit {
       this.subscribeToSaveResponse(this.productoService.update(producto));
     } else {
       producto.precioIva = producto.precioBruto! * 0.21 + producto.precioBruto!;
-      producto.precioCompra = producto.precioBruto! * 0.21 - producto.precioBruto!;
+      producto.precioCompra = producto.precioBruto! - producto.precioBruto! * 0.21;
       producto.empresa = this.empresasSharedCollection[0];
       producto.almacen = this.almacensSharedCollection[0];
       producto.vendido = false;

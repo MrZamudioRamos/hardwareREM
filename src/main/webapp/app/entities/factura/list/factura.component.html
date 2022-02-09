@@ -1,30 +1,31 @@
-<div>
+<div class="d-flex justify-content-center">
   <h2 id="page-heading" data-cy="FacturaHeading">
     <span jhiTranslate="hardwareRemApp.factura.home.title">Facturas</span>
-
-    <div class="d-flex justify-content-end">
-      <!-- <input type = "text"
+  </h2>
+</div>
+<div class="container-fluid mt-100 gradient-custom2">
+  <div class="d-flex justify-content-end">
+    <!-- <input type = "text"
           [(ngModel)]="searchString"
           (ngModelChange)="buscarPorAtributo()"
           placeholder="Buscar en facturas..."
          > -->
 
-      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="hardwareRemApp.factura.home.refreshListLabel">Refresh List</span>
-      </button>
+    <button class="btn btn-info mr-2 ml-3" (click)="loadPage()" [disabled]="isLoading">
+      <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+      <span jhiTranslate="hardwareRemApp.factura.home.refreshListLabel">Refresh List</span>
+    </button>
 
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-factura"
-        [routerLink]="['/factura/new']"
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="hardwareRemApp.factura.home.createLabel"> Create a new Factura </span>
-      </button>
-    </div>
-  </h2>
+    <button
+      id="jh-create-entity"
+      data-cy="entityCreateButton"
+      class="btn btn-primary jh-create-entity create-factura"
+      [routerLink]="['/factura/new']"
+    >
+      <fa-icon icon="plus"></fa-icon>
+      <span jhiTranslate="hardwareRemApp.factura.home.createLabel"> Create a new Factura </span>
+    </button>
+  </div>
 
   <jhi-alert-error></jhi-alert-error>
 
@@ -67,9 +68,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let factura of facturas; trackBy: trackId" data-cy="entityTable">
-          <td>
-            <a [routerLink]="['/factura', factura.id, 'view']">{{ factura.id }}</a>
-          </td>
           <td>{{ factura.fechaFacturacion | formatMediumDate }}</td>
           <td>{{ factura.fechaVencimiento | formatMediumDate }}</td>
           <td>
