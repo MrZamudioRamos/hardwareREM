@@ -4,9 +4,9 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="modal-body">
+<div class="modal-bodyrow d-flex justify-content-center">
   <div class="container-fluid">
-    <div class="container mt-5 mb-3" id="pdfTable" #pdfTable>
+    <div class="container mt-5 mb-3" id="pdfTable">
       <div class="row d-flex justify-content-center">
         <div class="col-md-8">
           <div class="card">
@@ -15,7 +15,6 @@
                 <span class="font-weight-bold">Numero de Factura</span> <small> {{ factura?.id }} </small>
               </div>
             </div>
-
             <hr />
             <div class="table-responsive p-2">
               <table class="table table-borderless">
@@ -50,8 +49,8 @@
             <hr />
             <div class="products p-2">
               <table class="table table-borderless">
-                <tbody>
-                  <tr class="add font-weight-bold">
+                <thead>
+                  <tr class="font-weight-bold font-italic">
                     <td>
                       Fecha del Pedido <br />
                       {{ factura?.pedido?.fechaPedido }}
@@ -65,7 +64,21 @@
                       {{ factura?.pedido?.direccionEntrega }}
                     </td>
                   </tr>
-                  <tr class="content"></tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let producto of factura?.pedido?.productos">
+                    <td>
+                      nombre <br />
+                      {{ producto.nombre }}
+                    </td>
+                    <td>modelo <br />{{ producto.modelo }}</td>
+                    <td>peso <br />{{ producto.peso }}</td>
+                    <td>
+                      descripcion <br />
+                      {{ producto.descripcion }}
+                    </td>
+                    <td>precio <br />{{ producto.precioIva }}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -91,6 +104,13 @@
     </div>
 
     <div class="modal-footer">
+      <span class="float-left">
+        <button class="btn btn-info btn-sm" data-cy="entityDeleteButton">
+          <fa-icon icon="file-pdf"></fa-icon>
+          <span class="d-none d-md-inline">GenerarPDF</span>
+        </button>
+      </span>
+
       <button type="button" class="btn btn-outline-dark" (click)="cancel()">Close</button>
     </div>
   </div>

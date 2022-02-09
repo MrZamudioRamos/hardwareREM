@@ -30,11 +30,11 @@ export class ProductoUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    nombre: new FormControl(null, [Validators.minLength(3), Validators.required]),
+    nombre: new FormControl(null, [Validators.minLength(1), Validators.required]),
     numeroSerie: new FormControl(null, [Validators.min(1), Validators.required]),
-    marca: new FormControl(null, [Validators.minLength(3), Validators.required]),
-    modelo: new FormControl(null, [Validators.minLength(3), Validators.required]),
-    descripcion: new FormControl(null, [Validators.minLength(3), Validators.required]),
+    marca: new FormControl(null, [Validators.minLength(1), Validators.required]),
+    modelo: new FormControl(null, [Validators.minLength(1), Validators.required]),
+    descripcion: new FormControl(null, [Validators.minLength(1), Validators.required]),
     peso: [null, [Validators.required]],
     fechaVenta: [],
     precioCompra: [null, [Validators.required]],

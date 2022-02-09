@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ICliente } from 'app/entities/cliente/cliente.model';
@@ -13,17 +13,22 @@ import { EmpresaService } from 'app/entities/empresa/service/empresa.service';
 import { IFactura } from '../../factura.model';
 import { FacturaService } from 'app/entities/factura/service/factura.service';
 
-// import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { IProducto } from 'app/entities/producto/producto.model';
+import { ProductoService } from 'app/entities/producto/service/producto.service';
 
 @Component({
   templateUrl: './modal-factura-plantilla.component.html',
 })
-export class ModalPlantillaComponent {
+export class ModalPlantillaComponent implements OnInit {
   empresa?: IEmpresa;
   cliente?: ICliente;
-  pedido?: IPedido;
   factura: IFactura | null = null;
+
+  pedido: IPedido | null = null;
+  productos?: IProducto[] = [];
+  precioTotal = 0;
+  precioTotalSinIva = 0;
 
   constructor(
     protected pedidoService: PedidoService,
@@ -31,8 +36,16 @@ export class ModalPlantillaComponent {
     protected empresaService: EmpresaService,
     protected clienteService: ClienteService,
     protected facturaService: FacturaService,
-    protected activatedRoute: ActivatedRoute
+    protected activatedRoute: ActivatedRoute,
+    protected productoService: ProductoService
   ) {}
+
+  ngOnInit(): void {
+    this.loadProductosByPedidoId(this.factura?.pedido);
+  }
+  loadProductosByPedidoId(pedido: IPedido | null | undefined): void {
+    this.productoService.findProductosByPedidoId(pedido!).subscribe(res => (this.productos = res.body ?? []));
+  }
 
   cancel(): void {
     this.activeModal.dismiss();
