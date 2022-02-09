@@ -7,10 +7,6 @@
 
       <div class="row">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group col-md-6 mb-3" [hidden]="editForm.get('id')!.value == null">
-          <label for="id">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-        </div>
 
         <div class="form-group col-md-6 mb-3">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.pedido.direccionEntrega" for="field_direccionEntrega"
@@ -66,9 +62,46 @@
             formControlName="observaciones"
           />
         </div>
-        <span>Añadir productos</span><br /><br />
+        <span>Añadir productos</span><br /><br /><br />
         <div class="form-group mb-3">
           <button type="button" class="btn btn-sm btn-outline-dark" (click)="open()">Ver productos</button>
+          <div *ngIf="productosInPedidoCollection?.length">
+            <div [ngSwitch]="productosInPedidoCollection && productosInPedidoCollection.length > 0">
+              <div class="table-responsive" id="entities" *ngSwitchCase="true">
+                <table class="table table-striped">
+                  <thead>
+                    <th scope="col">
+                      <span>Marca</span>
+                    </th>
+                    <th scope="col">
+                      <span>Modelo</span>
+                    </th>
+                    <th scope="col">
+                      <span>Peso</span>
+                    </th>
+                    <th scope="col">
+                      <span>Descripcion</span>
+                    </th>
+                    <th scope="col">
+                      <span>Precio Iva</span>
+                    </th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let producto of productosInPedidoCollection" data-cy="entityTable">
+                      <td>{{ producto.marca }}</td>
+                      <td>{{ producto.modelo }}</td>
+                      <td>{{ producto.peso }}</td>
+                      <td>{{ producto.descripcion }}</td>
+                      <td>{{ producto.precioIva }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <span *ngSwitchCase="false">No hay productos añadidos</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="row">
