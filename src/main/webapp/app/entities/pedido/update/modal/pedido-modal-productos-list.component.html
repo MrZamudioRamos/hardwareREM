@@ -25,14 +25,14 @@
         </th>
       </thead>
       <tbody>
-        <tr *ngFor="let producto of productos" data-cy="entityTable">
+        <tr *ngFor="let producto of productos" [attr.id]="producto.id" data-cy="entityTable">
           <td>{{ producto.marca }}</td>
           <td>{{ producto.modelo }}</td>
           <td>{{ producto.peso }}</td>
           <td>{{ producto.descripcion }}</td>
           <td>{{ producto.precioIva }}</td>
           <td>
-            <button class="btn btn-sm btn-outline-light btn-primary" (click)="addProduct(producto)" [disabled]="isSaving">Añadir</button>
+            <button class="btn btn-sm btn-outline-light btn-primary" (click)="addProduct(producto)">Añadir</button>
           </td>
         </tr>
       </tbody>

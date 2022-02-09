@@ -30,9 +30,5 @@ export class PedidoDetailComponent implements OnInit {
 
   loadProductosByPedidoId(pedido: IPedido): void {
     this.productoService.findProductosByPedidoId(pedido).subscribe(res => (this.productos = res.body ?? []));
-    this.productos?.forEach(producto => {
-      this.precioTotal = producto.precioIva! + this.precioTotal;
-      this.precioTotalSinIva = producto.precioBruto! + this.precioTotalSinIva;
-    });
   }
 }
