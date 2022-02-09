@@ -47,14 +47,9 @@
             <span jhiTranslate="hardwareRemApp.empleado.mail">Mail</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"><span>Direccion</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="numeroPedidos">
-            <span jhiTranslate="hardwareRemApp.empleado.numeroPedidos">Numero Pedidos</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+
           <th scope="col" jhiSortBy="tipoContrato">
             <span jhiTranslate="hardwareRemApp.empleado.tipoContrato">Tipo Contrato</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="comision">
-            <span jhiTranslate="hardwareRemApp.empleado.comision">Comision</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="activo">
             <span jhiTranslate="hardwareRemApp.empleado.activo">Activo</span> <fa-icon icon="sort"></fa-icon>
@@ -75,9 +70,8 @@
           <td>{{ empleado.telefono }}</td>
           <td>{{ empleado.mail }}</td>
           <td>{{ empleado.calle }}{{ empleado.provincia }}{{ empleado.codigoPostal }}{{ empleado.pais }}</td>
-          <td>{{ empleado.numeroPedidos }}</td>
+
           <td>{{ empleado.tipoContrato }}</td>
-          <td>{{ empleado.comision }}</td>
           <td>
             <span *ngIf="empleado.activo === true">Activo</span>
             <span *ngIf="empleado.activo === false">Inactivo</span>

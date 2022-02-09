@@ -39,31 +39,17 @@
           <th scope="col" jhiSortBy="nombre">
             <span jhiTranslate="hardwareRemApp.cliente.nombre">Nombre</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="apellidos">
-            <span jhiTranslate="hardwareRemApp.cliente.apellidos">Apellidos</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col" jhiSortBy="telefono">
             <span jhiTranslate="hardwareRemApp.cliente.telefono">Telefono</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="mail"><span jhiTranslate="hardwareRemApp.cliente.mail">Mail</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="pais"><span jhiTranslate="hardwareRemApp.cliente.pais">Pais</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="provincia">
-            <span jhiTranslate="hardwareRemApp.cliente.provincia">Provincia</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="codigoPostal">
-            <span jhiTranslate="hardwareRemApp.cliente.codigoPostal">Codigo Postal</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="calle">
-            <span jhiTranslate="hardwareRemApp.cliente.calle">Calle</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+          <th scope="col" jhiSortBy="pais"><span>Direccion</span> <fa-icon icon="sort"></fa-icon></th>
+
           <th scope="col" jhiSortBy="fidelizado">
             <span jhiTranslate="hardwareRemApp.cliente.fidelizado">Fidelizado</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="activo">
             <span jhiTranslate="hardwareRemApp.cliente.activo">Activo</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="empresa.id">
-            <span jhiTranslate="hardwareRemApp.cliente.empresa">Empresa</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -74,21 +60,19 @@
             <a [routerLink]="['/cliente', cliente.id, 'view']">{{ cliente.id }}</a>
           </td>
           <td>{{ cliente.dni }}</td>
-          <td>{{ cliente.nombre }}</td>
-          <td>{{ cliente.apellidos }}</td>
+          <td>{{ cliente.nombre }} {{ cliente.apellidos }}</td>
           <td>{{ cliente.telefono }}</td>
           <td>{{ cliente.mail }}</td>
-          <td>{{ cliente.pais }}</td>
-          <td>{{ cliente.provincia }}</td>
-          <td>{{ cliente.codigoPostal }}</td>
-          <td>{{ cliente.calle }}</td>
-          <td>{{ cliente.fidelizado }}</td>
-          <td>{{ cliente.activo }}</td>
+          <td>{{ cliente.calle }} {{ cliente.codigoPostal }}, {{ cliente.provincia }}, {{ cliente.pais }}</td>
           <td>
-            <div *ngIf="cliente.empresa">
-              <a [routerLink]="['/empresa', cliente.empresa?.id, 'view']">{{ cliente.empresa?.id }}</a>
-            </div>
-          </td>
+            <span *ngIf="cliente.fidelizado === true">Fidelizado</span>
+            <span *ngIf="cliente.fidelizado === false">No fidelizado</span>
+           </td>
+          <td>
+            <span *ngIf="cliente.activo === true">Activo</span>
+            <span *ngIf="cliente.activo === false">Inactivo</span>
+         </td>
+
           <td class="text-right">
             <div class="btn-group">
               <button
