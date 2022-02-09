@@ -30,12 +30,10 @@ export class EmpleadoUpdateComponent implements OnInit {
     provincia: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(150)]),
     codigoPostal: new FormControl(null, [Validators.required, Validators.minLength(5), Validators.maxLength(9)]),
     calle: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(150)]),
-    numeroPedidos: [],
     tipoContrato: [null, [Validators.required]],
-    comision: [],
     activo: [null, [Validators.required]],
     contrasena: [null, [Validators.required]],
-    empresa: [],
+
   });
 
   constructor(
@@ -102,16 +100,12 @@ export class EmpleadoUpdateComponent implements OnInit {
       provincia: empleado.provincia,
       codigoPostal: empleado.codigoPostal,
       calle: empleado.calle,
-      numeroPedidos: empleado.numeroPedidos,
       tipoContrato: empleado.tipoContrato,
-      comision: empleado.comision,
       activo: empleado.activo,
       contrasena: empleado.contrasena,
-      empresa: empleado.empresa,
-    });
 
-    this.empresasSharedCollection = this.empresaService.addEmpresaToCollectionIfMissing(this.empresasSharedCollection, empleado.empresa);
-  }
+    });
+}
 
   protected loadRelationshipsOptions(): void {
     this.empresaService
@@ -136,12 +130,9 @@ export class EmpleadoUpdateComponent implements OnInit {
       provincia: this.editForm.get(['provincia'])!.value,
       codigoPostal: this.editForm.get(['codigoPostal'])!.value,
       calle: this.editForm.get(['calle'])!.value,
-      numeroPedidos: this.editForm.get(['numeroPedidos'])!.value,
       tipoContrato: this.editForm.get(['tipoContrato'])!.value,
-      comision: this.editForm.get(['comision'])!.value,
       activo: this.editForm.get(['activo'])!.value,
       contrasena: this.editForm.get(['contrasena'])!.value,
-      empresa: this.editForm.get(['empresa'])!.value,
     };
   }
 }

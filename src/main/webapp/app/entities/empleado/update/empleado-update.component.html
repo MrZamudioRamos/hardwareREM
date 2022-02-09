@@ -167,19 +167,6 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="form-control-label" jhiTranslate="hardwareRemApp.empleado.numeroPedidos" for="field_numeroPedidos"
-            >Numero Pedidos</label
-          >
-          <input
-            type="number"
-            class="form-control"
-            name="numeroPedidos"
-            id="field_numeroPedidos"
-            data-cy="numeroPedidos"
-            formControlName="numeroPedidos"
-          />
-        </div>
 
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.empleado.tipoContrato" for="field_tipoContrato"
@@ -206,10 +193,6 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="form-control-label" jhiTranslate="hardwareRemApp.empleado.comision" for="field_comision">Comision</label>
-          <input type="number" class="form-control" name="comision" id="field_comision" data-cy="comision" formControlName="comision" />
-        </div>
 
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="hardwareRemApp.empleado.activo" for="field_activo">Activo</label>
@@ -242,18 +225,7 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="form-control-label" jhiTranslate="hardwareRemApp.empleado.empresa" for="field_empresa">Empresa</label>
-          <select class="form-control" id="field_empresa" data-cy="empresa" name="empresa" formControlName="empresa">
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="empresaOption.id === editForm.get('empresa')!.value?.id ? editForm.get('empresa')!.value : empresaOption"
-              *ngFor="let empresaOption of empresasSharedCollection; trackBy: trackEmpresaById"
-            >
-              {{ empresaOption.id }}
-            </option>
-          </select>
-        </div>
+
       </div>
 
       <div>

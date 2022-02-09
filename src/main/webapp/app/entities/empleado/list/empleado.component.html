@@ -34,7 +34,6 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead class="facturacion">
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
 
           <th scope="col" jhiSortBy="dni"><span jhiTranslate="hardwareRemApp.empleado.dni">Dni</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="nombre">
@@ -62,9 +61,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let empleado of empleados; trackBy: trackId" data-cy="entityTable">
-          <td>
-            <a [routerLink]="['/empleado', empleado.id, 'view']">{{ empleado.id }}</a>
-          </td>
           <td>{{ empleado.dni }}</td>
           <td>{{ empleado.nombre }}{{ empleado.apellidos }}</td>
           <td>{{ empleado.telefono }}</td>

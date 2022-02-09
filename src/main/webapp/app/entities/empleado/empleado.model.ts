@@ -1,5 +1,4 @@
-import { IPedido } from 'app/entities/pedido/pedido.model';
-import { IEmpresa } from 'app/entities/empresa/empresa.model';
+
 
 export interface IEmpleado {
   id?: number;
@@ -12,13 +11,10 @@ export interface IEmpleado {
   provincia?: string;
   codigoPostal?: string;
   calle?: string;
-  numeroPedidos?: number | null;
   tipoContrato?: string;
   comision?: number | null;
   activo?: boolean;
   contrasena?: string;
-  pedidos?: IPedido[] | null;
-  empresa?: IEmpresa | null;
 }
 
 export class Empleado implements IEmpleado {
@@ -33,13 +29,10 @@ export class Empleado implements IEmpleado {
     public provincia?: string,
     public codigoPostal?: string,
     public calle?: string,
-    public numeroPedidos?: number | null,
     public tipoContrato?: string,
     public comision?: number | null,
     public activo?: boolean,
     public contrasena?: string,
-    public pedidos?: IPedido[] | null,
-    public empresa?: IEmpresa | null
   ) {
     this.activo = this.activo ?? false;
   }

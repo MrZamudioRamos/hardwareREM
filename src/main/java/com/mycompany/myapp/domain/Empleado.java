@@ -83,7 +83,7 @@ public class Empleado implements Serializable {
     @Column(name = "activo", nullable = false)
     private Boolean activo;
 
-    @NotNull
+
     @Column(name = "contrasena", nullable = false)
     private String contrasena;
 
