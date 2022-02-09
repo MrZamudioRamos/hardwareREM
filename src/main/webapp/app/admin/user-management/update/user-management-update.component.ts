@@ -6,9 +6,8 @@ import { LANGUAGES } from 'app/config/language.constants';
 import { User } from '../user-management.model';
 import { UserManagementService } from '../service/user-management.service';
 import { IEmpleado } from 'app/entities/empleado/empleado.model';
-import { HttpResponse } from '@angular/common/http';
 import { EmpleadoService } from 'app/entities/empleado/service/empleado.service';
-import { map } from 'rxjs';
+
 
 @Component({
   selector: 'jhi-user-mgmt-update',
@@ -19,7 +18,6 @@ export class UserManagementUpdateComponent implements OnInit {
   languages = LANGUAGES;
   authorities: string[] = [];
   isSaving = false;
-  empleadosSharedCollection: IEmpleado[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -38,7 +36,10 @@ export class UserManagementUpdateComponent implements OnInit {
     activated: [],
     langKey: [],
     authorities: [],
-    empleado: [],
+    dni: [],
+    telefono: [],
+    tipoContrato: [],
+    contrasena: [],
   });
 
 
@@ -81,18 +82,6 @@ export class UserManagementUpdateComponent implements OnInit {
     return item.id!;
   }
 
-  protected loadRelationshipsOptions(): void {
-    this.empleadoService
-      .query()
-      .pipe(map((res: HttpResponse<IEmpleado[]>) => res.body ?? []))
-      .pipe(
-        map((empleados: IEmpleado[]) =>
-          this.empleadoService.addEmpleadoToCollectionIfMissing(empleados, this.editForm.get('empleado')!.value)
-        )
-      )
-      .subscribe((empleados: IEmpleado[]) => (this.empleadosSharedCollection = empleados));
-  }
-
   private updateForm(user: User): void {
     this.editForm.patchValue({
       id: user.id,
@@ -103,13 +92,11 @@ export class UserManagementUpdateComponent implements OnInit {
       activated: user.activated,
       langKey: user.langKey,
       authorities: user.authorities,
-      empleado: user.empleado,
+      dni: user.dni,
+      telefono: user.telefono,
+      tipoContrato: user.tipoContrato,
+      contrasena: user.contrasena,
     });
-
-    this.empleadosSharedCollection = this.empleadoService.addEmpleadoToCollectionIfMissing(
-      this.empleadosSharedCollection,
-      user.empleado
-    );
   }
 
 
@@ -122,7 +109,10 @@ export class UserManagementUpdateComponent implements OnInit {
     user.activated = this.editForm.get(['activated'])!.value;
     user.langKey = this.editForm.get(['langKey'])!.value;
     user.authorities = this.editForm.get(['authorities'])!.value;
-    user.empleado = this.editForm.get(['empleado'])!.value;
+    user.dni = this.editForm.get(['dni'])!.value;
+    user.telefono = this.editForm.get(['telefono'])!.value;
+    user.contrasena = this.editForm.get(['contrasena'])!.value;
+    user.tipoContrato = this.editForm.get(['tipoContrato'])!.value;
   }
 
   private onSaveSuccess(): void {

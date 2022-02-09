@@ -1,5 +1,6 @@
 package com.mycompany.myapp.service;
 
+import com.mycompany.myapp.domain.Empleado;
 import com.mycompany.myapp.service.dto.EmpleadoDTO;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -48,5 +49,8 @@ public interface EmpleadoService {
      */
     void delete(Long id);
 
+
     Page<EmpleadoDTO> findAllBySearchingParam(String filtro, Pageable pageable);
+
+    // Empleado findEmpleadoByLogin(String login);
 }

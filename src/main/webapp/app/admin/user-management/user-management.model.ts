@@ -1,4 +1,4 @@
-import { IEmpleado } from "app/entities/empleado/empleado.model";
+
 
 export interface IUser {
   id?: number;
@@ -13,7 +13,10 @@ export interface IUser {
   createdDate?: Date;
   lastModifiedBy?: string;
   lastModifiedDate?: Date;
-  empleado?:IEmpleado;
+  dni?: string;
+  telefono?: string;
+  tipoContrato?: string;
+  contrasena?: string;
 }
 
 export class User implements IUser {
@@ -30,6 +33,9 @@ export class User implements IUser {
     public createdDate?: Date,
     public lastModifiedBy?: string,
     public lastModifiedDate?: Date,
-    public empleado?: IEmpleado
+    public dni?: string,
+    public telefono?: string,
+    public tipoContrato?: string,
+    public contrasena?: string,
   ) {}
 }

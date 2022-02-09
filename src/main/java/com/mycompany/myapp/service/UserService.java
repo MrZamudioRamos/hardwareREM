@@ -140,6 +140,8 @@ public class UserService {
         userRepository.save(newUser);
         this.clearUserCaches(newUser);
         log.debug("Created Information for User: {}", newUser);
+
+
         return newUser;
     }
 
@@ -185,12 +187,25 @@ public class UserService {
         userRepository.save(user);
         this.clearUserCaches(user);
 
+        log.debug("Created Information for User: {}", user);
+
         Empleado empleado = new Empleado();
         empleado.setUser(user);
-        empleadoRepository.save(empleado);
+        empleadoRepository.save(addEmpleadoUser(empleado, userDTO));
 
-        log.debug("Created Information for User: {}", user);
         return user;
+    }
+
+    private Empleado addEmpleadoUser(Empleado empleado, AdminUserDTO userDTO) {
+        empleado.setDni(null != userDTO.getDni() ? userDTO.getDni() : null);
+        empleado.setNombre(null != userDTO.getNombre() ? userDTO.getNombre() : null);
+        empleado.setApellidos(null != userDTO.getApellidos() ? userDTO.getApellidos() : null);
+        empleado.setTelefono(null != userDTO.getTelefono() ? userDTO.getTelefono() : null);
+        empleado.setMail(null != userDTO.getMail() ? userDTO.getMail() : null);
+        empleado.setContrasena(null != userDTO.getContrasena() ? userDTO.getContrasena() : null);
+        empleado.tipoContrato(null != userDTO.getTipoContrato() ? userDTO.getTipoContrato() : null);
+
+        return empleado;
     }
 
     /**
@@ -226,9 +241,22 @@ public class UserService {
                     .forEach(managedAuthorities::add);
                 this.clearUserCaches(user);
                 log.debug("Changed Information for User: {}", user);
+                updateEmpleado(user.getId(), userDTO);
                 return user;
             })
             .map(AdminUserDTO::new);
+    }
+
+    @Transactional(readOnly = true)
+    private void updateEmpleado(Long id, AdminUserDTO userDTO){
+
+        Optional
+            .of(empleadoRepository.findById(id))
+            .filter(Optional::isPresent)
+            .map(Optional::get)
+            .map(empleado -> {
+            return addEmpleadoUser(empleado, userDTO);
+        });
     }
 
     public void deleteUser(String login) {
@@ -238,6 +266,11 @@ public class UserService {
                 userRepository.delete(user);
                 this.clearUserCaches(user);
                 log.debug("Deleted User: {}", user);
+                empleadoRepository.findById(user.getId())
+                .ifPresent(empleado -> {
+                    empleadoRepository.delete(empleado);
+                    log.debug("Deleted empleado; {}", empleado);
+                });
             });
     }
 
@@ -295,8 +328,12 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<User> getUserWithAuthoritiesByLogin(String login) {
-        return userRepository.findOneWithAuthoritiesByLogin(login);
+    public Optional<AdminUserDTO> getUserWithAuthoritiesByLogin(String login) {
+        return Optional
+        .of(Optional.of(empleadoRepository.findEmpleadoByLogin(login)))
+        .filter(Optional::isPresent)
+        .map(Optional::get)
+        .map(AdminUserDTO::new);
     }
 
     @Transactional(readOnly = true)

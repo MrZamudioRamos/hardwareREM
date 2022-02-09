@@ -2,6 +2,7 @@ package com.mycompany.myapp.service.mapper;
 
 import com.mycompany.myapp.domain.Pedido;
 import com.mycompany.myapp.service.dto.PedidoDTO;
+import com.mycompany.myapp.service.mapper.*;
 import org.mapstruct.*;
 
 /**

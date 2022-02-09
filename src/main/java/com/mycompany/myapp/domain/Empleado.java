@@ -24,32 +24,28 @@ public class Empleado implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @NotNull
+
     @Size(max = 9, min = 9)
     @Column(name = "dni", nullable = false, unique = true)
     private String dni;
 
-    @NotNull
     @Size(max = 100, min = 3)
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @NotNull
+
     @Size(max = 100, min = 3)
     @Column(name = "apellidos", nullable = false)
     private String apellidos;
 
-    @NotNull
     @Size(max = 15, min = 9)
     @Column(name = "telefono", nullable = false)
     private String telefono;
 
-    @NotNull
     @Email
     @Column(name = "mail", nullable = false)
     private String mail;
 
-    @NotNull
     @Size(max = 150, min = 3)
     @Column(name = "pais", nullable = false)
     private String pais;
@@ -59,12 +55,10 @@ public class Empleado implements Serializable {
     @Column(name = "provincia", nullable = false)
     private String provincia;
 
-    @NotNull
     @Size(max = 9, min = 5)
     @Column(name = "codigo_postal", nullable = false)
     private String codigoPostal;
 
-    @NotNull
     @Size(max = 150, min = 3)
     @Column(name = "calle", nullable = false)
     private String calle;
@@ -72,18 +66,15 @@ public class Empleado implements Serializable {
     @Column(name = "numero_pedidos")
     private Integer numeroPedidos;
 
-    @NotNull
     @Column(name = "tipo_contrato", nullable = false)
     private String tipoContrato;
 
     @Column(name = "comision")
     private Double comision;
 
-    @NotNull
     @Column(name = "activo", nullable = false)
     private Boolean activo;
 
-    @NotNull
     @Column(name = "contrasena", nullable = false)
     private String contrasena;
 

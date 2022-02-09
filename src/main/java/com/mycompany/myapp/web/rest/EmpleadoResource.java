@@ -1,5 +1,6 @@
 package com.mycompany.myapp.web.rest;
 
+import com.mycompany.myapp.domain.Empleado;
 import com.mycompany.myapp.repository.EmpleadoRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
 import com.mycompany.myapp.service.EmpleadoService;
@@ -168,6 +169,13 @@ public class EmpleadoResource {
         Optional<EmpleadoDTO> empleadoDTO = empleadoService.findOne(id);
         return ResponseUtil.wrapOrNotFound(empleadoDTO);
     }
+
+    // @GetMapping("/empleados/{login}")
+    // public ResponseEntity<Empleado> getEmpleadoByLogin(@PathVariable String login) {
+    //     log.debug("REST request to get Empleado : {}", login);
+    //     Empleado empleado = empleadoRepository.findEmpleadoByLogin(login);
+    //     return ResponseEntity.ok().body(empleado);
+    // }
 
     @GetMapping("/empleados/searchingParam")
     public ResponseEntity<List<EmpleadoDTO>> findAllBySimpleSearch(

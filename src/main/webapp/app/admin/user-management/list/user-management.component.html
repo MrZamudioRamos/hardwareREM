@@ -75,7 +75,7 @@
             </div>
           </td>
           <td>
-            <a [routerLink]="['./empleado', user.empleado?.id, 'view']">{{ user.empleado?.id }}</a>
+            <a [routerLink]="['./empleado', user.id, 'view']">{{ user?.id }}</a>
            </td>
           <td>{{ user.createdDate | date: 'dd/MM/yy HH:mm' }}</td>
           <td>{{ user.lastModifiedBy }}</td>

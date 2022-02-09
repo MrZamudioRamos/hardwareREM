@@ -2,7 +2,11 @@ package com.mycompany.myapp.service.dto;
 
 import com.mycompany.myapp.config.Constants;
 import com.mycompany.myapp.domain.Authority;
+import com.mycompany.myapp.domain.Empleado;
 import com.mycompany.myapp.domain.User;
+
+import net.bytebuddy.agent.builder.AgentBuilder.RedefinitionStrategy.Listener.Adapter;
+
 import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -48,9 +52,35 @@ public class AdminUserDTO {
 
     private Set<String> authorities;
 
+    private Long empleadoId;
+
+    private String dni;
+
+    private String nombre;
+
+    private String apellidos;
+
+    private String telefono;
+
+    private String mail;
+
+    private String contrasena;
+
+    private String tipoContrato;
 
     public AdminUserDTO() {
         // Empty constructor needed for Jackson.
+    }
+
+    public AdminUserDTO(Empleado empleado) {
+        this(empleado.getUser());
+        this.dni = null != empleado.getDni() ? empleado.getDni() : null;
+        this.nombre = null != empleado.getNombre() ? empleado.getNombre() : null;
+        this.apellidos = null != empleado.getApellidos() ? empleado.getApellidos() : null;
+        this.telefono = null != empleado.getTelefono() ? empleado.getTelefono() : null;
+        this.mail = null != empleado.getMail() ? empleado.getMail() : null;
+        this.contrasena = null != empleado.getContrasena() ? empleado.getContrasena() : null;
+        this.tipoContrato = null != empleado.getTipoContrato() ? empleado.getTipoContrato() : null;
     }
 
     public AdminUserDTO(User user) {
@@ -67,6 +97,7 @@ public class AdminUserDTO {
         this.lastModifiedBy = user.getLastModifiedBy();
         this.lastModifiedDate = user.getLastModifiedDate();
         this.authorities = user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toSet());
+
     }
 
     public Long getId() {
@@ -173,22 +204,87 @@ public class AdminUserDTO {
         this.authorities = authorities;
     }
 
+
+    public Long getEmpleadoId() {
+        return empleadoId;
+    }
+
+    public void setEmpleadoId(Long empleadoId) {
+        this.empleadoId = empleadoId;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public String getTipoContrato() {
+        return tipoContrato;
+    }
+
+    public void setTipoContrato(String tipoContrato) {
+        this.tipoContrato = tipoContrato;
+    }
+
     // prettier-ignore
     @Override
     public String toString() {
         return "AdminUserDTO{" +
-            "login='" + login + '\'' +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", email='" + email + '\'' +
-            ", imageUrl='" + imageUrl + '\'' +
-            ", activated=" + activated +
-            ", langKey='" + langKey + '\'' +
-            ", createdBy=" + createdBy +
-            ", createdDate=" + createdDate +
-            ", lastModifiedBy='" + lastModifiedBy + '\'' +
-            ", lastModifiedDate=" + lastModifiedDate +
-            ", authorities=" + authorities +
-            "}";
+                "login='" + login + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", activated=" + activated +
+                ", langKey='" + langKey + '\'' +
+                ", createdBy=" + createdBy +
+                ", createdDate=" + createdDate +
+                ", lastModifiedBy='" + lastModifiedBy + '\'' +
+                ", lastModifiedDate=" + lastModifiedDate +
+                ", authorities=" + authorities +
+                "}";
     }
 }

@@ -138,16 +138,87 @@
       </div>
 
       <div class="form-group">
-        <label class="form-control-label" for="field_empleado">Empleado</label>
-        <select class="form-control" id="field_empleado" data-cy="empleado" name="empleado" formControlName="empleado">
-          <option [ngValue]="null"></option>
-          <option
-            [ngValue]="empleadoOption.id === editForm.get('empleado')!.value?.id ? editForm.get('empleado')!.value : empleadoOption"
-            *ngFor="let empleadoOption of empleadosSharedCollection; trackBy: trackEmpleadoById"
+        <label class="form-control-label" jhiTranslate="hardwareRemApp.cliente.dni" for="field_dni">Dni</label>
+        <input type="text" class="form-control" name="dni" id="field_dni" data-cy="dni" formControlName="dni" [maxlength]="9" />
+        <div *ngIf="editForm.get('dni')!.invalid && (editForm.get('dni')!.dirty || editForm.get('dni')!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get('dni')?.errors?.required" jhiTranslate="entity.validation.required">
+            Este campo es obligatorio.
+          </small>
+          <small class="form-text text-danger" else="editForm.get('dni')?.errors?.minLength">
+            Este campo se compone de 9 caracteres
+          </small>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="form-control-label" jhiTranslate="hardwareRemApp.cliente.telefono" for="field_telefono">Telefono</label>
+        <input
+          type="text"
+          class="form-control"
+          name="telefono"
+          id="field_telefono"
+          data-cy="telefono"
+          formControlName="telefono"
+          [maxlength]="15"
+        />
+        <div *ngIf="editForm.get('telefono')!.invalid && (editForm.get('telefono')!.dirty || editForm.get('telefono')!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get('telefono')?.errors?.required"
+            jhiTranslate="entity.validation.required"
           >
-            {{ empleadoOption.id }}
-          </option>
-        </select>
+            Este campo es obligatorio.
+          </small>
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label class="form-control-label" jhiTranslate="hardwareRemApp.empleado.tipoContrato" for="field_tipoContrato"
+          >Tipo Contrato</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          name="tipoContrato"
+          id="field_tipoContrato"
+          data-cy="tipoContrato"
+          formControlName="tipoContrato"
+        />
+        <div
+          *ngIf="editForm.get('tipoContrato')!.invalid && (editForm.get('tipoContrato')!.dirty || editForm.get('tipoContrato')!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get('tipoContrato')?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-control-label" jhiTranslate="hardwareRemApp.empleado.contrasena" for="field_contrasena">Contrasena</label>
+        <input
+          type="text"
+          class="form-control"
+          name="contrasena"
+          id="field_contrasena"
+          data-cy="contrasena"
+          formControlName="contrasena"
+        />
+        <div *ngIf="editForm.get('contrasena')!.invalid && (editForm.get('contrasena')!.dirty || editForm.get('contrasena')!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get('contrasena')?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
       </div>
 
 

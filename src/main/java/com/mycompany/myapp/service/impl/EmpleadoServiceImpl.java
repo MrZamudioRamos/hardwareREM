@@ -8,7 +8,6 @@ import com.mycompany.myapp.service.EmpleadoService;
 import com.mycompany.myapp.service.dto.EmpleadoDTO;
 import com.mycompany.myapp.service.mapper.EmpleadoMapper;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -89,4 +88,8 @@ public class EmpleadoServiceImpl implements EmpleadoService {
         log.debug("Filtro");
         return empleadoRepository.findAll(EmpleadoSpecification.searchingParam(filtro), pageable).map(empleadoMapper::toDto);
     }
+
+    // public Empleado findEmpleadoByLogin(String login) {
+    //     return empleadoRepository.findEmpleadoByLogin(login);
+    // }
 }

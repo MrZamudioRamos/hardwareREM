@@ -87,7 +87,7 @@ public class UserMapper {
     }
 
     @Named("id")
-    @BeanMapping(ignoreByDefault = true)
+    @BeanMapping(ignoreByDefault = false)
     @Mapping(target = "id", source = "id")
     public UserDTO toDtoId(User user) {
         if (user == null) {
