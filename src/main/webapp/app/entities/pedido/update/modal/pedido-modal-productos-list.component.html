@@ -32,7 +32,7 @@
           <td>{{ producto.descripcion }}</td>
           <td>{{ producto.precioIva }}</td>
           <td>
-            <button class="btn btn-sm btn-outline-dark" (click)="addProduct(producto)">Add producto</button>
+            <button class="btn btn-sm btn-outline-light btn-primary" (click)="addProduct(producto)" [disabled]="isSaving">Añadir</button>
           </td>
         </tr>
       </tbody>

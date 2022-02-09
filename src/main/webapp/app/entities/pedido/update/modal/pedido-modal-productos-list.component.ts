@@ -7,6 +7,7 @@ import { ProductoService } from 'app/entities/producto/service/producto.service'
   templateUrl: './pedido-modal-productos-list.component.html',
 })
 export class ModalProductComponent implements OnInit {
+  isSaving = false;
   productos?: IProducto[] = [];
   productsToAddPedido?: IProducto[] = [];
   @Output() emitService = new EventEmitter();
@@ -19,10 +20,12 @@ export class ModalProductComponent implements OnInit {
 
   cancel(): void {
     this.activeModal.dismiss();
+    this.isSaving = false;
     this.emitService.next(this.productsToAddPedido);
   }
 
   addProduct(producto: IProducto): void {
+    this.isSaving = true;
     this.productsToAddPedido?.push(producto);
   }
 

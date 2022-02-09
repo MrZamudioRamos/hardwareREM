@@ -19,6 +19,7 @@ import { IProducto } from 'app/entities/producto/producto.model';
 import { ModalProductComponent } from './modal/pedido-modal-productos-list.component';
 import dayjs from 'dayjs/esm';
 import { ProductoService } from 'app/entities/producto/service/producto.service';
+import { PedidoService } from '../service/pedido.service';
 
 @Component({
   selector: 'jhi-pedido-update',
@@ -101,17 +102,7 @@ export class PedidoUpdateComponent implements OnInit {
       pedido.empresa = this.empresasSharedCollection[1];
       pedido.almacen = this.almacensSharedCollection[1];
 
-      // for (let producto of pedido.productos) {
-      //   producto.pedido = pedido.id;
-      //   this.productoService.update(producto);
-      // }
-
       this.subscribeToSaveResponse(this.pedidoService.create(pedido));
-
-      // for (let producto of pedido.productos) {
-      //   producto.pedido = this.pedidoAux!;
-      //   this.productoService.update(producto);
-      // }
     }
   }
 
@@ -132,23 +123,10 @@ export class PedidoUpdateComponent implements OnInit {
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPedido>>): void {
-    result
-      .pipe(
-        //   map((res: EntityResponseType) =>
-        //   // this.pedidoAux = res.body!
-        //   this.productosInPedidoCollection.forEach(producto => {
-
-        //     producto.pedido = res.body;
-
-        //     this.productoService.update(producto);
-        //   })
-        // ),
-        finalize(() => this.onSaveFinalize())
-      )
-      .subscribe({
-        next: () => this.onSaveSuccess(),
-        error: () => this.onSaveError(),
-      });
+    result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
+      next: () => this.onSaveSuccess(),
+      error: () => this.onSaveError(),
+    });
   }
 
   protected onSaveSuccess(): void {

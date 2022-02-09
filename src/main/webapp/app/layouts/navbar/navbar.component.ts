@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SessionStorageService } from 'ngx-webstorage';
@@ -24,6 +24,8 @@ export class NavbarComponent implements OnInit {
   version = '';
   account: Account | null = null;
   entitiesNavbarItems: any[] = [];
+  @Input() leftMenuHidden: boolean | undefined;
+  @Output() toggleBtnLeftMenuEvent = new EventEmitter<boolean>();
 
   constructor(
     private loginService: LoginService,
@@ -71,5 +73,10 @@ export class NavbarComponent implements OnInit {
 
   toggleNavbar(): void {
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
+  }
+
+  toggleLeftMenu(): void {
+    this.leftMenuHidden = !this.leftMenuHidden;
+    this.toggleBtnLeftMenuEvent.emit(this.leftMenuHidden);
   }
 }
