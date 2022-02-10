@@ -5,11 +5,7 @@
 </div>
 <div class="container-fluid mt-100 gradient-custom2">
   <div class="d-flex justify-content-end">
-    <!-- <input type = "text"
-          [(ngModel)]="searchString"
-          (ngModelChange)="buscarPorAtributo()"
-          placeholder="Buscar en facturas..."
-         > -->
+    <input type="text" [(ngModel)]="searchString" (ngModelChange)="buscarPorAtributo()" placeholder="Buscar en facturas..." />
 
     <button class="btn btn-info mr-2 ml-3" (click)="loadPage()" [disabled]="isLoading">
       <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
@@ -68,6 +64,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let factura of facturas; trackBy: trackId" data-cy="entityTable">
+          <td>{{ factura.id }}</td>
           <td>{{ factura.fechaFacturacion | formatMediumDate }}</td>
           <td>{{ factura.fechaVencimiento | formatMediumDate }}</td>
           <td>
